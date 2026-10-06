@@ -9,7 +9,7 @@ Biljardijoukkue Nekapool 2:n kotisivu (Pirkanmaan Pool, 3. divisioona). Julkaist
 ## Käyttöönotto
 
 1. Repon asetuksista: **Settings → Pages → Source: GitHub Actions**.
-2. Yhdistä muutokset `main`-haaraan. Työnkulku `Julkaisu` julkaisee sivun osoitteeseen
+2. Työnkulku `Julkaisu` julkaisee oletushaaran jokaisesta pushista osoitteeseen
    `https://samppafin.github.io/Nekapool-2/` ja päivittää liigadatan kolmen tunnin välein
    (tai käsin: Actions → Julkaisu → Run workflow).
 
