@@ -1,0 +1,535 @@
+{
+ "paivitetty": "2026-10-06T11:50:36+00:00",
+ "joukkue": "Nekapool 2",
+ "sarja": "3divari2026",
+ "sarjataulukko": {
+  "otsikko": "3. divisioonan  sarjataulukko 01.10.2026",
+  "rivit": [
+   {
+    "sija": 1,
+    "joukkue": "Nekapool 2",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 4,
+    "pm": 0,
+    "ep": 16,
+    "em": 1,
+    "p": 3
+   },
+   {
+    "sija": 2,
+    "joukkue": "Pub Kivitasku 2",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 4,
+    "pm": 0,
+    "ep": 16,
+    "em": 5,
+    "p": 3
+   },
+   {
+    "sija": 3,
+    "joukkue": "Team Walter's 2",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 3,
+    "pm": 1,
+    "ep": 15,
+    "em": 8,
+    "p": 3
+   },
+   {
+    "sija": 4,
+    "joukkue": "Renny Breakers",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 3,
+    "pm": 1,
+    "ep": 15,
+    "em": 9,
+    "p": 3
+   },
+   {
+    "sija": 5,
+    "joukkue": "Players Inn 1",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 3,
+    "pm": 1,
+    "ep": 15,
+    "em": 12,
+    "p": 3
+   },
+   {
+    "sija": 6,
+    "joukkue": "Pool Room Poolers",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 3,
+    "pm": 1,
+    "ep": 14,
+    "em": 8,
+    "p": 3
+   },
+   {
+    "sija": 7,
+    "joukkue": "Pispalan Köö",
+    "o": 1,
+    "v": 1,
+    "t": 0,
+    "h": 0,
+    "pp": 3,
+    "pm": 1,
+    "ep": 14,
+    "em": 9,
+    "p": 3
+   },
+   {
+    "sija": 8,
+    "joukkue": "Pub Kivitasku 1",
+    "o": 1,
+    "v": 0,
+    "t": 1,
+    "h": 0,
+    "pp": 2,
+    "pm": 2,
+    "ep": 12,
+    "em": 11,
+    "p": 1
+   },
+   {
+    "sija": 9,
+    "joukkue": "Akateeminen Breikki",
+    "o": 1,
+    "v": 0,
+    "t": 1,
+    "h": 0,
+    "pp": 2,
+    "pm": 2,
+    "ep": 11,
+    "em": 9,
+    "p": 1
+   },
+   {
+    "sija": 10,
+    "joukkue": "Mestarin Pool",
+    "o": 1,
+    "v": 0,
+    "t": 1,
+    "h": 0,
+    "pp": 2,
+    "pm": 2,
+    "ep": 11,
+    "em": 10,
+    "p": 1
+   },
+   {
+    "sija": 11,
+    "joukkue": "Pub Don Pepe",
+    "o": 1,
+    "v": 0,
+    "t": 1,
+    "h": 0,
+    "pp": 2,
+    "pm": 2,
+    "ep": 11,
+    "em": 12,
+    "p": 1
+   },
+   {
+    "sija": 12,
+    "joukkue": "Nekala Pool",
+    "o": 1,
+    "v": 0,
+    "t": 1,
+    "h": 0,
+    "pp": 2,
+    "pm": 2,
+    "ep": 10,
+    "em": 11,
+    "p": 1
+   },
+   {
+    "sija": 13,
+    "joukkue": "ByP Backyard Pool",
+    "o": 1,
+    "v": 0,
+    "t": 1,
+    "h": 0,
+    "pp": 2,
+    "pm": 2,
+    "ep": 9,
+    "em": 11,
+    "p": 1
+   },
+   {
+    "sija": 14,
+    "joukkue": "Tampereen A-Kilta",
+    "o": 0,
+    "v": 0,
+    "t": 0,
+    "h": 0,
+    "pp": 0,
+    "pm": 0,
+    "ep": 0,
+    "em": 0,
+    "p": 0
+   },
+   {
+    "sija": 16,
+    "joukkue": "Pub Kivitasku 3",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 1,
+    "pm": 3,
+    "ep": 12,
+    "em": 15,
+    "p": 0
+   },
+   {
+    "sija": 17,
+    "joukkue": "Pete Pool",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 1,
+    "pm": 3,
+    "ep": 9,
+    "em": 14,
+    "p": 0
+   },
+   {
+    "sija": 18,
+    "joukkue": "PP Pahat",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 1,
+    "pm": 3,
+    "ep": 9,
+    "em": 15,
+    "p": 0
+   },
+   {
+    "sija": 19,
+    "joukkue": "Jamo Racing",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 1,
+    "pm": 3,
+    "ep": 8,
+    "em": 14,
+    "p": 0
+   },
+   {
+    "sija": 20,
+    "joukkue": "Mestarin Ysi",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 1,
+    "pm": 3,
+    "ep": 8,
+    "em": 15,
+    "p": 0
+   },
+   {
+    "sija": 21,
+    "joukkue": "Vastavirta Pool",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 0,
+    "pm": 4,
+    "ep": 5,
+    "em": 16,
+    "p": 0
+   },
+   {
+    "sija": 22,
+    "joukkue": "Pub Kivitasku Tohloppi",
+    "o": 1,
+    "v": 0,
+    "t": 0,
+    "h": 1,
+    "pp": 0,
+    "pm": 4,
+    "ep": 1,
+    "em": 16,
+    "p": 0
+   }
+  ]
+ },
+ "pelaajat": [
+  {
+   "ranking": 1,
+   "nimi": "Salmi Mikko",
+   "o": 1,
+   "v": 1,
+   "h": 0,
+   "ep": 4,
+   "em": 0,
+   "p": 3
+  },
+  {
+   "ranking": 1,
+   "nimi": "Räisänen Sami",
+   "o": 1,
+   "v": 1,
+   "h": 0,
+   "ep": 4,
+   "em": 0,
+   "p": 3
+  },
+  {
+   "ranking": 1,
+   "nimi": "Karppanen Toni",
+   "o": 1,
+   "v": 1,
+   "h": 0,
+   "ep": 4,
+   "em": 0,
+   "p": 3
+  },
+  {
+   "ranking": 11,
+   "nimi": "Eskola Arto",
+   "o": 1,
+   "v": 1,
+   "h": 0,
+   "ep": 4,
+   "em": 1,
+   "p": 3
+  }
+ ],
+ "ottelut": [
+  {
+   "pvm": "2026-10-01",
+   "koti": "Nekapool 2",
+   "vieras": "Pub Kivitasku Tohloppi",
+   "pelit": [
+    4,
+    0
+   ],
+   "erat": [
+    16,
+    1
+   ],
+   "linkki": "https://www.pirkanmaanpool.fi/cgi-bin/sarjapeli.cgi?sarja=3divari2026&lohko=&koti=Nekapool+2&vieras=Pub+Kivitasku+Tohloppi",
+   "pelit_erittely": [
+    {
+     "koti": "Salmi Mikko",
+     "vieras": "Ebrahimi Edris",
+     "tulos": [
+      4,
+      0
+     ]
+    },
+    {
+     "koti": "Räisänen Sami",
+     "vieras": "Lehtinen Jari",
+     "tulos": [
+      4,
+      0
+     ]
+    },
+    {
+     "koti": "Karppanen Toni",
+     "vieras": "Mäki Tomppa",
+     "tulos": [
+      4,
+      0
+     ]
+    },
+    {
+     "koti": "Eskola Arto",
+     "vieras": "Ritoniemi Sami",
+     "tulos": [
+      4,
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "pvm": "2026-10-06",
+   "koti": "Nekapool 2",
+   "vieras": "Pikku Pete Pool",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-10-14",
+   "koti": "Jamo Racing",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-10-20",
+   "koti": "Nekapool 2",
+   "vieras": "Pub Kivitasku 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-10-27",
+   "koti": "Pub Don Pepe",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-11-03",
+   "koti": "Nekapool 2",
+   "vieras": "Team Walter's 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-11-12",
+   "koti": "Nekala Pool",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-11-17",
+   "koti": "Nekapool 2",
+   "vieras": "ByP Backyard Pool",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-11-24",
+   "koti": "Pispalan Köö",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-12-03",
+   "koti": "Pete Pool",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-12-08",
+   "koti": "Nekapool 2",
+   "vieras": "Akateeminen Breikki",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-12-15",
+   "koti": "Mestarin Pool",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-12-22",
+   "koti": "Nekapool 2",
+   "vieras": "Mestarin Ysi",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2026-12-30",
+   "koti": "Pub Kivitasku 1",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-01-07",
+   "koti": "Vastavirta Pool",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-01-12",
+   "koti": "Nekapool 2",
+   "vieras": "Pool Room Poolers",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-01-19",
+   "koti": "Tampereen A-Kilta",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-01-26",
+   "koti": "Pub Kivitasku 3",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-02-02",
+   "koti": "Nekapool 2",
+   "vieras": "PP Pahat",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-02-11",
+   "koti": "Players Inn 1",
+   "vieras": "Nekapool 2",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  },
+  {
+   "pvm": "2027-02-16",
+   "koti": "Nekapool 2",
+   "vieras": "Renny Breakers",
+   "pelit": null,
+   "erat": null,
+   "linkki": null
+  }
+ ]
+}

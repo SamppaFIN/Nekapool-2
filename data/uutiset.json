@@ -1,0 +1,25 @@
+[
+  {
+    "pvm": "2026-10-01",
+    "tyyppi": "raportti",
+    "otsikko": "Historiallinen ilta Nekalassa",
+    "teksti": "Nekapool 2 avasi kauden murskavoitolla ja kaatoi Pub Kivitasku Tohlopin erin 16–1. Mikko, Sami ja Toni pelasivat puhtaat 4–0-voitot, ja Arto sinetöi illan 4–1. Lue illan tarinat pelaaja kerrallaan.",
+    "linkki": "https://claude.ai/artifact/LjnbJpnZruEu7aq4iuDVwd",
+    "linkkiteksti": "Lue otteluraportti"
+  },
+  {
+    "pvm": "2026-10-01",
+    "tyyppi": "aanestys",
+    "otsikko": "Miten käy Nekapoolin kauden avauksessa?",
+    "teksti": "Kannattajat ennustivat kauden avausta. Oikea vastaus: puhtaasti kotio.",
+    "aanestys": "miten-kay-nekapoolin-kauden-avauksessa-f0ah",
+    "linkki": "https://samppafin.github.io/Harakka/#/aanestys/miten-kay-nekapoolin-kauden-avauksessa-f0ah",
+    "linkkiteksti": "Avaa äänestys",
+    "tulokset": [
+      { "teksti": "Puhtaasti kotio", "vari": "#c9683f", "aanet": 3 },
+      { "teksti": "Tiukka kotivoitto", "vari": "#2f6b4f", "aanet": 2 },
+      { "teksti": "Tasuri", "vari": "#2b3f6b", "aanet": 0 },
+      { "teksti": "Vieraat vie", "vari": "#d3a03c", "aanet": 0 }
+    ]
+  }
+]

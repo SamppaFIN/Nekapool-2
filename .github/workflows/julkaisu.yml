@@ -1,0 +1,63 @@
+# Päivittää sarjataulukon ja tilastot pirkanmaanpool.fi:stä ja julkaisee sivun GitHub Pagesiin.
+# Ajetaan jokaisesta pushista mainiin, ajastetusti ja käsin (Actions → Julkaisu → Run workflow).
+name: Julkaisu
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Joka päivä 7–23 Suomen aikaa kolmen tunnin välein (UTC-ajat), ottelupäivinä myös illalla.
+    - cron: "17 4-22/3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  julkaisu:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Hae liigadata
+        # Jos pirkanmaanpool.fi ei vastaa, julkaistaan silti edellisellä datalla.
+        continue-on-error: true
+        run: python scripts/paivita_data.py
+
+      - name: Tallenna muuttunut data repoon
+        run: |
+          # Commitoidaan vain, jos jokin muu kuin aikaleima muuttui.
+          if git diff -U0 -- data/liiga.json | grep -E '^[-+][^-+]' | grep -qv '"paivitetty"'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+            git add data/liiga.json
+            git commit -m "Päivitä liigadata"
+            git push
+          else
+            echo "Ei muutoksia liigadatassa."
+          fi
+
+      - name: Kokoa sivusto
+        run: |
+          mkdir -p _site
+          cp -r index.html css js data _site/
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
