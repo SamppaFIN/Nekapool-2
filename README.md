@@ -2,7 +2,11 @@
 
 Biljardijoukkue Nekapool 2:n kotisivu (Pirkanmaan Pool, 3. divisioona). Julkaistaan GitHub Pagesissa.
 
-- **Live-ottelupöytäkirja**: "Kirjaa tuloksia" -tilassa erävoitot merkitään tukkimerkein, ja muutokset näkyvät heti kaikille sivulla oleville. "Arvo peliparit" arpoo molempien joukkueiden pelijärjestyksen.
+- **Live-ottelupöytäkirja**:
+  1. Kirjoita illan pelaajat ja vastustaja suoraan paperille (luonnos näkyy vain omalla puhelimella).
+  2. **Arvo peliparit** → **Aloita ottelu** julkaisee pöytäkirjan kaikille.
+  3. Paina pelin kohdalla **+ Erä** ja valitse erän voittaja – tulos julkaistaan heti. ↶ peruu viimeisimmän erän.
+     Peli päättyy, kun toisella on 4 erävoittoa. Muut voivat ryhtyä kirjaajiksi napista "Kirjaa tuloksia tällä puhelimella".
 - **Uutiset**: `data/uutiset.json` (otteluraportit, äänestykset Harakasta – äänestystulos haetaan livenä).
 - **Sarjataulukko, pelaajatilastot, otteluohjelma**: `data/liiga.json`, jonka `scripts/paivita_data.py` hakee pirkanmaanpool.fi:stä.
 

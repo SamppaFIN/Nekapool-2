@@ -27,7 +27,7 @@
   function parse(text) {
     try {
       var s = JSON.parse(text);
-      return s && s.v === 1 ? s : null;
+      return s && s.v === 2 ? s : null;
     } catch (e) { return null; }
   }
 

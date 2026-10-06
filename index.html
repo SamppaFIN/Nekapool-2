@@ -64,7 +64,7 @@
 <main>
 
   <!-- LIVE-PÖYTÄKIRJA -->
-  <section id="live" class="sec" aria-labelledby="liveOtsikko">
+  <section id="live" class="sec" aria-labelledby="liveOtsikko" data-mode="kokoonpano">
     <header class="sec-head">
       <p class="sec-kick">Ottelupöytäkirja</p>
       <h2 id="liveOtsikko">Live lavalla</h2>
@@ -79,10 +79,12 @@
           <div class="p-team">
             <div class="p-label">Kotijoukkue</div>
             <div class="p-name" id="pKoti">–</div>
+            <input class="p-name-in" id="pKotiIn" type="text" maxlength="60" autocomplete="off" aria-label="Kotijoukkueen nimi" hidden>
           </div>
           <div class="p-team right">
             <div class="p-label">Vierasjoukkue</div>
             <div class="p-name" id="pVieras">–</div>
+            <input class="p-name-in" id="pVierasIn" type="text" maxlength="60" autocomplete="off" aria-label="Vierasjoukkueen nimi" hidden>
           </div>
         </div>
 
@@ -96,20 +98,32 @@
       </div>
     </div>
 
-    <div class="controls">
+    <!-- 1. kokoonpano: näkyy vain tällä laitteella kunnes ottelu aloitetaan -->
+    <div class="controls" id="setupCtl">
+      <p class="note setup-note">✏️ Kirjoita illan pelaajat suoraan paperille. Kokoonpano näkyy muille vasta, kun ottelu aloitetaan.</p>
       <button class="btn btn-rock" id="drawBtn" type="button"><span aria-hidden="true">⚡</span> Arvo peliparit</button>
-      <button class="btn" id="editBtn" type="button" aria-pressed="false">Kirjaa tuloksia</button>
-      <div class="edit-only edit-tools">
+      <button class="btn btn-rock btn-start" id="startBtn" type="button" hidden><span aria-hidden="true">▶</span> Aloita ottelu</button>
+      <button class="text-link" id="startLink" type="button">Aloita ilman arvontaa</button>
+      <div class="setup-tools">
         <label class="field">Voittoon
           <select id="raceSel">
             <option>3</option><option selected>4</option><option>5</option><option>6</option>
           </select>
         </label>
         <button class="btn btn-ghost" id="swapBtn" type="button">Koti ⇄ vieras</button>
-        <button class="btn btn-ghost" id="newBtn" type="button">Uusi ottelu</button>
+        <button class="btn btn-ghost" id="resetBtn" type="button">Palauta</button>
       </div>
     </div>
-    <p class="note edit-only">Napauta <b>+</b> kun pelaaja voittaa erän. Muutokset näkyvät heti kaikille. Nimiä voi muokata suoraan paperissa.</p>
+
+    <!-- 2. käynnissä oleva / päättynyt ottelu -->
+    <div class="controls" id="liveCtl" hidden>
+      <p class="note live-hint" id="liveHint">Paina pelin kohdalla <b>+ Erä</b> ja valitse erän voittaja. Tulos näkyy heti kaikille. Peli päättyy, kun toisella on tarvittavat erävoitot.</p>
+      <button class="btn" id="joinBtn" type="button">Kirjaa tuloksia tällä puhelimella</button>
+      <div class="live-tools">
+        <button class="btn btn-ghost" id="namesBtn" type="button" aria-pressed="false">Muokkaa nimiä</button>
+        <button class="btn btn-ghost" id="endBtn" type="button">Lopeta ottelu</button>
+      </div>
+    </div>
   </section>
 
   <!-- UUTISET -->
