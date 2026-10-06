@@ -102,6 +102,22 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .scrawl { margin: 6px 0 0; font-family: var(--font-marker); font-size: 22px; color: var(--pink); transform: rotate(-3deg); text-shadow: 0 0 14px rgba(255, 45, 117, 0.6); }
 .hero-lede { margin: 12px auto 0; max-width: 36ch; color: var(--muted); font-size: 15px; }
 
+/* tuore uutinen heron nostona */
+.breaking {
+  display: flex; flex-direction: column; gap: 6px; margin: 18px auto 0; max-width: 560px; text-align: left;
+  padding: 14px 16px 16px; color: var(--fg); text-decoration: none; position: relative;
+  background: linear-gradient(135deg, rgba(255, 45, 117, 0.28), rgba(139, 92, 255, 0.22)), var(--panel);
+  border: 2px solid var(--pink); border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--gold), 0 0 34px rgba(255, 45, 117, 0.45);
+  animation: breakin 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+@keyframes breakin { from { transform: translateY(14px) rotate(-1.5deg); } }
+.breaking-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; background: var(--pink); color: var(--on);
+  font-family: var(--font-poster); font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 10px; transform: rotate(-2deg); }
+.breaking-title { font-family: var(--font-poster); font-size: 32px; line-height: 1.02; text-transform: uppercase; text-wrap: balance; }
+.breaking-text { color: var(--muted); font-size: 15px; }
+.breaking-cta { font-family: var(--font-cond); font-weight: 700; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+
 /* ekvalisaattori lavan reunassa */
 .eq { display: flex; align-items: flex-end; gap: 3px; height: 54px; margin-top: 18px; }
 .eq i { flex: 1; min-width: 0; display: block; transform-origin: bottom; animation: eq 1s ease-in-out infinite alternate; border-radius: 2px 2px 0 0; }
@@ -398,7 +414,7 @@ h3 { margin: 0; font-family: var(--font-poster); font-weight: 400; font-size: 28
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .beams i, .eq i, .logo-num, .btn-rock, .g-row.flash, .g-end, .live-dot.ok, .paper.shuffling .g-row, .tg i.new { animation: none; }
+  .beams i, .eq i, .breaking, .logo-num, .btn-rock, .g-row.flash, .g-end, .live-dot.ok, .paper.shuffling .g-row, .tg i.new { animation: none; }
   .ticker-run { animation: none; padding-left: 0; }
   .poll-bar span { transition: none; }
 }

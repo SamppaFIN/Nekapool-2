@@ -748,10 +748,39 @@
       .catch(function () { /* näytetään tallennettu tulos */ });
   }
 
+  /* Tuore uutinen (julkaistu alle 2 h sitten) nostetaan heroon "Just now" -nostoksi,
+     sen jälkeen se näkyy tavallisena uutisena. */
+  var HERO_MS = 2 * 3600 * 1000;
+  function renderHero(u) {
+    var a = $('breaking');
+    a.textContent = '';
+    a.href = u.linkki || '#uutiset';
+    if (!u.linkki) a.removeAttribute('target');
+    var tag = el('span', 'breaking-tag');
+    tag.appendChild(el('span', 'live-dot ok'));
+    var mins = Math.max(1, Math.round((Date.now() - Date.parse(u.julkaistu)) / 60000));
+    tag.appendChild(document.createTextNode(mins < 15 ? 'Just now' : mins + ' min sitten'));
+    a.appendChild(tag);
+    a.appendChild(el('span', 'breaking-title', u.otsikko));
+    if (u.teksti) a.appendChild(el('span', 'breaking-text', u.teksti));
+    a.appendChild(el('span', 'breaking-cta', (u.linkkiteksti || 'Lue lisää') + ' →'));
+    a.hidden = false;
+  }
+
   function renderUutiset(list) {
     var box = $('news');
     box.textContent = '';
-    list.sort(function (a, b) { return a.pvm < b.pvm ? 1 : -1; });
+    list.sort(function (a, b) { return (b.julkaistu || b.pvm) < (a.julkaistu || a.pvm) ? -1 : 1; });
+    var tuore = list.filter(function (u) {
+      var t = Date.parse(u.julkaistu || '');
+      return isFinite(t) && Date.now() - t < HERO_MS && Date.now() >= t - 60000;
+    })[0];
+    if (tuore) {
+      renderHero(tuore);
+      list = list.filter(function (u) { return u !== tuore; });
+      setTimeout(function () { $('breaking').hidden = true; renderUutiset(list.concat([tuore])); },
+        Math.max(1000, HERO_MS - (Date.now() - Date.parse(tuore.julkaistu))));
+    }
     list.forEach(function (u, i) {
       var card = el('article', 'news-card');
       card.style.setProperty('--c', COLORS[i % 4]);
