@@ -53,12 +53,15 @@ def sarjataulukko():
         raise RuntimeError("3. divisioonan sarjataulukkoa ei löytynyt")
     otsikko = teksti(m.group(1))
     taulu = []
+    sija = None
     for rivi in rivit(m.group(2)):
         c = solut(rivi)
-        if len(c) < 11 or not c[0].rstrip(".").isdigit():
+        if len(c) < 11 or "joukkue.cgi" not in rivi:
             continue
+        # Tasapisteissä sija-solu on tyhjä: sama sija kuin edellisellä rivillä.
+        sija = luku(c[0].rstrip(".")) or sija
         taulu.append({
-            "sija": luku(c[0].rstrip(".")), "joukkue": c[1],
+            "sija": sija, "joukkue": c[1],
             "o": luku(c[2]), "v": luku(c[3]), "t": luku(c[4]), "h": luku(c[5]),
             "pp": luku(c[6]), "pm": luku(c[7]), "ep": luku(c[8]), "em": luku(c[9]),
             "p": luku(c[10]),

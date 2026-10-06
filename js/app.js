@@ -6,7 +6,7 @@
   var ME = 'Nekapool 2';
   var PELEJA = 4;
   var HARAKKA = 'https://harakka.es3-world-worker.workers.dev';
-  var COLORS = ['var(--orange)', 'var(--cyan)', 'var(--yellow)', 'var(--pink)'];
+  var COLORS = ['var(--pink)', 'var(--gold)', 'var(--violet)', 'var(--green)'];
   var VIIKONPAIVAT = ['su', 'ma', 'ti', 'ke', 'to', 'pe', 'la'];
 
   var liiga = null;
@@ -46,18 +46,36 @@
   function str(v, max) { return typeof v === 'string' ? v.slice(0, max || 40) : ''; }
   function int(v, max) { v = Math.floor(Number(v)); return isFinite(v) && v > 0 ? Math.min(v, max) : 0; }
 
-  /* rytmipalkit */
-  Array.prototype.forEach.call(document.querySelectorAll('.bars'), function (box) {
-    var s = Number(box.getAttribute('data-seed')) || 1;
+  /* ekvalisaattori */
+  Array.prototype.forEach.call(document.querySelectorAll('.eq'), function (box) {
+    var s = 7;
     function rnd() { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }
-    for (var i = 0; i < 23; i++) {
+    for (var i = 0; i < 32; i++) {
       var b = document.createElement('i');
-      b.style.height = (20 + Math.round(rnd() * 40)) + 'px';
-      b.style.background = COLORS[i % 4];
-      b.style.animationDelay = '-' + (rnd() * 1.8).toFixed(2) + 's';
+      var mid = 1 - Math.abs(i - 15.5) / 16;
+      b.style.height = Math.round(14 + mid * 26 + rnd() * 14) + 'px';
+      b.style.background = i % 3 === 0 ? 'var(--gold)' : (i % 3 === 1 ? 'var(--pink)' : 'var(--violet)');
+      b.style.animationDuration = (0.5 + rnd() * 0.7).toFixed(2) + 's';
+      b.style.animationDelay = '-' + rnd().toFixed(2) + 's';
       box.appendChild(b);
     }
   });
+
+  /* aktiivinen välilehti alanavigaatiossa */
+  (function () {
+    var links = document.querySelectorAll('.tabbar a');
+    if (!window.IntersectionObserver) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Array.prototype.forEach.call(links, function (a) {
+          a.classList.toggle('on', a.getAttribute('data-sec') === en.target.id);
+          if (a.getAttribute('data-sec') === en.target.id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Array.prototype.forEach.call(document.querySelectorAll('main > section'), function (sec) { io.observe(sec); });
+  })();
 
   /* =====================================================================
    * LIVE-PÖYTÄKIRJA
@@ -250,6 +268,13 @@
       else status = (p[0] > p[1] ? s.koti : s.vieras) + ' voitti ' + Math.max(p[0], p[1]) + '–' + Math.min(p[0], p[1]) + '!';
     } else status = 'Ottelu käynnissä · ' + valmiit + '/' + PELEJA + ' peliä valmiina';
     $('pStatus').textContent = status;
+
+    var t = [s.koti + ' ' + p[0] + '–' + p[1] + ' ' + s.vieras + ' (erät ' + e[0] + '–' + e[1] + ')'];
+    s.pelit.forEach(function (g, i) {
+      if (g.ke + g.ve > 0 || (g.k && g.v)) t.push((i + 1) + '. ' + (g.k || '?') + ' ' + g.ke + '–' + g.ve + ' ' + (g.v || '?'));
+    });
+    t.push(status);
+    $('ticker').textContent = t.join('   ★   ');
   }
 
   function commit() {
@@ -357,8 +382,8 @@
     tb.textContent = '';
     st.rivit.forEach(function (r) {
       var tr = el('tr', r.joukkue === ME ? 'us' : (r.joukkue === vastus ? 'opp' : ''));
-      [[r.sija + '.', 'num'], [r.joukkue, 'team'], [r.o, 'num'], [r.v, 'num'], [r.t, 'num'], [r.h, 'num'],
-       [r.pp + '–' + r.pm, 'num'], [r.ep + '–' + r.em, 'num'], [r.p, 'num']].forEach(function (c) {
+      [[r.sija + '.', 'num'], [r.joukkue, 'team'], [r.o, 'num'], [r.v, 'num opt'], [r.t, 'num opt'], [r.h, 'num opt'],
+       [r.pp + '–' + r.pm, 'num opt'], [r.ep + '–' + r.em, 'num'], [r.p, 'num']].forEach(function (c) {
         tr.appendChild(el('td', c[1], String(c[0])));
       });
       if (r.joukkue === vastus) tr.title = 'Seuraava vastustaja';
@@ -375,15 +400,15 @@
     var ts = $('teamStats');
     ts.textContent = '';
     if (oma) {
-      [[oma.sija + '.', 'sija sarjassa', 'var(--orange)'], [oma.p, 'pistettä', 'var(--cyan)'],
-       [oma.pp + '–' + oma.pm, 'pelit', 'var(--yellow)'], [oma.ep + '–' + oma.em, 'erät', 'var(--pink)']].forEach(function (s) {
+      [[oma.sija + '.', 'sija sarjassa', 'var(--pink)'], [oma.p, 'pistettä', 'var(--gold)'],
+       [oma.pp + '–' + oma.pm, 'pelit', 'var(--violet)'], [oma.ep + '–' + oma.em, 'erät', 'var(--green)']].forEach(function (s) {
         var d = el('div', 'stat');
         d.style.setProperty('--c', s[2]);
         d.appendChild(el('b', null, String(s[0])));
         d.appendChild(el('span', null, s[1]));
         ts.appendChild(d);
       });
-      $('heroLede').textContent = 'Sarjassa ' + oma.sija + '. · ' + oma.p + ' pistettä · erät ' + oma.ep + '–' + oma.em + '. Nekalan taideteknillisen tehtaan poolijoukkue.';
+      $('heroLede').textContent = (oma.sija === 1 ? 'Listaykkönen! ' : 'Sarjassa ' + oma.sija + '. · ') + oma.p + ' pistettä · erät ' + oma.ep + '–' + oma.em + '. Nekalan taideteknillisen tehtaan poolijoukkue.';
     }
 
     var box = $('playerCards');
@@ -462,7 +487,7 @@
         res.appendChild(el('small', null, 'erät ' + me + '–' + te));
       } else if (o === seur) {
         li.classList.add('next');
-        var b = el('a', 'badge', o.pvm === t ? 'Tänään · live' : 'Seuraava');
+        var b = el('a', 'badge', o.pvm === t ? 'Tänään · live' : 'Seuraava keikka');
         b.href = '#live';
         res.appendChild(b);
       }
@@ -484,7 +509,7 @@
       row.appendChild(el('b', null, o.aanet + ' (' + pct + ' %)'));
       var bar = el('div', 'poll-bar');
       var fill = el('span');
-      fill.style.setProperty('--b', /^#[0-9a-f]{3,8}$/i.test(o.vari) ? o.vari : 'var(--orange)');
+      fill.style.setProperty('--b', /^#[0-9a-f]{3,8}$/i.test(o.vari) ? o.vari : 'var(--pink)');
       bar.appendChild(fill);
       row.appendChild(bar);
       box.appendChild(row);

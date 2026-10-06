@@ -5,43 +5,74 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Nekapool 2</title>
   <meta name="description" content="Nekapool 2 – Pirkanmaan Poolin 3. divisioonan joukkue. Live-pöytäkirja, sarjataulukko, tilastot ja uutiset.">
-  <meta name="theme-color" content="#12161d">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23111'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23fff'/%3E%3Ctext x='16' y='20' font-size='10' font-family='Arial' font-weight='bold' text-anchor='middle'%3E2%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#08070a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 1C27 1 31 7 31 13C31 22 21 29 16 31C11 29 1 22 1 13C1 7 5 1 16 1Z' fill='%23ff2d75'/%3E%3Cpath d='M18 5L10 18H15L13 27L22 13H17Z' fill='%23ffd400'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@500;700&family=Patrick+Hand&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=Caveat:wght@500;700&family=Patrick+Hand&family=Permanent+Marker&display=swap">
   <link rel="stylesheet" href="css/tyyli.css">
 </head>
 <body>
-<div class="bars top" data-seed="7" aria-hidden="true"></div>
 
-<header class="hero wrap">
-  <p class="eyebrow">Pirkanmaan Pool · 3. divisioona · kausi 2026–27</p>
-  <h1>Nekapool 2</h1>
-  <p class="lede" id="heroLede">Nekalan taideteknillisen tehtaan poolijoukkue.</p>
-  <nav class="nav" aria-label="Osiot">
-    <a href="#live">Live</a>
-    <a href="#uutiset">Uutiset</a>
-    <a href="#sarjataulukko">Sarjataulukko</a>
-    <a href="#pelaajat">Pelaajat</a>
-    <a href="#ohjelma">Ohjelma</a>
-  </nav>
+<!-- Live-tikkeri: päivittyy pöytäkirjan mukana -->
+<a class="ticker" href="#live" aria-label="Live-tilanne">
+  <span class="ticker-tag"><span class="live-dot" id="syncDot" aria-hidden="true"></span>Live</span>
+  <span class="ticker-track"><span class="ticker-run" id="ticker">Nekapool 2 · Nekalan taideteknillinen tehdas</span></span>
+</a>
+
+<header class="hero">
+  <div class="beams" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero-in">
+    <p class="kicker">Pirkanmaan Pool · 3. divisioona</p>
+    <h1 class="logo">
+      <span class="logo-word">Nekapool</span>
+      <span class="logo-num" aria-label="2">
+        <svg viewBox="0 0 60 68" aria-hidden="true"><path d="M30 0C52 0 60 12 60 24C60 42 40 62 30 68C20 62 0 42 0 24C0 12 8 0 30 0Z"/></svg>
+        <b>2</b>
+      </span>
+    </h1>
+    <p class="scrawl">World tour 2026–27</p>
+    <p class="hero-lede" id="heroLede">Nekalan taideteknillisen tehtaan poolijoukkue.</p>
+    <div class="eq" aria-hidden="true"></div>
+  </div>
 </header>
 
-<main class="wrap">
+<!-- Alanavigaatio peukalon ulottuville -->
+<nav class="tabbar" aria-label="Osiot">
+  <a href="#live" data-sec="live">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4M3.5 3.5a12 12 0 0 0 0 17M20.5 3.5a12 12 0 0 1 0 17"/></svg>
+    <span>Live</span>
+  </a>
+  <a href="#uutiset" data-sec="uutiset">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg>
+    <span>Uutiset</span>
+  </a>
+  <a href="#sarjataulukko" data-sec="sarjataulukko">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+    <span>Taulukko</span>
+  </a>
+  <a href="#pelaajat" data-sec="pelaajat">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c5.5 0 8 3 8 6 0 4.5-5 9.5-8 14-3-4.5-8-9.5-8-14 0-3 2.5-6 8-6z"/></svg>
+    <span>Pelaajat</span>
+  </a>
+  <a href="#ohjelma" data-sec="ohjelma">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 2v5M16 2v5"/></svg>
+    <span>Ohjelma</span>
+  </a>
+</nav>
+
+<main>
 
   <!-- LIVE-PÖYTÄKIRJA -->
-  <section id="live" aria-labelledby="liveOtsikko">
-    <div class="sec-head">
-      <div>
-        <h2 id="liveOtsikko">Ottelupöytäkirja</h2>
-        <p class="sub"><span class="live-dot" id="syncDot" aria-hidden="true"></span><span id="syncText">Yhdistetään…</span></p>
-      </div>
-      <button class="btn" id="editBtn" type="button" aria-pressed="false">Kirjaa tuloksia</button>
-    </div>
+  <section id="live" class="sec" aria-labelledby="liveOtsikko">
+    <header class="sec-head">
+      <p class="sec-kick">Ottelupöytäkirja</p>
+      <h2 id="liveOtsikko">Live lavalla</h2>
+      <p class="sync"><span id="syncText">Yhdistetään…</span></p>
+    </header>
 
-    <div class="paper" id="paper">
-      <div class="paper-inner">
+    <div class="paper-wall">
+      <div class="paper" id="paper">
         <div class="p-date"><span id="pDate">–</span></div>
 
         <div class="p-teams">
@@ -65,75 +96,82 @@
       </div>
     </div>
 
-    <div class="controls" id="controls">
-      <button class="btn btn-hot" id="drawBtn" type="button">🎱 Arvo peliparit</button>
-      <div class="edit-only">
-        <label class="field">Pelit voittoon
+    <div class="controls">
+      <button class="btn btn-rock" id="drawBtn" type="button"><span aria-hidden="true">⚡</span> Arvo peliparit</button>
+      <button class="btn" id="editBtn" type="button" aria-pressed="false">Kirjaa tuloksia</button>
+      <div class="edit-only edit-tools">
+        <label class="field">Voittoon
           <select id="raceSel">
             <option>3</option><option selected>4</option><option>5</option><option>6</option>
           </select>
         </label>
-        <button class="btn" id="newBtn" type="button">Uusi ottelu</button>
-        <button class="btn" id="swapBtn" type="button">Vaihda koti/vieras</button>
+        <button class="btn btn-ghost" id="swapBtn" type="button">Koti ⇄ vieras</button>
+        <button class="btn btn-ghost" id="newBtn" type="button">Uusi ottelu</button>
       </div>
     </div>
-    <p class="note edit-only">Napauta <b>+</b> pelaajan kohdalla, kun hän voittaa erän. Kaikki sivulla olijat näkevät muutokset heti. Nimiä voi muokata suoraan pöytäkirjassa.</p>
+    <p class="note edit-only">Napauta <b>+</b> kun pelaaja voittaa erän. Muutokset näkyvät heti kaikille. Nimiä voi muokata suoraan paperissa.</p>
   </section>
 
   <!-- UUTISET -->
-  <section id="uutiset" aria-labelledby="uutisOtsikko">
-    <div class="sec-head"><h2 id="uutisOtsikko">Uutiset</h2></div>
+  <section id="uutiset" class="sec" aria-labelledby="uutisOtsikko">
+    <header class="sec-head">
+      <p class="sec-kick">Uutiset</p>
+      <h2 id="uutisOtsikko">Backstage</h2>
+    </header>
     <div class="news" id="news"><p class="note">Ladataan…</p></div>
   </section>
 
   <!-- SARJATAULUKKO -->
-  <section id="sarjataulukko" aria-labelledby="stOtsikko">
-    <div class="sec-head">
-      <div>
-        <h2 id="stOtsikko">Sarjataulukko</h2>
-        <p class="sub" id="stSub">3. divisioona</p>
-      </div>
-    </div>
+  <section id="sarjataulukko" class="sec" aria-labelledby="stOtsikko">
+    <header class="sec-head">
+      <p class="sec-kick">Sarjataulukko</p>
+      <h2 id="stOtsikko">Listat</h2>
+      <p class="sec-sub" id="stSub">3. divisioona</p>
+    </header>
     <div class="table-wrap">
       <table class="table" id="stTable">
         <thead><tr>
           <th class="num" scope="col">#</th><th scope="col">Joukkue</th>
-          <th class="num" scope="col" title="Ottelut">O</th><th class="num" scope="col" title="Voitot">V</th>
-          <th class="num" scope="col" title="Tasapelit">T</th><th class="num" scope="col" title="Häviöt">H</th>
-          <th class="num" scope="col" title="Pelit">Pelit</th><th class="num" scope="col" title="Erät">Erät</th>
+          <th class="num" scope="col" title="Ottelut">O</th>
+          <th class="num opt" scope="col" title="Voitot">V</th>
+          <th class="num opt" scope="col" title="Tasapelit">T</th>
+          <th class="num opt" scope="col" title="Häviöt">H</th>
+          <th class="num opt" scope="col" title="Pelit">Pelit</th>
+          <th class="num" scope="col" title="Erät">Erät</th>
           <th class="num" scope="col" title="Pisteet">P</th>
         </tr></thead>
         <tbody></tbody>
       </table>
     </div>
-    <p class="note">Lähde: <a href="https://www.pirkanmaanpool.fi/sarjataulukot.shtml#3divari" target="_blank" rel="noopener">pirkanmaanpool.fi</a> · päivitetty <span class="upd"></span></p>
+    <p class="note">Lähde <a href="https://www.pirkanmaanpool.fi/sarjataulukot.shtml#3divari" target="_blank" rel="noopener">pirkanmaanpool.fi</a> · päivitetty <span class="upd"></span></p>
   </section>
 
   <!-- PELAAJAT -->
-  <section id="pelaajat" aria-labelledby="plOtsikko">
-    <div class="sec-head">
-      <div>
-        <h2 id="plOtsikko">Pelaajat</h2>
-        <p class="sub">Henkilökohtaiset tilastot runkosarjassa</p>
-      </div>
-    </div>
+  <section id="pelaajat" class="sec" aria-labelledby="plOtsikko">
+    <header class="sec-head">
+      <p class="sec-kick">Pelaajat</p>
+      <h2 id="plOtsikko">Bändi</h2>
+      <p class="sec-sub">Henkilökohtaiset tilastot runkosarjassa</p>
+    </header>
     <div class="team-stats" id="teamStats"></div>
     <div class="cards" id="playerCards"></div>
   </section>
 
   <!-- OTTELUOHJELMA -->
-  <section id="ohjelma" aria-labelledby="ohOtsikko">
-    <div class="sec-head"><h2 id="ohOtsikko">Otteluohjelma</h2></div>
+  <section id="ohjelma" class="sec" aria-labelledby="ohOtsikko">
+    <header class="sec-head">
+      <p class="sec-kick">Otteluohjelma</p>
+      <h2 id="ohOtsikko">Kiertue 2026–27</h2>
+    </header>
     <ol class="fixtures" id="fixtures"></ol>
   </section>
 
+  <footer class="foot">
+    <p class="scrawl">Rock 'n' pool!</p>
+    <p>Nekapool 2 · Nekalan taideteknillinen tehdas · <a href="https://www.pirkanmaanpool.fi/" target="_blank" rel="noopener">Pirkanmaan Pool ry</a></p>
+  </footer>
 </main>
 
-<div class="bars bottom" data-seed="21" aria-hidden="true"></div>
-<footer class="foot wrap">
-  Nekapool 2 · Nekalan taideteknillinen tehdas ·
-  <a href="https://www.pirkanmaanpool.fi/" target="_blank" rel="noopener">Pirkanmaan Pool ry</a>
-</footer>
 
 <script src="js/live.js"></script>
 <script src="js/app.js"></script>
