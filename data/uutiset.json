@@ -1,5 +1,13 @@
 [
   {
+    "pvm": "2026-10-06",
+    "tyyppi": "raportti",
+    "otsikko": "Ilman kapteenia, paikkaa etsimässä",
+    "teksti": "Nekapool 2 pelasi Pikku Pete Poolin kanssa tasan 2–2, erät 14–12. Mikko voitti 4–1 ja Sami 4–3, John hävisi ensimmäisen Nekapool-pelinsä 3–4 ja Arto nousi 0–3:sta ratkaisuerään asti. Raportissa myös stressilelut hermostuneen illan purkuun.",
+    "linkki": "https://claude.ai/artifact/YRnwrPuwtCy5WTcftkewNB",
+    "linkkiteksti": "Lue otteluraportti"
+  },
+  {
     "pvm": "2026-10-01",
     "tyyppi": "raportti",
     "otsikko": "Historiallinen ilta Nekalassa",
@@ -16,10 +24,26 @@
     "linkki": "https://samppafin.github.io/Harakka/#/aanestys/miten-kay-nekapoolin-kauden-avauksessa-f0ah",
     "linkkiteksti": "Avaa äänestys",
     "tulokset": [
-      { "teksti": "Puhtaasti kotio", "vari": "#c9683f", "aanet": 3 },
-      { "teksti": "Tiukka kotivoitto", "vari": "#2f6b4f", "aanet": 2 },
-      { "teksti": "Tasuri", "vari": "#2b3f6b", "aanet": 0 },
-      { "teksti": "Vieraat vie", "vari": "#d3a03c", "aanet": 0 }
+      {
+        "teksti": "Puhtaasti kotio",
+        "vari": "#c9683f",
+        "aanet": 3
+      },
+      {
+        "teksti": "Tiukka kotivoitto",
+        "vari": "#2f6b4f",
+        "aanet": 2
+      },
+      {
+        "teksti": "Tasuri",
+        "vari": "#2b3f6b",
+        "aanet": 0
+      },
+      {
+        "teksti": "Vieraat vie",
+        "vari": "#d3a03c",
+        "aanet": 0
+      }
     ]
   }
 ]
