@@ -117,11 +117,13 @@
 
     <!-- 2. käynnissä oleva / päättynyt ottelu -->
     <div class="controls" id="liveCtl" hidden>
-      <p class="note live-hint" id="liveHint">Paina pelin kohdalla <b>+ Erä</b> ja valitse erän voittaja. Tulos näkyy heti kaikille. Peli päättyy, kun toisella on tarvittavat erävoitot.</p>
+      <p class="note live-hint" id="liveHint">Paina pelin kohdalla <b>+ Erä</b> ja valitse erän voittaja – tulos näkyy heti kaikille. Väärä painallus? <b>−</b> poistaa pelaajalta erän. Kun toisella on 4 erää, paina <b>Lopeta peli</b>.</p>
+      <button class="btn btn-rock btn-start" id="finishBtn" type="button" hidden><span aria-hidden="true">🏁</span> Päätä ottelu</button>
       <button class="btn" id="joinBtn" type="button">Kirjaa tuloksia tällä puhelimella</button>
       <div class="live-tools">
         <button class="btn btn-ghost" id="namesBtn" type="button" aria-pressed="false">Muokkaa nimiä</button>
-        <button class="btn btn-ghost" id="endBtn" type="button">Lopeta ottelu</button>
+        <button class="btn btn-ghost" id="fixBtn" type="button" hidden>Korjaa tuloksia</button>
+        <button class="btn btn-ghost" id="endBtn" type="button">Keskeytä ottelu</button>
       </div>
     </div>
   </section>

@@ -218,7 +218,20 @@ h3 { margin: 0; font-family: var(--font-poster); font-weight: 400; font-size: 28
   box-shadow: 0 4px 0 var(--pink-deep);
 }
 .g-add:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--pink-deep); }
-.g-undo { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--ink); background: #fff; color: var(--ink); font-size: 22px; font-weight: 700; padding: 0; }
+.g-act:not(.asking) { display: grid; grid-template-columns: 46px minmax(0, 1fr) 46px; justify-items: center; }
+.g-act[hidden] { display: none; }
+.g-minus { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--ink); background: #fff; color: var(--ink); font-size: 26px; font-weight: 700; line-height: 1; padding: 0 0 3px; }
+.g-minus:active { background: #e8ebf7; }
+.g-minus:disabled { opacity: 0.2; cursor: default; }
+.g-end {
+  min-height: 46px; padding: 0 18px; border-radius: 999px; border: 2px solid #1a7a43;
+  background: var(--green); color: var(--on); font-weight: 700; font-size: 18px;
+  box-shadow: 0 4px 0 #1a7a43; animation: nudge 1.2s ease-in-out infinite;
+}
+.g-end:active { transform: translateY(3px); box-shadow: 0 1px 0 #1a7a43; animation: none; }
+@keyframes nudge { 50% { transform: scale(1.06); } }
+.g-row.decided { background: rgba(78, 240, 138, 0.16); }
+.paper.final .p-status { font-family: var(--font-hand2); font-weight: 700; font-size: 30px; line-height: 1.1; color: var(--pink-deep); }
 .g-ask { flex: 1 1 100%; text-align: center; font-size: 21px; }
 .g-pick { flex: 1 1 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .g-act .pick {
@@ -227,7 +240,7 @@ h3 { margin: 0; font-family: var(--font-poster); font-weight: 400; font-size: 28
 }
 .g-act .pick:active { transform: translateY(3px); box-shadow: 0 1px 0 #0f1d5c; }
 .g-act .g-cancel { background: none; border: 0; color: var(--ink-soft); font-family: var(--font-hand); font-size: 19px; text-decoration: underline; min-height: 40px; padding: 0 10px; }
-.g-done { font-size: 19px; color: var(--pink-deep); }
+.g-done { font-size: 19px; color: var(--pink-deep); text-align: center; align-self: center; }
 .g-row.picking { background: rgba(255, 45, 117, 0.12); }
 
 .p-total { margin-top: 20px; display: flex; flex-direction: column; align-items: center; }
@@ -385,7 +398,7 @@ h3 { margin: 0; font-family: var(--font-poster); font-weight: 400; font-size: 28
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .beams i, .eq i, .logo-num, .btn-rock, .g-row.flash, .live-dot.ok, .paper.shuffling .g-row, .tg i.new { animation: none; }
+  .beams i, .eq i, .logo-num, .btn-rock, .g-row.flash, .g-end, .live-dot.ok, .paper.shuffling .g-row, .tg i.new { animation: none; }
   .ticker-run { animation: none; padding-left: 0; }
   .poll-bar span { transition: none; }
 }

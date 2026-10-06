@@ -84,13 +84,16 @@
    *  1. Kokoonpano – nimet ja vastustaja muokataan paperilla. Luonnos on vain
    *     tällä laitteella (localStorage), sitä ei julkaista.
    *  2. Arvo peliparit -> Aloita ottelu julkaisee pöytäkirjan kaikille.
-   *  3. Ottelun aikana "+ Erä" kirjaa erän voittajan ja julkaisee heti.
-   *     Peli päättyy, kun toisella on `race` erävoittoa.
+   *  3. Ottelun aikana "+ Erä" kirjaa erän voittajan ja julkaisee heti,
+   *     "−" poistaa pelaajalta vahingossa kirjatun erän.
+   *  4. Kun toisella on `race` erävoittoa, "Lopeta peli" sulkee pelin.
+   *  5. Kun kaikki pelit on lopetettu, "Päätä ottelu" päättää ottelun.
    *
-   * Tila: { v:2, ts, id, vaihe:'kokoonpano'|'kaynnissa', pvm, koti, vieras,
-   *         race, arvottu, pelit:[{ k, v, h }] }
+   * Tila: { v:2, ts, id, vaihe:'kokoonpano'|'kaynnissa'|'paattynyt', pvm,
+   *         koti, vieras, race, arvottu, pelit:[{ k, v, h, p }] }
    * pelit[i] on peli i+1: kotijoukkueen pelaaja k vastaan vierasjoukkueen v.
-   * h on erien järjestys, esim. "kkvk" (k = koti voitti erän, v = vieras).
+   * h on erien järjestys, esim. "kkvk" (k = koti voitti erän, v = vieras),
+   * p = peli lopetettu (sallittu vain, kun toisella on race erävoittoa).
    * ===================================================================== */
   var LS_LUONNOS = 'nekapool2:luonnos';
   var LS_KIRJAAJA = 'nekapool2:kirjaaja';
@@ -100,7 +103,7 @@
   var remote = null;   // viimeisin julkaistu tila
   var draft = null;    // oma kokoonpanoluonnos
   var view = null;     // se tila, joka on nyt paperilla
-  var mode = 'kokoonpano'; // 'kokoonpano' | 'live' | 'valmis'
+  var mode = 'kokoonpano'; // 'kokoonpano' | 'live' | 'valmis' (ottelu päätetty)
   var editNames = false;
   var picking = -1;    // pelin indeksi, jonka "kuka voitti?" -valinta on auki
   var rows = [];
@@ -129,7 +132,7 @@
     var pelit = [];
     for (var i = 0; i < PELEJA; i++) {
       var oma = omat[i] || '';
-      pelit.push({ k: koti === ME ? oma : '', v: koti === ME ? '' : oma, h: '' });
+      pelit.push({ k: koti === ME ? oma : '', v: koti === ME ? '' : oma, h: '', p: false });
     }
     return { v: 2, ts: 0, id: '', vaihe: 'kokoonpano', pvm: o ? o.pvm : today(), koti: koti, vieras: vieras, race: 4, arvottu: false, pelit: pelit };
   }
@@ -147,11 +150,11 @@
         h += c;
         if (c === 'k') k++; else v++;
       });
-      pelit.push({ k: str(g.k), v: str(g.v), h: h });
+      pelit.push({ k: str(g.k), v: str(g.v), h: h, p: !!g.p && (k >= race || v >= race) });
     }
     return {
       v: 2, ts: Number(s.ts) || 0, id: str(s.id, 16),
-      vaihe: s.vaihe === 'kaynnissa' ? 'kaynnissa' : 'kokoonpano',
+      vaihe: s.vaihe === 'kaynnissa' || s.vaihe === 'paattynyt' ? s.vaihe : 'kokoonpano',
       pvm: /^\d{4}-\d\d-\d\d$/.test(s.pvm) ? s.pvm : today(),
       koti: str(s.koti, 60) || 'Kotijoukkue', vieras: str(s.vieras, 60) || 'Vierasjoukkue',
       race: race, arvottu: !!s.arvottu, pelit: pelit
@@ -164,13 +167,16 @@
     for (var i = 0; i < g.h.length; i++) { if (g.h[i] === 'k') k++; else v++; }
     return [k, v];
   }
-  function peliOhi(s, g) { var e = erat(g); return e[0] >= s.race || e[1] >= s.race; }
+  /* ratkennut = toisella on tarvittavat erävoitot; lopetettu (g.p) = kirjaaja on sulkenut pelin */
+  function ratkennut(s, g) { var e = erat(g); return e[0] >= s.race || e[1] >= s.race; }
   function summat(s) {
     var ek = 0, ev = 0, pk = 0, pv = 0, valmiit = 0;
     s.pelit.forEach(function (g) {
       var e = erat(g);
       ek += e[0]; ev += e[1];
-      if (e[0] >= s.race) { pk++; valmiit++; } else if (e[1] >= s.race) { pv++; valmiit++; }
+      if (!g.p) return;
+      valmiit++;
+      if (e[0] > e[1]) pk++; else pv++;
     });
     return { ek: ek, ev: ev, pk: pk, pv: pv, valmiit: valmiit };
   }
@@ -179,10 +185,10 @@
 
   /* Mikä tila paperilla näytetään: julkaistu ottelu, jos sellainen on käynnissä, muuten oma luonnos. */
   function valitseNakyma() {
-    var aktiivinen = remote && remote.vaihe === 'kaynnissa' && Date.now() - remote.ts < AKTIIVINEN_MS;
+    var aktiivinen = remote && remote.vaihe !== 'kokoonpano' && Date.now() - remote.ts < AKTIIVINEN_MS;
     if (aktiivinen) {
       view = remote;
-      mode = summat(remote).valmiit === PELEJA ? 'valmis' : 'live';
+      mode = remote.vaihe === 'paattynyt' ? 'valmis' : 'live';
     } else {
       view = draft;
       mode = 'kokoonpano';
@@ -272,29 +278,42 @@
     return b;
   }
 
-  function renderActions(r, g, done) {
+  function renderActions(r, g) {
     var act = r.act;
     act.textContent = '';
-    var recorder = mode !== 'kokoonpano' && olenKirjaaja() && !editNames;
+    var recorder = mode === 'live' && olenKirjaaja() && !editNames;
     act.hidden = !recorder;
     if (!recorder) return;
     var e = erat(g);
-    if (picking === r.i && !done) {
+    var s = view;
+    var kotiNimi = g.k || 'Koti', vierasNimi = g.v || 'Vieras';
+    if (picking === r.i && !ratkennut(s, g)) {
+      act.className = 'g-act asking';
       act.appendChild(el('span', 'g-ask', 'Kuka voitti erän?'));
       var wrap = el('div', 'g-pick');
-      wrap.appendChild(actButton('pick', '◀ ' + (g.k || 'Koti'), function () { kirjaaEra(r.i, 'k'); }, (g.k || 'Kotipelaaja') + ' voitti erän'));
-      wrap.appendChild(actButton('pick right', (g.v || 'Vieras') + ' ▶', function () { kirjaaEra(r.i, 'v'); }, (g.v || 'Vieraspelaaja') + ' voitti erän'));
+      wrap.appendChild(actButton('pick', '◀ ' + kotiNimi, function () { kirjaaEra(r.i, 'k'); }, kotiNimi + ' voitti erän'));
+      wrap.appendChild(actButton('pick right', vierasNimi + ' ▶', function () { kirjaaEra(r.i, 'v'); }, vierasNimi + ' voitti erän'));
       act.appendChild(wrap);
       act.appendChild(actButton('g-cancel', 'Peruuta', function () { picking = -1; render(false); }));
       return;
     }
-    if (done) {
-      var voittaja = e[0] > e[1] ? (g.k || 'Koti') : (g.v || 'Vieras');
-      act.appendChild(el('span', 'g-done', 'Peli päättyi – ' + voittaja + ' voitti ' + Math.max(e[0], e[1]) + '–' + Math.min(e[0], e[1])));
+    act.className = 'g-act';
+    var minusK = actButton('g-minus', '−', function () { poistaEra(r.i, 'k'); }, 'Poista erä pelaajalta ' + kotiNimi);
+    var minusV = actButton('g-minus', '−', function () { poistaEra(r.i, 'v'); }, 'Poista erä pelaajalta ' + vierasNimi);
+    minusK.disabled = e[0] === 0;
+    minusV.disabled = e[1] === 0;
+    var mid;
+    if (g.p) {
+      var voittaja = e[0] > e[1] ? kotiNimi : vierasNimi;
+      mid = el('span', 'g-done', '✓ ' + voittaja + ' voitti ' + Math.max(e[0], e[1]) + '–' + Math.min(e[0], e[1]));
+    } else if (ratkennut(s, g)) {
+      mid = actButton('g-end', '✓ Lopeta peli', function () { lopetaPeli(r.i); }, 'Lopeta peli ' + (r.i + 1));
     } else {
-      act.appendChild(actButton('g-add', '+ Erä', function () { picking = r.i; render(false); }, 'Lisää erä peliin ' + (r.i + 1)));
+      mid = actButton('g-add', '+ Erä', function () { picking = r.i; render(false); }, 'Lisää erä peliin ' + (r.i + 1));
     }
-    if (g.h.length) act.appendChild(actButton('g-undo', '↶', function () { peruEra(r.i); }, 'Peru viimeisin erä pelistä ' + (r.i + 1)));
+    act.appendChild(minusK);
+    act.appendChild(mid);
+    act.appendChild(minusV);
   }
 
   function render(flash) {
@@ -323,7 +342,6 @@
     rows.forEach(function (r) {
       var g = s.pelit[r.i];
       var e = erat(g);
-      var done = peliOhi(s, g);
       var names = [g.k, g.v];
       r.sides.forEach(function (sd, side) {
         sd.txt.textContent = names[side] || '—';
@@ -334,8 +352,9 @@
         sd.marks.appendChild(tallyNode(e[side], r.prev[side]));
       });
       r.mid.textContent = e[0] + '–' + e[1];
-      r.row.classList.toggle('won-home', e[0] >= s.race);
-      r.row.classList.toggle('won-away', e[1] >= s.race);
+      r.row.classList.toggle('won-home', g.p && e[0] > e[1]);
+      r.row.classList.toggle('won-away', g.p && e[1] > e[0]);
+      r.row.classList.toggle('decided', ratkennut(s, g) && !g.p);
       r.row.classList.toggle('picking', picking === r.i);
       if (flash && (r.prev[0] !== e[0] || r.prev[1] !== e[1])) {
         r.row.classList.remove('flash');
@@ -343,7 +362,7 @@
         r.row.classList.add('flash');
       }
       r.prev = e;
-      renderActions(r, g, done);
+      renderActions(r, g);
     });
 
     var sum = summat(s);
@@ -353,9 +372,10 @@
     var status;
     if (setup) status = s.arvottu ? 'Peliparit arvottu. Aloita ottelu, kun olette valmiita!' : 'Kokoonpano. Muokkaa nimiä ja arvo peliparit.';
     else if (mode === 'valmis') {
-      if (sum.pk === sum.pv) status = 'Ottelu päättyi tasan ' + sum.pk + '–' + sum.pv + '.';
-      else status = (sum.pk > sum.pv ? s.koti : s.vieras) + ' voitti ' + Math.max(sum.pk, sum.pv) + '–' + Math.min(sum.pk, sum.pv) + '! 🤘';
-    } else if (sum.ek + sum.ev === 0) status = 'Ottelu alkoi! Pelit ' + s.race + ' erävoittoon.';
+      if (sum.pk === sum.pv) status = '🏁 Ottelu päättyi tasan ' + sum.pk + '–' + sum.pv + '.';
+      else status = '🏁 ' + (sum.pk > sum.pv ? s.koti : s.vieras) + ' voitti ottelun ' + Math.max(sum.pk, sum.pv) + '–' + Math.min(sum.pk, sum.pv) + '! 🤘';
+    } else if (sum.valmiit === PELEJA) status = 'Kaikki pelit ratkesivat – päätä ottelu!';
+    else if (sum.ek + sum.ev === 0) status = 'Ottelu alkoi! Pelit ' + s.race + ' erävoittoon.';
     else status = 'Ottelu käynnissä · ' + sum.valmiit + '/' + PELEJA + ' peliä valmiina';
     $('pStatus').textContent = status;
 
@@ -372,9 +392,12 @@
     $('namesBtn').hidden = setup || !rec || mode === 'valmis';
     $('namesBtn').textContent = editNames ? 'Valmis' : 'Muokkaa nimiä';
     $('namesBtn').setAttribute('aria-pressed', String(editNames));
+    $('finishBtn').hidden = !(mode === 'live' && rec && sum.valmiit === PELEJA);
     $('endBtn').hidden = setup || !rec;
-    $('endBtn').textContent = mode === 'valmis' ? 'Uusi ottelu' : 'Lopeta ottelu';
-    $('liveHint').hidden = !(mode === 'live' && rec && !editNames);
+    $('endBtn').textContent = mode === 'valmis' ? 'Uusi ottelu' : 'Keskeytä ottelu';
+    $('fixBtn').hidden = !(mode === 'valmis' && rec);
+    $('liveHint').hidden = !(mode === 'live' && rec && !editNames && sum.valmiit < PELEJA);
+    $('paper').classList.toggle('final', mode === 'valmis');
 
     // tikkeri
     var t;
@@ -419,16 +442,28 @@
   function kirjaaEra(i, kuka) {
     picking = -1;
     muokkaa(function (s) {
-      if (!peliOhi(s, s.pelit[i])) s.pelit[i].h += kuka;
+      if (!ratkennut(s, s.pelit[i])) s.pelit[i].h += kuka;
     });
     if (navigator.vibrate) { try { navigator.vibrate(30); } catch (e) { /* ei värinää */ } }
   }
-  function peruEra(i) {
-    var g = view.pelit[i];
-    var e = erat(g);
-    var viim = g.h.slice(-1) === 'k' ? (g.k || 'koti') : (g.v || 'vieras');
-    if (!confirm('Perutaanko pelin ' + (i + 1) + ' viimeisin erä (' + viim + ', tilanne ' + e[0] + '–' + e[1] + ')?')) return;
-    muokkaa(function (s) { s.pelit[i].h = s.pelit[i].h.slice(0, -1); });
+  /* Poistaa pelaajan viimeisimmän erävoiton (vahinkopainallus). Avaa lopetetun pelin uudelleen. */
+  function poistaEra(i, kuka) {
+    picking = -1;
+    muokkaa(function (s) {
+      var g = s.pelit[i];
+      var at = g.h.lastIndexOf(kuka);
+      if (at < 0) return;
+      g.h = g.h.slice(0, at) + g.h.slice(at + 1);
+      if (!ratkennut(s, g)) g.p = false;
+    });
+  }
+  function lopetaPeli(i) {
+    muokkaa(function (s) { if (ratkennut(s, s.pelit[i])) s.pelit[i].p = true; });
+  }
+  function paataOttelu() {
+    var sum = summat(view);
+    if (!confirm('Päätetäänkö ottelu lopputulokseen ' + view.koti + ' ' + sum.pk + '–' + sum.pv + ' ' + view.vieras + '?')) return;
+    muokkaa(function (s) { s.vaihe = 'paattynyt'; });
   }
 
   function setSync(ok, text) {
@@ -447,7 +482,7 @@
     var kierros = 0, kierroksia = reduce ? 1 : 10;
     (function pyorita() {
       var k = shuffle(kotiN), v = shuffle(vierasN);
-      draft.pelit = k.map(function (n, i) { return { k: n, v: v[i], h: '' }; });
+      draft.pelit = k.map(function (n, i) { return { k: n, v: v[i], h: '', p: false }; });
       render(false);
       if (++kierros < kierroksia) { setTimeout(pyorita, 90); return; }
       paper.classList.remove('shuffling');
@@ -463,12 +498,12 @@
     var puuttuu = draft.pelit.some(function (g) { return !g.k || !g.v; });
     if (puuttuu && !confirm('Kaikille peleille ei ole merkitty molempia pelaajia. Aloitetaanko silti?')) return;
     if (remote && remote.vaihe === 'kaynnissa' && Date.now() - remote.ts < AKTIIVINEN_MS &&
-        summat(remote).valmiit < PELEJA && summat(remote).ek + summat(remote).ev > 0 &&
+        remote.vaihe === 'kaynnissa' && summat(remote).ek + summat(remote).ev > 0 &&
         !confirm('Toinen ottelu on jo käynnissä. Korvataanko se?')) return;
     var s = kopio(draft);
     s.vaihe = 'kaynnissa';
     s.id = Math.random().toString(36).slice(2, 12);
-    s.pelit.forEach(function (g) { g.h = ''; });
+    s.pelit.forEach(function (g) { g.h = ''; g.p = false; });
     lsSet(LS_KIRJAAJA, s.id);
     editNames = false;
     rows.forEach(function (r) { r.prev = [0, 0]; });
@@ -479,7 +514,7 @@
   function lopeta() {
     var valmis = mode === 'valmis';
     if (!confirm(valmis ? 'Aloitetaanko uusi ottelu? Tämä tulos poistuu live-näkymästä.' :
-      'Lopetetaanko ottelu kesken? Pöytäkirja poistuu kaikkien live-näkymästä.')) return;
+      'Keskeytetäänkö ottelu? Pöytäkirja poistuu kaikkien live-näkymästä.')) return;
     var s = kopio(remote);
     s.vaihe = 'kokoonpano';
     draft = uusiTila();
@@ -526,6 +561,10 @@
       render(false);
     });
     $('endBtn').addEventListener('click', lopeta);
+    $('finishBtn').addEventListener('click', paataOttelu);
+    $('fixBtn').addEventListener('click', function () {
+      muokkaa(function (s) { s.vaihe = 'kaynnissa'; });
+    });
 
     if (!window.Live) { setSync(false, 'Live-yhteys ei käytössä'); return; }
     live = window.Live.connect({
