@@ -6,6 +6,26 @@
    "id": "muxdg3pk0w8898",
    "t": 1791333050312,
    "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Ihan varmaan 4-0 voitto seuraavasta",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "muxea8xplp2nyy",
+   "t": 1791334456765,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "muxea8xplp2nyy",
+   "valinta": 0,
+   "maara": 25,
+   "id": "muxebam6xhqh5d",
+   "t": 1791334505598,
+   "kuka": "sami"
   }
  ]
 }
