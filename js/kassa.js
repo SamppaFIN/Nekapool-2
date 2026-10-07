@@ -383,6 +383,32 @@
   }
 
   /* ---------- tapahtumankäsittelijät ---------- */
+  // Ensimmäisellä kirjautumisella salainen lempinimi paljastuu ja julkaistaan joukkueelle.
+  function tervetuloa(p) {
+    var salainen = window.Auth.secretNick();
+    if (salainen && !(state && state.lempinimi[p.id])) {
+      showReveal(salainen);
+      send({ typ: 'profiili', lempinimi: salainen }).catch(function () {});
+    } else {
+      toast('Tervetuloa, ' + p.nimi.split(' ')[0] + '! Kassassa ' + kk(state ? state.saldo[p.id] : window.Auth.startBalance()) + '.');
+    }
+    render();
+  }
+
+  /* Lunastuslinkki: ?koodi=001 kirjaa sisään suoraan ja avaa profiilin. */
+  function lunastus() {
+    var m = /[?&]koodi=([0-9]{1,8})/.exec(location.search);
+    if (!m) return Promise.resolve();
+    try { history.replaceState(null, '', location.pathname + '#vedot'); } catch (e) { /* ok */ }
+    return window.Auth.login(m[1]).then(function (p) {
+      if (!p) { toast('Lunastuslinkin koodi ei kelpaa. Kirjaudu koodilla yläkulmasta.'); return; }
+      var dlg = $('profileDlg');
+      renderProfile();
+      if (dlg.showModal && !dlg.open) dlg.showModal();
+      tervetuloa(p);
+    });
+  }
+
   function initUi() {
     var dlg = $('profileDlg');
     function open() {
@@ -403,15 +429,7 @@
       window.Auth.login(code).then(function (p) {
         if (!p) { $('loginErr').textContent = 'Koodi ei kelpaa. Tarkista koodi ja yritä uudelleen.'; return; }
         $('codeIn').value = '';
-        var salainen = window.Auth.secretNick();
-        // Ensimmäisellä kirjautumisella salainen lempinimi paljastuu ja julkaistaan joukkueelle.
-        if (salainen && !(state && state.lempinimi[p.id])) {
-          showReveal(salainen);
-          send({ typ: 'profiili', lempinimi: salainen }).catch(function () {});
-        } else {
-          toast('Tervetuloa, ' + p.nimi.split(' ')[0] + '!');
-        }
-        render();
+        tervetuloa(p);
       }).catch(function () { $('loginErr').textContent = 'Kirjautuminen ei onnistu tällä selaimella.'; });
     });
     $('logoutBtn').addEventListener('click', function () { window.Auth.logout(); render(); });
@@ -473,7 +491,10 @@
       .catch(function () { /* repon kopiota ei ole vielä */ });
   }).then(function () {
     return poll().catch(function () { toast('Vetokassan live-yhteys ei vastaa. Näytetään tallennettu tilanne.'); });
-  }).then(listen);
+  }).then(function () {
+    listen();
+    return lunastus();
+  });
   document.addEventListener('visibilitychange', function () { if (!document.hidden) poll().catch(function () {}); });
 
   window.Kassa = { render: render };
