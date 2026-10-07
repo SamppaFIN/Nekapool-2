@@ -5,8 +5,8 @@ name: Julkaisu
 on:
   push:
   schedule:
-    # Joka päivä 7–23 Suomen aikaa kolmen tunnin välein (UTC-ajat), ottelupäivinä myös illalla.
-    - cron: "17 4-22/3 * * *"
+    # Kolmen tunnin välein ympäri vuorokauden (vetokassan tapahtumat ehtivät talteen ennen kuin ntfy.sh unohtaa ne).
+    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -38,17 +38,31 @@ jobs:
         continue-on-error: true
         run: python scripts/paivita_data.py
 
+      - name: Tallenna vetokassan tapahtumat
+        # ntfy.sh säilyttää viestejä vain ~12 h, joten ne kopioidaan pysyvästi repoon.
+        continue-on-error: true
+        run: python scripts/tallenna_kassa.py
+
       - name: Tallenna muuttunut data repoon
         run: |
           # Commitoidaan vain, jos jokin muu kuin aikaleima muuttui.
+          muutos=0
+          # liigadata: vain jos jokin muu kuin aikaleima muuttui
           if git diff -U0 -- data/liiga.json | grep -E '^[-+][^-+]' | grep -qv '"paivitetty"'; then
+            git add data/liiga.json; muutos=1
+          else
+            git checkout -- data/liiga.json
+          fi
+          if ! git diff --quiet -- data/kassa.json; then
+            git add data/kassa.json; muutos=1
+          fi
+          if [ "$muutos" = 1 ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-            git add data/liiga.json
-            git commit -m "Päivitä liigadata"
+            git commit -m "Päivitä liigadata ja vetokassa"
             git push
           else
-            echo "Ei muutoksia liigadatassa."
+            echo "Ei muutoksia."
           fi
 
       - name: Kokoa sivusto

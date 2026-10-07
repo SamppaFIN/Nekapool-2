@@ -1,0 +1,56 @@
+{
+  "_ohje": "Kirjautumiskoodit tallennetaan tiivisteinä: tunniste = sha256('nekapool2:' + id + ':' + koodi). Uuden pelaajan tiivisteen saa komennolla: python3 scripts/koodi.py <id> <koodi> Salainen lempinimi on salattu pelaajan koodilla (AES-GCM, avain PBKDF2-SHA256 100 000 kierrosta, suola 'nekapool2-nimi:' + id), joten se paljastuu vasta kirjautuessa.",
+  "aloitussaldo": 100,
+  "pelaajat": [
+    {
+      "id": "arto",
+      "nimi": "Arto Eskola",
+      "liiga": "Eskola Arto",
+      "tunniste": "e7de25ec35efd6513845b39746d94b8dd8c1351a081a048c75e23478c79b9734",
+      "salainen_lempinimi": {
+        "iv": "yPmWvSbWibXif7Er",
+        "data": "+7J9ajH6ywYlww9wBx7S9M+28PY3qN7PqspST8RzSLo="
+      }
+    },
+    {
+      "id": "toni",
+      "nimi": "Toni Karppanen",
+      "liiga": "Karppanen Toni",
+      "tunniste": "27045677567b0743635fb0a67a4c532a7efddfba3103527df7afc8fd5337b8c1",
+      "salainen_lempinimi": {
+        "iv": "NuBbSY8kOglMv17e",
+        "data": "pfh6dgcKn5yp+1Z+0GTnC1mYp+RWxlXqur8LT6ov"
+      }
+    },
+    {
+      "id": "sami",
+      "nimi": "Sami Räisänen",
+      "liiga": "Räisänen Sami",
+      "tunniste": "c0f02f5b566aa5a2fea1a95ef96c2a4fa9496dde1ea3d5f5417e650b358d13ed",
+      "salainen_lempinimi": {
+        "iv": "54JFjFCbRpIVgZAV",
+        "data": "BJgy+pTxCvJragx06koG0aoFwCrHFTtw4w=="
+      }
+    },
+    {
+      "id": "mikko",
+      "nimi": "Mikko Salmi",
+      "liiga": "Salmi Mikko",
+      "tunniste": "238893c00ad3795e50a704ae4ded099ad37b978dcfdf6392a2281ea2a5270ad5",
+      "salainen_lempinimi": {
+        "iv": "3TIPONCCNVDEFh8g",
+        "data": "jo53oasQmdn6dgPadSZ348ycMkcqUAh8JTI1hYmH"
+      }
+    },
+    {
+      "id": "john",
+      "nimi": "John Berglund",
+      "liiga": "Berglund John",
+      "tunniste": "58e9427fb062010ad982f5e5e15e3742dce0f74bd85b9ab20fbfca579ded28a4",
+      "salainen_lempinimi": {
+        "iv": "flPCfpK3KMsWDhld",
+        "data": "96iVSayrOn/WQf/1jyMIhgPKlZg+8ob4UA/M6vfsFJA="
+      }
+    }
+  ]
+}

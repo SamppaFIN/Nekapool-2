@@ -19,6 +19,7 @@
   <span class="ticker-tag"><span class="live-dot" id="syncDot" aria-hidden="true"></span>Live</span>
   <span class="ticker-track"><span class="ticker-run" id="ticker">Nekapool 2 · Nekalan taideteknillinen tehdas</span></span>
 </a>
+<button class="me-btn" id="meBtn" type="button" aria-haspopup="dialog"><span class="me-name">Kirjaudu</span></button>
 
 <header class="hero">
   <div class="beams" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -34,6 +35,11 @@
     <p class="scrawl">World tour 2026–27</p>
     <p class="hero-lede" id="heroLede">Nekalan taideteknillisen tehtaan poolijoukkue.</p>
     <a class="breaking" id="breaking" hidden target="_blank" rel="noopener"></a>
+    <button class="join-banner" id="joinBanner" type="button" data-open-login>
+      <span class="join-coin" aria-hidden="true">🪙</span>
+      <span class="join-txt"><b>Liity koodilla vetoon!</b> Sulla odottaa 100 kumikolikkoa ja salainen lempinimi.</span>
+      <span class="join-go" aria-hidden="true">→</span>
+    </button>
     <div class="eq" aria-hidden="true"></div>
   </div>
 </header>
@@ -55,6 +61,10 @@
   <a href="#pelaajat" data-sec="pelaajat">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c5.5 0 8 3 8 6 0 4.5-5 9.5-8 14-3-4.5-8-9.5-8-14 0-3 2.5-6 8-6z"/></svg>
     <span>Pelaajat</span>
+  </a>
+  <a href="#vedot" data-sec="vedot">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5c-.6-1-1.6-1.5-2.7-1.5-1.6 0-2.8.9-2.8 2.1 0 2.9 5.8 1.4 5.8 4.1 0 1.2-1.3 2.1-3 2.1-1.2 0-2.3-.6-2.8-1.6M12 6v2M12 16v2"/></svg>
+    <span>Vedot</span>
   </a>
   <a href="#ohjelma" data-sec="ohjelma">
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 2v5M16 2v5"/></svg>
@@ -97,6 +107,12 @@
         </div>
         <p class="p-status" id="pStatus" aria-live="polite"></p>
       </div>
+    </div>
+
+    <p class="rec-by" id="recBy"></p>
+    <div class="login-gate" id="loginGate" hidden>
+      <p id="loginGateText">Tuloksia kirjaa koodilla kirjautunut pelaaja.</p>
+      <button class="btn" type="button" data-open-login>Kirjaudu koodilla</button>
     </div>
 
     <!-- 1. kokoonpano: näkyy vain tällä laitteella kunnes ottelu aloitetaan -->
@@ -174,6 +190,57 @@
     <div class="cards" id="playerCards"></div>
   </section>
 
+  <!-- VETOKASSA -->
+  <section id="vedot" class="sec" aria-labelledby="vetoOtsikko">
+    <header class="sec-head">
+      <p class="sec-kick">Läppävedot leikkirahalla</p>
+      <h2 id="vetoOtsikko">Vetokassa</h2>
+      <p class="sec-sub">Jokainen aloitti sadalla Nokian kumikolikolla. Vedot ovat joukkueen sisäisiä eikä niissä liiku oikeaa rahaa.</p>
+    </header>
+
+    <details class="guide">
+      <summary>Näin se toimii – ohje rakennusmiehelle</summary>
+      <ol>
+        <li><b>Hae koodi.</b> Saat oman kolminumeroisen koodin joukkueelta. Se on kuin kulkukortti työmaalle: henkilökohtainen, älä lainaa.</li>
+        <li><b>Kirjaudu.</b> Paina oikeasta yläkulmasta <b>Kirjaudu</b>, näppäile koodi ja paina <b>Kirjaudu</b>. Puhelin muistaa sinut, joten tämä tehdään vain kerran.</li>
+        <li><b>Katso lempinimesi.</b> Ekalla kirjautumisella paljastuu salainen lempinimesi. Sen voi vaihtaa profiilista.</li>
+        <li><b>Kumikolikot = leikkirahaa.</b> Jokainen sai 100 kumikolikkoa 🪙. Ne ovat kuin pelimerkit taukotuvan korttipelissä: niillä ei osteta mitään, ne ovat vain kunniaksi.</li>
+        <li><b>Lyö veto.</b> Valitse vedosta vaihtoehto, kirjoita montako kolikkoa laitat ja paina <b>Lyö veto</b>. Kolikot lähtevät heti potin pohjalle.</li>
+        <li><b>Heitä oma veto.</b> Kirjoita kysymys ja vaihtoehdot ja paina <b>Julkaise veto</b>. Kun asia selviää, sinä ratkaiset vedon painamalla oikeaa vaihtoehtoa.</li>
+        <li><b>Potin jako.</b> Oikein veikanneet jakavat koko potin panostensa suhteessa. Laitoit tuplasti, saat tuplasti. Jos kukaan ei osunut tai veto perutaan, kaikki saavat panoksensa takaisin.</li>
+        <li><b>Ottelun kirjaus.</b> Samalla koodilla pääset kirjaamaan ottelupöytäkirjaa. Ilman koodia pöytäkirjaa voi vain katsoa.</li>
+      </ol>
+    </details>
+
+    <ol class="board" id="board" aria-label="Kumikolikkosaldot"></ol>
+
+    <div class="login-gate" id="betLogin">
+      <p>Kirjaudu koodilla heittääksesi vedon tai lyödäksesi panoksen.</p>
+      <button class="btn" type="button" data-open-login>Kirjaudu koodilla</button>
+    </div>
+
+    <form class="new-bet" id="newBet" hidden>
+      <h3>Heitä veto</h3>
+      <label class="field" for="betQ">Kysymys</label>
+      <input class="text-in" id="betQ" type="text" maxlength="120" placeholder="Esim. Voittaako Mikko seuraavan pelinsä 4–0?" autocomplete="off">
+      <div class="chips" id="betSuggest" aria-label="Ehdotuksia"></div>
+      <span class="field">Vaihtoehdot</span>
+      <div class="bet-opts-in" id="betOpts"></div>
+      <div class="new-bet-row">
+        <button class="btn btn-ghost" id="addOpt" type="button">+ Vaihtoehto</button>
+        <button class="btn btn-rock" type="submit">Julkaise veto</button>
+      </div>
+      <p class="note">Vedon heittäjä ratkaisee sen. Potti jaetaan oikein veikanneille panosten suhteessa.</p>
+    </form>
+
+    <h3 class="bets-h">Avoimet vedot</h3>
+    <div class="bets" id="betsOpen"></div>
+    <div id="betsDoneWrap" hidden>
+      <h3 class="bets-h">Ratkaistut</h3>
+      <div class="bets" id="betsDone"></div>
+    </div>
+  </section>
+
   <!-- OTTELUOHJELMA -->
   <section id="ohjelma" class="sec" aria-labelledby="ohOtsikko">
     <header class="sec-head">
@@ -190,7 +257,42 @@
 </main>
 
 
+<dialog class="dlg" id="profileDlg" aria-labelledby="dlgTitle">
+  <button class="dlg-x" id="dlgClose" type="button" aria-label="Sulje">✕</button>
+  <div id="loginView">
+    <p class="sec-kick">Nekapool 2</p>
+    <h2 class="dlg-h" id="dlgTitle">Kirjaudu</h2>
+    <form id="loginForm" class="login-form">
+      <label class="field" for="codeIn">Henkilökohtainen koodi</label>
+      <input class="code-in" id="codeIn" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="•••">
+      <button class="btn btn-rock" type="submit">Kirjaudu</button>
+      <p class="err" id="loginErr" aria-live="polite"></p>
+    </form>
+  </div>
+  <div id="profileView" hidden>
+    <p class="sec-kick">Oma profiili</p>
+    <h2 class="dlg-h" id="profName">–</h2>
+    <div class="reveal" id="reveal" hidden>
+      <span class="reveal-kick">Starring</span>
+      <span class="reveal-nick" id="revealNick"></span>
+      <span class="reveal-sub">Tämä on lempinimesi. Se näkyy nyt koko joukkueelle.</span>
+    </div>
+    <form id="nickForm" class="nick-form">
+      <label class="field" for="nickIn">Lempinimi</label>
+      <div class="nick-row">
+        <input class="text-in" id="nickIn" type="text" maxlength="24" autocomplete="off" placeholder="Esim. Tiikeri">
+        <button class="btn" type="submit">Tallenna</button>
+      </div>
+    </form>
+    <dl class="prof-stats" id="profStats"></dl>
+    <button class="btn btn-ghost" id="logoutBtn" type="button">Kirjaudu ulos</button>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
 <script src="js/live.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/kassa.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

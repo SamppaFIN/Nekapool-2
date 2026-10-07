@@ -40,3 +40,14 @@ pöytäkirjaan – vaihda nimi, jos sitä alkaa käyttää joku ulkopuolinen.
 python3 scripts/paivita_data.py   # päivitä data
 python3 -m http.server             # avaa http://localhost:8000
 ```
+
+## Koodit, profiilit ja vetokassa
+
+- Pelaajat ja kirjautumiskoodien tiivisteet ovat tiedostossa `data/joukkue.json`. Uuden pelaajan tiiviste:
+  `python3 scripts/koodi.py <id> <koodi>`.
+- Ottelupöytäkirjaa voi kirjata vain koodilla kirjautunut pelaaja; muut näkevät tilanteen.
+- Ensimmäisellä kirjautumisella paljastuu pelaajan salainen lempinimi (salattu koodilla `data/joukkue.json`:ssa).
+- **Vetokassa**: jokainen aloittaa 100 kumikolikolla. Vedon heittäjä ratkaisee vedon; potti jaetaan oikein
+  veikanneille panosten suhteessa. Tapahtumat kulkevat ntfy.sh:n kautta (`js/kassa.js`), ja Actions tallentaa ne
+  pysyvästi tiedostoon `data/kassa.json` kolmen tunnin välein (`scripts/tallenna_kassa.py`).
+- Kyseessä on leikkisivu: lukko on kevyt, eikä sivulla liiku oikeaa rahaa.

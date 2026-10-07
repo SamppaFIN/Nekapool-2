@@ -157,7 +157,7 @@
       vaihe: s.vaihe === 'kaynnissa' || s.vaihe === 'paattynyt' ? s.vaihe : 'kokoonpano',
       pvm: /^\d{4}-\d\d-\d\d$/.test(s.pvm) ? s.pvm : today(),
       koti: str(s.koti, 60) || 'Kotijoukkue', vieras: str(s.vieras, 60) || 'Vierasjoukkue',
-      race: race, arvottu: !!s.arvottu, pelit: pelit
+      race: race, arvottu: !!s.arvottu, pelit: pelit, kirjaaja: str(s.kirjaaja, 16)
     };
   }
   function kopio(s) { return JSON.parse(JSON.stringify(s)); }
@@ -181,7 +181,9 @@
     return { ek: ek, ev: ev, pk: pk, pv: pv, valmiit: valmiit };
   }
 
-  function olenKirjaaja() { return !!view && !!view.id && lsGet(LS_KIRJAAJA) === view.id; }
+  /* Tuloksia saa kirjata vain koodilla kirjautunut pelaaja (ks. auth.js). */
+  function kirjautunut() { return !!(window.Auth && window.Auth.user()); }
+  function olenKirjaaja() { return kirjautunut() && !!view && !!view.id && lsGet(LS_KIRJAAJA) === view.id; }
 
   /* Mikä tila paperilla näytetään: julkaistu ottelu, jos sellainen on käynnissä, muuten oma luonnos. */
   function valitseNakyma() {
@@ -320,7 +322,7 @@
     if (!view) return;
     var s = view;
     var setup = mode === 'kokoonpano';
-    var namesEditable = setup || editNames;
+    var namesEditable = (setup && kirjautunut()) || editNames;
     var paper = $('paper');
     paper.classList.toggle('setup', setup);
     paper.classList.toggle('names-edit', namesEditable);
@@ -381,14 +383,18 @@
 
     // napit vaiheen mukaan
     var rec = olenKirjaaja();
-    $('setupCtl').hidden = !setup;
+    $('setupCtl').hidden = !setup || !kirjautunut();
+    $('loginGate').hidden = kirjautunut() || mode === 'valmis';
+    $('loginGateText').textContent = setup ? 'Ottelu alkaa pian. Kokoonpanon ja tulokset kirjaa koodilla kirjautunut pelaaja.' :
+      'Tuloksia kirjaa koodilla kirjautunut pelaaja.';
+    $('recBy').textContent = s.kirjaaja && window.Auth && window.Auth.player(s.kirjaaja) && !setup ? 'Ottelun aloitti ' + window.Auth.player(s.kirjaaja).nimi.split(' ')[0] : '';
     $('startBtn').hidden = !s.arvottu;
     $('startLink').hidden = s.arvottu;
     $('drawBtn').classList.toggle('btn-rock', !s.arvottu);
     $('drawBtn').classList.toggle('btn-ghost', s.arvottu);
     $('drawBtn').lastChild.textContent = s.arvottu ? ' Arvo uudelleen' : ' Arvo peliparit';
     $('liveCtl').hidden = setup;
-    $('joinBtn').hidden = setup || rec;
+    $('joinBtn').hidden = setup || rec || !kirjautunut() || mode === 'valmis';
     $('namesBtn').hidden = setup || !rec || mode === 'valmis';
     $('namesBtn').textContent = editNames ? 'Valmis' : 'Muokkaa nimiä';
     $('namesBtn').setAttribute('aria-pressed', String(editNames));
@@ -500,8 +506,10 @@
     if (remote && remote.vaihe === 'kaynnissa' && Date.now() - remote.ts < AKTIIVINEN_MS &&
         remote.vaihe === 'kaynnissa' && summat(remote).ek + summat(remote).ev > 0 &&
         !confirm('Toinen ottelu on jo käynnissä. Korvataanko se?')) return;
+    if (!kirjautunut()) return;
     var s = kopio(draft);
     s.vaihe = 'kaynnissa';
+    s.kirjaaja = window.Auth.user().id;
     s.id = Math.random().toString(36).slice(2, 12);
     s.pelit.forEach(function (g) { g.h = ''; g.p = false; });
     lsSet(LS_KIRJAAJA, s.id);
@@ -629,11 +637,15 @@
       var n = nimi(p.nimi);
       var pct = p.ep + p.em ? Math.round(100 * p.ep / (p.ep + p.em)) : 0;
       var card = el('article', 'card');
+      card.setAttribute('data-liiga', p.nimi);
       card.style.setProperty('--c', COLORS[idx % 4]);
       card.appendChild(el('div', 'tile', n.etu.charAt(0))).setAttribute('aria-hidden', 'true');
       var body = el('div');
       body.appendChild(el('p', 'kick', 'Ranking ' + p.ranking + '. · erävoitot ' + pct + ' %'));
       body.appendChild(el('h3', null, n.koko));
+      var kl = el('p', 'kassa-line');
+      kl.hidden = true;
+      body.appendChild(kl);
       var dl = el('dl', 'pstats');
       [['Pelit', p.o], ['V–H', p.v + '–' + p.h], ['Erät', p.ep + '–' + p.em], ['P', p.p]].forEach(function (x) {
         var d = el('div');
@@ -755,7 +767,7 @@
     var a = $('breaking');
     a.textContent = '';
     a.href = u.linkki || '#uutiset';
-    if (!u.linkki) a.removeAttribute('target');
+    if (a.getAttribute('href').charAt(0) === '#') a.removeAttribute('target'); else a.target = '_blank';
     var tag = el('span', 'breaking-tag');
     tag.appendChild(el('span', 'live-dot ok'));
     var mins = Math.max(1, Math.round((Date.now() - Date.parse(u.julkaistu)) / 60000));
@@ -794,8 +806,7 @@
       if (u.linkki) {
         var a = el('a', 'btn link-btn', u.linkkiteksti || 'Lue lisää');
         a.href = u.linkki;
-        a.target = '_blank';
-        a.rel = 'noopener';
+        if (u.linkki.charAt(0) !== '#') { a.target = '_blank'; a.rel = 'noopener'; }
         body.appendChild(a);
       }
       card.appendChild(body);
@@ -823,12 +834,17 @@
   getJSON('data/liiga.json')
     .then(function (d) {
       liiga = d;
+      window.NekaLiiga = { pelaaja: function (n) { return liiga.pelaajat.filter(function (p) { return p.nimi === n; })[0] || null; } };
       renderTaulukko();
       renderPelaajat();
+      if (window.Kassa) window.Kassa.render();
       renderOhjelma();
     })
     .catch(function () {
       $('playerCards').textContent = 'Tilastoja ei saatu ladattua.';
     })
-    .then(initLive);
+    .then(initLive)
+    .then(function () {
+      if (window.Auth) window.Auth.onChange(function () { editNames = false; picking = -1; render(false); });
+    });
 })();
