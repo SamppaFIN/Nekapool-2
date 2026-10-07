@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-10-06T22:37:40+00:00",
+ "paivitetty": "2026-10-07T18:58:00+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 06.10.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 07.10.2026",
   "rivit": [
    {
     "sija": 1,
@@ -125,18 +125,31 @@
    {
     "sija": 10,
     "joukkue": "Pikku Pete Pool",
-    "o": 1,
+    "o": 2,
     "v": 0,
-    "t": 1,
+    "t": 2,
     "h": 0,
-    "pp": 2,
-    "pm": 2,
-    "ep": 12,
-    "em": 14,
-    "p": 1
+    "pp": 4,
+    "pm": 4,
+    "ep": 24,
+    "em": 26,
+    "p": 2
    },
    {
     "sija": 11,
+    "joukkue": "Tampereen A-Kilta",
+    "o": 2,
+    "v": 0,
+    "t": 2,
+    "h": 0,
+    "pp": 4,
+    "pm": 4,
+    "ep": 22,
+    "em": 21,
+    "p": 2
+   },
+   {
+    "sija": 12,
     "joukkue": "Mestarin Pool",
     "o": 1,
     "v": 0,
@@ -149,7 +162,7 @@
     "p": 1
    },
    {
-    "sija": 12,
+    "sija": 13,
     "joukkue": "Pub Don Pepe",
     "o": 1,
     "v": 0,
@@ -159,19 +172,6 @@
     "pm": 2,
     "ep": 11,
     "em": 12,
-    "p": 1
-   },
-   {
-    "sija": 13,
-    "joukkue": "Tampereen A-Kilta",
-    "o": 1,
-    "v": 0,
-    "t": 1,
-    "h": 0,
-    "pp": 2,
-    "pm": 2,
-    "ep": 10,
-    "em": 9,
     "p": 1
    },
    {
@@ -315,7 +315,7 @@
    "p": 6
   },
   {
-   "ranking": 16,
+   "ranking": 18,
    "nimi": "Karppanen Toni",
    "o": 1,
    "v": 1,
@@ -335,7 +335,7 @@
    "p": 3
   },
   {
-   "ranking": 58,
+   "ranking": 60,
    "nimi": "Berglund John",
    "o": 1,
    "v": 0,
