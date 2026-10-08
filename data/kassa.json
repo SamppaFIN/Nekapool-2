@@ -40,6 +40,26 @@
    "id": "muycciwadhl2hd",
    "t": 1791391669930,
    "kuka": "arto"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Liijacupissa tiputetaan vähintään 2 mestaruussarja joukkuetta",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "muyhjc2ihdi3o8",
+   "t": 1791400385754,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "muyhjc2ihdi3o8",
+   "valinta": 0,
+   "maara": 44,
+   "id": "muyhjwibvbrg4f",
+   "t": 1791400412243,
+   "kuka": "sami"
   }
  ]
 }
