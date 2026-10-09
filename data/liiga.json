@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-10-09T01:14:34+00:00",
+ "paivitetty": "2026-10-09T10:37:48+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -150,6 +150,19 @@
    },
    {
     "sija": 12,
+    "joukkue": "Pub Don Pepe",
+    "o": 2,
+    "v": 0,
+    "t": 2,
+    "h": 0,
+    "pp": 4,
+    "pm": 4,
+    "ep": 24,
+    "em": 23,
+    "p": 2
+   },
+   {
+    "sija": 13,
     "joukkue": "Pikku Pete Pool",
     "o": 2,
     "v": 0,
@@ -162,7 +175,7 @@
     "p": 2
    },
    {
-    "sija": 13,
+    "sija": 14,
     "joukkue": "Tampereen A-Kilta",
     "o": 2,
     "v": 0,
@@ -173,19 +186,6 @@
     "ep": 22,
     "em": 21,
     "p": 2
-   },
-   {
-    "sija": 14,
-    "joukkue": "Pub Don Pepe",
-    "o": 1,
-    "v": 0,
-    "t": 1,
-    "h": 0,
-    "pp": 2,
-    "pm": 2,
-    "ep": 11,
-    "em": 12,
-    "p": 1
    },
    {
     "sija": 15,
@@ -242,15 +242,15 @@
    {
     "sija": 19,
     "joukkue": "Vastavirta Pool",
-    "o": 1,
+    "o": 2,
     "v": 0,
-    "t": 0,
+    "t": 1,
     "h": 1,
-    "pp": 0,
-    "pm": 4,
-    "ep": 5,
-    "em": 16,
-    "p": 0
+    "pp": 2,
+    "pm": 6,
+    "ep": 16,
+    "em": 29,
+    "p": 1
    },
    {
     "sija": 20,
@@ -315,7 +315,7 @@
    "p": 6
   },
   {
-   "ranking": 20,
+   "ranking": 21,
    "nimi": "Karppanen Toni",
    "o": 1,
    "v": 1,
@@ -325,7 +325,7 @@
    "p": 3
   },
   {
-   "ranking": 53,
+   "ranking": 54,
    "nimi": "Eskola Arto",
    "o": 2,
    "v": 1,
@@ -335,7 +335,7 @@
    "p": 3
   },
   {
-   "ranking": 66,
+   "ranking": 69,
    "nimi": "Berglund John",
    "o": 1,
    "v": 0,
