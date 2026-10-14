@@ -156,7 +156,7 @@
   function send(e) {
     var me = window.Auth.user();
     if (!me) return Promise.reject(new Error('Kirjaudu ensin'));
-    e.id = uid();
+    e.id = e.id || uid();
     e.t = Date.now();
     e.kuka = me.id;
     pending[e.id] = e;
@@ -169,6 +169,7 @@
   /* ---------- käyttöliittymä ---------- */
   function toast(text) {
     var t = $('toast');
+    if (!t) { t = el('div', 'toast'); t.id = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
     t.textContent = text;
     t.hidden = false;
     clearTimeout(toast.h);
@@ -203,7 +204,8 @@
     });
   }
 
-  function betCard(v) {
+  function betCard(v, asetukset) {
+    asetukset = asetukset || {};
     var me = window.Auth.user();
     var card = el('article', 'bet ' + v.tila);
     var head = el('div', 'bet-head');
@@ -243,7 +245,10 @@
       return card;
     }
 
-    // panos
+    // panos (lukitulla vedolla, esim. pelin jo päätyttyä, vain ratkaisu)
+    if (asetukset.lukittu) {
+      card.appendChild(el('p', 'bet-note', 'Peli on päättynyt, panoksia ei enää oteta.'));
+    } else {
     var form = el('form', 'bet-form');
     var sel = el('div', 'bet-choice');
     var chosen = { i: -1 };
@@ -289,6 +294,7 @@
       }).catch(function () {});
     });
     card.appendChild(form);
+    }
 
     if (me.id === v.kuka) {
       var settle = el('div', 'bet-settle');
@@ -373,13 +379,31 @@
     });
   }
 
+  /* Upotetut vedot muilla sivuilla: <div data-veto="vedon-id" data-lukittu="1"> */
+  function renderEmbedded() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-veto]'), function (box) {
+      var v = state.vedot[box.getAttribute('data-veto')];
+      box.textContent = '';
+      if (!v) { box.appendChild(el('p', 'note', 'Veto avautuu, kun joku koodilla kirjautunut avaa sivun.')); return; }
+      box.appendChild(betCard(v, { lukittu: box.getAttribute('data-lukittu') === '1' }));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-saldo]'), function (n) {
+      var me = window.Auth.user();
+      n.textContent = me ? nimi(me.id) + ': ' + kk(state.saldo[me.id]) : '';
+    });
+  }
+
+  var full = !!document.getElementById('board'); // etusivu vai upotettu käyttö
   function render() {
     if (!state) return;
-    renderMe();
-    renderBoard();
-    renderBets();
-    renderCards();
-    renderProfile();
+    if (full) {
+      renderMe();
+      renderBoard();
+      renderBets();
+      renderCards();
+      renderProfile();
+    }
+    renderEmbedded();
   }
 
   /* ---------- tapahtumankäsittelijät ---------- */
@@ -479,7 +503,9 @@
   }
 
   /* ---------- käynnistys ---------- */
-  initUi();
+  var readyResolve;
+  var ready = new Promise(function (r) { readyResolve = r; });
+  if (full) initUi();
   window.Auth.ready.then(function () {
     add(lsGet());
     fold();
@@ -492,10 +518,21 @@
   }).then(function () {
     return poll().catch(function () { toast('Vetokassan live-yhteys ei vastaa. Näytetään tallennettu tilanne.'); });
   }).then(function () {
+    readyResolve();
     listen();
-    return lunastus();
+    return full ? lunastus() : null;
   });
   document.addEventListener('visibilitychange', function () { if (!document.hidden) poll().catch(function () {}); });
 
-  window.Kassa = { render: render };
+  window.Kassa = {
+    render: render,
+    ready: ready,
+    /* Avaa vedon tunnisteella, ellei sitä vielä ole (vain kirjautuneena). */
+    ensureVeto: function (id, kysymys, vaihtoehdot) {
+      return ready.then(function () {
+        if (!window.Auth.user() || (state && state.vedot[id])) return;
+        return send({ id: id, typ: 'veto', kysymys: kysymys, vaihtoehdot: vaihtoehdot }).catch(function () {});
+      });
+    }
+  };
 })();

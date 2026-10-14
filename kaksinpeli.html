@@ -37,6 +37,8 @@
     .duel-login { display: flex; gap: 8px; }
     .duel-login .code-in { flex: 1; min-width: 0; font-size: 28px; min-height: 56px; }
     .duel-status { text-align: center; font-size: 24px; margin: 14px 0 0; min-height: 1.3em; }
+    .duel-bet h2 { margin-bottom: 4px; }
+    .duel-bet .bets { margin-top: 14px; }
   </style>
 </head>
 <body>
@@ -74,6 +76,14 @@
     <button class="btn btn-ghost wide" id="resetBtn" type="button">Uusi peli</button>
   </div>
 
+  <section class="duel-bet" aria-labelledby="betH">
+    <p class="sec-kick">Leikkirahalla, kumikolikoilla 🪙</p>
+    <h2 id="betH">Lyö vetoa</h2>
+    <p class="sync" data-saldo></p>
+    <div class="bets" id="duelBet"></div>
+    <p class="note">Potti jaetaan oikein veikanneille panosten suhteessa. Vedon avaaja ratkaisee sen pelin jälkeen. Saldot ovat samat kuin etusivun vetokassassa.</p>
+  </section>
+
   <form class="login-gate" id="gate" hidden>
     <p>Kirjaa tuloksia omalla koodillasi. Ilman koodia tilannetta voi seurata.</p>
     <div class="duel-login">
@@ -86,6 +96,7 @@
 
 <script src="js/live.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/kassa.js"></script>
 <script>
 (function () {
   'use strict';
@@ -93,12 +104,13 @@
   var state = null, live = null;
   function $(id) { return document.getElementById(id); }
   function today() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
-  function fresh() { return { v: 2, ts: 0, id: 'kaksinpeli', vaihe: 'kaynnissa', pvm: today(), koti: K, vieras: V, race: RACE, pelit: [{ k: K, v: V, h: '', p: false }] }; }
+  // Pelin tunniste johdetaan päivästä ja pelinumerosta, jotta kaikki puhelimet päätyvät samaan vetoon.
+  function fresh(nro) { return { v: 2, ts: 0, id: today().replace(/-/g, '') + 'p' + (nro || 1), vaihe: 'kaynnissa', pvm: today(), koti: K, vieras: V, race: RACE, pelit: [{ k: K, v: V, h: '', p: false }] }; }
   function clean(s) {
     if (!s || !Array.isArray(s.pelit) || !s.pelit[0]) return null;
     var h = String(s.pelit[0].h || '').replace(/[^kv]/g, ''), out = '', a = 0, b = 0;
     for (var i = 0; i < h.length && a < RACE && b < RACE; i++) { out += h[i]; if (h[i] === 'k') a++; else b++; }
-    var st = fresh(); st.ts = Number(s.ts) || 0; st.pvm = /^\d{4}-\d\d-\d\d$/.test(s.pvm) ? s.pvm : today(); st.pelit[0].h = out;
+    var st = fresh(); st.ts = Number(s.ts) || 0; if (/^[a-z0-9]{4,12}$/.test(s.id)) st.id = s.id; st.pvm = /^\d{4}-\d\d-\d\d$/.test(s.pvm) ? s.pvm : today(); st.pelit[0].h = out;
     return st;
   }
   function count(h) { var a = 0, b = 0; for (var i = 0; i < h.length; i++) { if (h[i] === 'k') a++; else b++; } return [a, b]; }
@@ -135,6 +147,14 @@
     $('ctl').hidden = !me; $('gate').hidden = !!me;
     $('plusK').disabled = $('plusV').disabled = done;
     $('minusK').disabled = e[0] === 0; $('minusV').disabled = e[1] === 0;
+
+    // veto tähän peliin: lukittuu, kun peli on päättynyt
+    var box = $('duelBet'), vid = 'kp-' + state.id;
+    var changed = box.getAttribute('data-veto') !== vid || box.getAttribute('data-lukittu') !== (done ? '1' : '0');
+    box.setAttribute('data-veto', vid);
+    box.setAttribute('data-lukittu', done ? '1' : '0');
+    if (changed && window.Kassa) window.Kassa.render();
+    if (me && window.Kassa && !done) window.Kassa.ensureVeto(vid, K + ' vs ' + V + ': kumpi voittaa 4 voittoon?', [K, V]);
   }
   function save() {
     state.ts = Date.now();
@@ -149,7 +169,7 @@
   $('plusV').addEventListener('click', function () { add('v'); });
   $('minusK').addEventListener('click', function () { remove('k'); });
   $('minusV').addEventListener('click', function () { remove('v'); });
-  $('resetBtn').addEventListener('click', function () { if (confirm('Aloitetaanko uusi peli? Nykyiset erät nollataan.')) { state = fresh(); save(); } });
+  $('resetBtn').addEventListener('click', function () { if (confirm('Aloitetaanko uusi peli? Nykyiset erät nollataan.')) { var m = /p(\d+)$/.exec(state.id); state = fresh(m ? +m[1] + 1 : 2); save(); } });
   $('gate').addEventListener('submit', function (e) {
     e.preventDefault();
     window.Auth.login($('codeIn').value).then(function (p) {
