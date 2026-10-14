@@ -2,20 +2,30 @@
   {
     "pvm": "2026-10-14",
     "tyyppi": "uutinen",
+    "vari": "kulta",
+    "otsikko": "Historian paperit nyt kaikille",
+    "teksti": "Kaikki kauden otteluraportit, tiistain kärkikamppailun ennakko ja Kivellä ysiä -stressilelu löytyvät nyt Nekapoolin omalta sivulta. Ne aukeavat kaikille ilman kirjautumista, joten jaa linkit vapaasti ryhmään.",
+    "linkki": "#historia",
+    "linkkiteksti": "Selaa historian papereita",
+    "julkaistu": "2026-10-14T23:34:28Z"
+  },
+  {
+    "pvm": "2026-10-14",
+    "tyyppi": "lelu",
     "vari": "pinkki",
     "otsikko": "Uusi stressilelu: Kivellä ysiä",
     "teksti": "Lämmittele tiistain Kivitasku-ottelua varten: flikkaa kivi sormella ysipalloa päin ja pussita ysi. Jokaisesta ysistä räjähtää ilotulitus, ja mitä pidempi putki, sitä isommat raketit. Jos kivi menee taskuun, Kivitasku kiittää.",
-    "linkki": "https://claude.ai/artifact/3xMpQdqY6a8if5uYpRa2dr",
+    "linkki": "raportit/kivella-ysia.html",
     "linkkiteksti": "Pelaa",
     "julkaistu": "2026-10-14T23:27:38Z"
   },
   {
     "pvm": "2026-10-14",
-    "tyyppi": "uutinen",
+    "tyyppi": "ennakko",
     "vari": "kulta",
     "otsikko": "Ennakko: kärkikamppailu tiistaina",
     "teksti": "Jamo-voiton jälkeen Nekapool 2 on sarjassa toinen. Tiistaina 20.10. kotiin saapuu sarjan ykkönen Pub Kivitasku 2, ja voitolla Nekapool nousee kärkeen. Kummallakin on 45 voitettua erää, ja rankingin ykkönen Janne Mäenpää kohtaa ehkä kakkosen, Mikon. Ennakossa vertailu, kokoonpanot ja ottelusimulaattori.",
-    "linkki": "https://claude.ai/artifact/16vbkPD756WE9vGNVCi5ZJ",
+    "linkki": "raportit/2026-10-20-ennakko-kivitasku-2.html",
     "linkkiteksti": "Lue ennakko",
     "julkaistu": "2026-10-14T21:41:00Z"
   },
@@ -25,7 +35,7 @@
     "vari": "vihrea",
     "otsikko": "Vierasvoitto käännöksellä: Jamo Racing kaatui 3–1",
     "teksti": "Mikko käänsi 0–2-tappioaseman neljällä peräkkäisellä erällä (4–2), Toni ja Sami voittivat omansa 4–1, ja Jussin yli tunnin peli ratkesi Pertsalle vasta ratkaisuerässä 3–4. Erät 15–8, kolmesta ottelusta 7 pistettä eikä yhtään tappiota. Sami piti koko illan pöytäkirjaa livenä. Raportissa myös uudet stressilelut.",
-    "linkki": "https://claude.ai/artifact/CbL3ydzcq9KnmHG5YNLa31",
+    "linkki": "raportit/2026-10-14-jamo-racing.html",
     "linkkiteksti": "Lue otteluraportti",
     "julkaistu": "2026-10-14T18:02:42Z"
   },
@@ -62,7 +72,7 @@
     "tyyppi": "raportti",
     "otsikko": "Ilman kapteenia, paikkaa etsimässä",
     "teksti": "Nekapool 2 pelasi Pikku Pete Poolin kanssa tasan 2–2, erät 14–12. Mikko voitti 4–1 ja Sami 4–3, John hävisi ensimmäisen Nekapool-pelinsä 3–4 ja Arto nousi 0–3:sta ratkaisuerään asti. Raportissa myös stressilelut hermostuneen illan purkuun.",
-    "linkki": "https://claude.ai/artifact/YRnwrPuwtCy5WTcftkewNB",
+    "linkki": "raportit/2026-10-06-pikku-pete.html",
     "linkkiteksti": "Lue otteluraportti",
     "julkaistu": "2026-10-06T22:43:00Z"
   },
@@ -71,7 +81,7 @@
     "tyyppi": "raportti",
     "otsikko": "Historiallinen ilta Nekalassa",
     "teksti": "Nekapool 2 avasi kauden murskavoitolla ja kaatoi Pub Kivitasku Tohlopin erin 16–1. Mikko, Sami ja Toni pelasivat puhtaat 4–0-voitot, ja Arto sinetöi illan 4–1. Lue illan tarinat pelaaja kerrallaan.",
-    "linkki": "https://claude.ai/artifact/LjnbJpnZruEu7aq4iuDVwd",
+    "linkki": "raportit/2026-10-01-tohloppi.html",
     "linkkiteksti": "Lue otteluraportti"
   },
   {

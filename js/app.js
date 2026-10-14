@@ -782,6 +782,26 @@
     a.hidden = false;
   }
 
+  /* Historian paperit: kaikki sivuston omat raportit (raportit/-kansio) uusin ensin. */
+  function renderArkisto(list) {
+    var ol = $('archive');
+    if (!ol) return;
+    ol.textContent = '';
+    list.filter(function (u) { return /^raportit\//.test(u.linkki || ''); })
+      .sort(function (a, b) { return a.pvm < b.pvm ? 1 : -1; })
+      .forEach(function (u) {
+        var li = el('li', 'arch');
+        var a = el('a');
+        a.href = u.linkki;
+        var d = el('span', 'arch-date', fmtDate(u.pvm, true));
+        a.appendChild(d);
+        a.appendChild(el('span', 'arch-title', u.otsikko));
+        a.appendChild(el('span', 'arch-type', { raportti: 'Otteluraportti', ennakko: 'Ennakko', lelu: 'Stressilelu' }[u.tyyppi] || 'Juttu'));
+        li.appendChild(a);
+        ol.appendChild(li);
+      });
+  }
+
   function renderUutiset(list) {
     var box = $('news');
     box.textContent = '';
@@ -800,7 +820,7 @@
       var card = el('article', 'news-card');
       card.style.setProperty('--c', UUTISVARIT[u.vari] || COLORS[i % 4]);
       var body = el('div', 'news-body');
-      var tyyppi = { raportti: 'Otteluraportti', aanestys: 'Äänestys', uutinen: 'Uutinen' }[u.tyyppi] || 'Uutinen';
+      var tyyppi = { raportti: 'Otteluraportti', aanestys: 'Äänestys', uutinen: 'Uutinen', ennakko: 'Ennakko', lelu: 'Stressilelu' }[u.tyyppi] || 'Uutinen';
       body.appendChild(el('p', 'kick', tyyppi + ' · ' + fmtDate(u.pvm, true)));
       body.appendChild(el('h3', null, u.otsikko));
       if (u.teksti) body.appendChild(el('p', null, u.teksti));
@@ -820,6 +840,7 @@
       }
     });
     if (!list.length) box.appendChild(el('p', 'note', 'Ei uutisia vielä.'));
+    renderArkisto(list);
   }
 
   /* ---------- käynnistys ---------- */

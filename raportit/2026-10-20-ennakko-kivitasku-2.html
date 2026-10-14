@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Nekapool 2"><meta property="og:title" content="Ennakko: kärkikamppailu Nekalassa"><meta property="og:description" content="Nekapool 2 – Pub Kivitasku 2 ti 20.10. Vertailu, kokoonpanot ja ottelusimulaattori."><meta property="og:image" content="https://samppafin.github.io/Nekapool-2/img/nekapool2-og.jpg"><meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<a href="../" style="position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;background:#0b0d11;color:#ffd23f;border:2px solid #ffd23f;padding:8px 12px;font:600 13px/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-radius:6px">← Nekapool 2</a>
+<title>Nekapool 2 vs Pub Kivitasku 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap">
+<style>
+/* Layout: kapea ottelujuliste kuten kauden avauksen raportissa. Rytmipalkit avaavat ja päättävät,
+   tulostaulu ylhäällä, sitten erät kuplamuovina, pelaajakortit stressileluineen ja lopuksi sarjatilanne.
+   Yksi tietoisesti tumma ilme kummassakin teemassa. */
+:root {
+  --bg: #12161d;
+  --panel: #1b212b;
+  --panel-2: #232a36;
+  --line: #2f3745;
+  --fg: #f2f4f8;
+  --muted: #a8b3c3;
+  --orange: #ff5a1f;
+  --cyan: #19c3d1;
+  --yellow: #ffd23f;
+  --pink: #e5338b;
+  --felt: #0f6b4f;
+  --felt-dark: #0a4a37;
+  --rail: #5a3418;
+  --on: #0b0d11;
+  --white: #f7f7f2;
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --font-body: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-inline: 16px;
+  padding-block: 20px 32px;
+}
+.wrap { max-width: 560px; margin-inline: auto; display: flex; flex-direction: column; gap: 32px; }
+section, header, footer { min-width: 0; }
+button { font-family: var(--font-body); -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+/* rytmipalkit */
+.bars { display: flex; gap: 4px; height: 76px; }
+.bars.top { align-items: flex-start; }
+.bars.bottom { align-items: flex-end; }
+.bars i { flex: 1; min-width: 0; display: block; animation: beat 1.8s ease-in-out infinite alternate; }
+.bars.top i { transform-origin: top; }
+.bars.bottom i { transform-origin: bottom; }
+@keyframes beat { from { transform: scaleY(1); } to { transform: scaleY(0.62); } }
+
+/* otsikko */
+.hero { display: flex; flex-direction: column; gap: 12px; }
+.eyebrow { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(44px, 13vw, 70px); line-height: 0.92; letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance; }
+.date { margin: 0; color: var(--muted); font-size: 15px; }
+.lede { margin: 0; max-width: 60ch; }
+
+/* tulostaulu */
+.score { position: relative; display: grid; grid-template-columns: 1fr 1fr; }
+.team { min-width: 0; min-height: 156px; padding: 14px 14px 10px; color: var(--on); display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.t-neka { background: var(--orange); }
+.t-pete { background: var(--cyan); text-align: right; }
+.tname { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; overflow-wrap: anywhere; }
+.tnum { font-family: var(--font-display); font-weight: 900; font-size: 104px; line-height: 0.85; font-variant-numeric: tabular-nums; }
+.vs { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%; background: var(--bg); border: 2px solid var(--yellow); color: var(--yellow); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.score-sub { display: flex; justify-content: space-between; gap: 12px; margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+.score-sub b { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+h2 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: 32px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; text-wrap: balance; }
+.sub { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.btn { font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; min-height: 44px; padding: 10px 16px; color: var(--fg); background: var(--panel-2); border: 2px solid var(--yellow); cursor: pointer; }
+.btn:hover { background: var(--line); }
+
+/* kuplamuovi */
+.wrapfoil { margin-top: 14px; padding: 14px; background: var(--panel); display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 8px; touch-action: manipulation; }
+.bub { aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 0; padding: 0; cursor: pointer; position: relative;
+  background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.75) 0 12%, transparent 30%), var(--c);
+  box-shadow: inset -4px -6px 10px rgba(0, 0, 0, 0.3), 0 3px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.12s; }
+.bub:active { transform: scale(0.9); }
+.bub.popped { background: var(--panel-2); box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5); cursor: default; }
+.bub.popped::after { content: ''; position: absolute; inset: 30%; border: 2px solid var(--c); border-radius: 50%; opacity: 0.45; clip-path: polygon(0 0, 60% 0, 40% 50%, 70% 100%, 0 100%); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend b { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.status { margin: 10px 0 0; font-size: 15px; min-height: 1.5em; }
+
+/* pelaajakortit */
+.cards { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.card { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; background: var(--panel); padding: 16px; }
+.tile { width: 56px; height: 56px; background: var(--c); color: var(--on); font-family: var(--font-display); font-weight: 900; font-size: 40px; line-height: 56px; text-align: center; }
+.kick { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+h3 { margin: 2px 0 4px; font-family: var(--font-display); font-weight: 900; font-size: 34px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
+.vsline { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+.vsline b { color: var(--c); font-family: var(--font-display); font-size: 22px; font-weight: 900; margin-right: 6px; }
+.story { margin: 0; max-width: 62ch; }
+
+.card > .widget { grid-column: 1 / -1; }
+.widget { margin-top: 0; padding: 12px; background: var(--bg); border: 1px solid var(--line); }
+.wl { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.widget .btn { margin-top: 10px; }
+
+/* Johnin tiikerihäkki */
+.cage { position: relative; height: 150px; margin-top: 10px; display: grid; place-items: center; overflow: hidden; background: var(--panel-2); }
+.tiger { font-size: 64px; line-height: 1; transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); transform: scale(var(--s, 0.55)); }
+.cage.free .tiger { animation: roar 0.6s ease-in-out 2; }
+@keyframes roar { 50% { transform: scale(1.7) rotate(-6deg); } }
+.cbars { position: absolute; inset: 0; display: flex; justify-content: space-evenly; pointer-events: none; }
+.cbar { pointer-events: auto; width: 34px; border: 0; background: transparent; cursor: pointer; display: grid; justify-items: center; padding: 0; }
+.cbar::before { content: ''; width: 7px; height: 100%; background: linear-gradient(90deg, #6b7380, #c9d0da 45%, #59606b); border-radius: 4px; transition: transform 0.4s, opacity 0.4s; }
+.cbar span { position: absolute; bottom: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; transform: rotate(180deg); pointer-events: none; }
+.cbar.broken { pointer-events: none; }
+.cbar.broken::before { transform: translateY(120%) rotate(30deg); opacity: 0; }
+.cbar.broken span { opacity: 0; }
+
+/* Samin hermopallo */
+.squeeze { display: grid; place-items: center; height: 150px; margin-top: 10px; background: var(--panel-2); touch-action: none; -webkit-user-select: none; user-select: none; }
+.ball8 { width: 96px; height: 96px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 30%, #5a5f69 0 10%, #111317 46%); box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5);
+  transition: transform 0.18s cubic-bezier(0.3, 1.8, 0.5, 1), border-radius 0.18s; touch-action: none; }
+.ball8 span { width: 40px; height: 40px; border-radius: 50%; background: var(--white); color: var(--on); font-family: var(--font-display); font-weight: 900; font-size: 26px; line-height: 40px; }
+.ball8.squeezed { transform: scale(1.22, 0.74); border-radius: 46% 46% 40% 40%; transition-duration: 0.08s; }
+.meter { height: 14px; margin: 10px 0 6px; background: var(--panel-2); overflow: hidden; }
+.fill { height: 100%; width: 92%; background: var(--pink); transition: width 0.5s cubic-bezier(0.3, 0.7, 0.2, 1), background-color 0.5s; }
+
+/* Mikon liidutus */
+.chalkpad { position: relative; height: 150px; margin-top: 10px; background: var(--panel-2); touch-action: none; overflow: hidden; display: grid; place-items: center; cursor: grab; }
+.cue { width: 78%; height: 22px; display: flex; align-items: center; pointer-events: none; }
+.cue .shaft { flex: 1; height: 14px; background: linear-gradient(180deg, #f1dcb4, #c99c5c); border-radius: 7px 0 0 7px; }
+.cue .ferrule { width: 14px; height: 14px; background: var(--white); }
+.cue .tip { width: 14px; height: 14px; border-radius: 0 7px 7px 0; background: color-mix(in srgb, #3b6fd1 calc(var(--chalk, 0) * 1%), #8a5a34); }
+.chalkpad .hint { position: absolute; bottom: 8px; font-size: 13px; color: var(--muted); pointer-events: none; }
+.dust { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #5c8ce6; pointer-events: none; animation: dust 0.8s ease-out forwards; }
+@keyframes dust { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+
+/* Arton ysi */
+.frames { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 2px; align-items: center; }
+.fr { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 900; font-size: 15px; color: var(--on); }
+.fr.w { background: var(--orange); }
+.fr.l { background: var(--cyan); }
+.fr-cap { width: 100%; font-size: 13px; color: var(--muted); }
+.tablewrap { margin-top: 10px; background: var(--rail); padding: 8px; touch-action: none; border-radius: 4px; }
+canvas { display: block; width: 100%; max-width: 100%; height: auto; background: var(--felt); cursor: crosshair; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 10px; }
+.row .btn { margin-top: 0; }
+
+/* sarjatilanne */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.stat { background: var(--c); color: var(--on); padding: 12px 10px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.stat b { font-family: var(--font-display); font-weight: 900; font-size: 50px; line-height: 0.85; font-variant-numeric: tabular-nums; }
+.stat b.sm { font-size: clamp(30px, 9vw, 50px); white-space: nowrap; }
+.stat span { font-size: 13px; font-weight: 600; line-height: 1.2; }
+.ptable-wrap { overflow-x: auto; margin-top: 14px; background: var(--panel); }
+.ptable { width: 100%; border-collapse: collapse; font-size: 15px; }
+.ptable th, .ptable td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ptable th { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.ptable th:first-child, .ptable td:first-child { text-align: left; }
+.ptable tr:last-child td { border-bottom: 0; }
+.note { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+
+/* jako */
+.share { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.share textarea { width: 100%; min-height: 120px; padding: 10px; background: var(--panel); color: var(--fg); border: 1px solid var(--line); font: inherit; font-size: 15px; resize: vertical; }
+.foot { text-align: center; color: var(--muted); font-size: 13px; letter-spacing: 0.04em; }
+
+@media (max-width: 380px) {
+  .tnum { font-size: 88px; }
+  .tname { font-size: 19px; }
+  .card { grid-template-columns: 44px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .tile { width: 44px; height: 44px; font-size: 32px; line-height: 44px; }
+  .stat b { font-size: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bars i, .cage.free .tiger, .dust { animation: none; }
+  .fill, .tiger, .ball8, .bub, .cbar::before { transition: none; }
+}
+
+/* sijataulu */
+.pos { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.pos .team { min-height: 140px; }
+.pos .tnum small { font-size: 0.45em; vertical-align: top; margin-left: 2px; }
+.pos .pts { font-weight: 600; font-size: 15px; }
+
+/* tale of the tape: peilatut palkit */
+.tape { margin-top: 14px; display: flex; flex-direction: column; gap: 12px; }
+.trow { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr) 64px; align-items: center; gap: 8px; }
+.trow .lbl { grid-column: 1 / -1; text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: -6px; }
+.trow .v { font-family: var(--font-display); font-weight: 900; font-size: 24px; font-variant-numeric: tabular-nums; }
+.trow .v.r { text-align: right; }
+.trow .bar { height: 14px; background: var(--panel-2); display: flex; }
+.trow .bar.l { justify-content: flex-end; }
+.trow .bar i { display: block; height: 100%; }
+.trow .bar.l i { background: var(--orange); border-radius: 4px 0 0 4px; }
+.trow .bar.r i { background: var(--cyan); border-radius: 0 4px 4px 0; }
+.trow .lead { color: var(--yellow); }
+
+/* kokoonpanot */
+.rosters { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+.roster { background: var(--panel); padding: 14px; border-top: 6px solid var(--c); min-width: 0; }
+.roster h3 { font-size: 26px; margin: 0 0 8px; }
+.roster ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.roster li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.roster li:last-child { border-bottom: 0; }
+.roster li small { display: block; color: var(--muted); font-size: 13px; }
+.roster .rk { font-family: var(--font-display); font-weight: 900; font-size: 20px; color: var(--c); font-variant-numeric: tabular-nums; }
+.roster .st { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (min-width: 520px) { .rosters { grid-template-columns: 1fr 1fr; } }
+
+/* huomiot */
+.facts { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.facts li { background: var(--panel); padding: 12px 14px; border-left: 6px solid var(--c, var(--yellow)); }
+.facts b { font-family: var(--font-display); font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: 0.02em; display: block; }
+
+/* simulaattori */
+.pick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { min-height: 40px; padding: 6px 12px; border: 2px solid var(--line); background: var(--panel-2); color: var(--fg); font: 600 14px var(--font-body); cursor: pointer; border-radius: 999px; }
+.chip[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: var(--on); }
+.chip:disabled { opacity: 0.4; cursor: default; }
+.pairs { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.pairs li { display: grid; grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr); align-items: center; gap: 8px; background: var(--panel-2); padding: 8px 10px; font-size: 15px; }
+.pairs .r { text-align: right; }
+.pairs .pc { text-align: center; font-family: var(--font-display); font-weight: 900; font-size: 18px; font-variant-numeric: tabular-nums; }
+.pairs .seq { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px; }
+.pairs .seq i { width: 14px; height: 14px; border-radius: 50%; display: block; }
+.pairs .seq i.k { background: var(--orange); }
+.pairs .seq i.v { background: var(--cyan); }
+.btnrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.btnrow .btn { margin-top: 0; }
+.btn.hot { background: var(--orange); color: var(--on); border-color: var(--orange); }
+.dist { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.drow { display: grid; grid-template-columns: 84px minmax(0, 1fr) 52px; align-items: center; gap: 8px; position: relative; }
+.drow .dl { font-family: var(--font-display); font-weight: 800; font-size: 18px; white-space: nowrap; }
+.drow .db { height: 20px; background: var(--panel-2); border-radius: 0 4px 4px 0; overflow: hidden; }
+.drow .db i { display: block; height: 100%; width: 0; background: var(--c); border-radius: 0 4px 4px 0; transition: width 0.6s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.drow .dp { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.drow:hover .db, .drow:focus-within .db { outline: 2px solid var(--line); }
+.verdict { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.verdict div { background: var(--c); color: var(--on); padding: 10px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.verdict b { font-family: var(--font-display); font-weight: 900; font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict span { font-size: 13px; font-weight: 600; }
+.disclaim { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+
+/* oma veikkaus */
+.guess { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.guess .chip { min-width: 64px; font-family: var(--font-display); font-weight: 900; font-size: 20px; }
+.cta { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px; margin-top: 12px; background: var(--yellow); color: var(--on); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { .drow .db i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <div class="bars top" id="barsTop" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Ottelun ennakko · 3. divisioona · 4. kierros</p>
+    <h1>Kärkikamppailu Nekalassa</h1>
+    <p class="date">Tiistai 20.10.2026 · Nekapool 2 – Pub Kivitasku 2 · kotiottelu</p>
+    <p class="lede">Sarjan kakkonen ottaa kotonaan vastaan sarjan ykkösen. Molemmat ovat tappiottomia, ja kummallakin on 45 voitettua erää. Voitolla Nekapool 2 nousee sarjan kärkeen.</p>
+  </header>
+
+  <section aria-label="Sijat sarjataulukossa">
+    <div class="score pos">
+      <div class="team t-neka">
+        <span class="tname">Nekapool 2</span>
+        <span class="tnum">2<small>.</small></span>
+        <span class="pts">7 pistettä · 2–1–0</span>
+      </div>
+      <div class="vs" aria-hidden="true">VS</div>
+      <div class="team t-pete">
+        <span class="tname">Pub Kivitasku 2</span>
+        <span class="tnum">1<small>.</small></span>
+        <span class="pts">9 pistettä · 3–0–0</span>
+      </div>
+    </div>
+    <p class="score-sub"><span>Sarjataulukko 14.10.2026</span><span>Pisteero <b>2</b></span></p>
+  </section>
+
+  <section aria-labelledby="tapeH">
+    <h2 id="tapeH">Tale of the tape</h2>
+    <p class="sub">Kolmen kierroksen luvut rinnakkain. Keltainen luku johtaa.</p>
+    <div class="tape" id="tape"></div>
+  </section>
+
+  <section aria-labelledby="rosH">
+    <h2 id="rosH">Kokoonpanot</h2>
+    <p class="sub">Kauden pelaajat, liigarankingin sija, voitot–tappiot ja erät.</p>
+    <div class="rosters">
+      <div class="roster" style="--c: var(--orange)">
+        <h3>Nekapool 2</h3>
+        <ol id="rosterK"></ol>
+      </div>
+      <div class="roster" style="--c: var(--cyan)">
+        <h3>Pub Kivitasku 2</h3>
+        <ol id="rosterV"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="facH">
+    <h2 id="facH">Viisi huomiota</h2>
+    <ul class="facts">
+      <li style="--c: var(--yellow)"><b>Unelmapari</b>Rankingin ykkönen Janne Mäenpää (12–2) ja kakkonen Mikko Salmi (12–3) ovat molemmat voittaneet kaikki kolme peliään. Jos arvonta osuu, tästä tulee illan pääottelu.</li>
+      <li style="--c: var(--cyan)"><b>Vihun ainoa särö</b>Kivitasku 2 on hävinnyt kauden aikana vain yhden pelin: Valtteri Rajakallio kaatui Pool Room Poolersin Kai Aarikalle 1–4.</li>
+      <li style="--c: var(--pink)"><b>Ratkaisuerien mies</b>Jonne Axén on voittanut kolme peliään, kaksi niistä 4–3. Ratkaisuerässä hän ei ole hävinnyt.</li>
+      <li style="--c: var(--orange)"><b>45 = 45</b>Kummallakin joukkueella on 45 voitettua erää. Kivitasku on hävinnyt 20 ja Nekapool 21. Ero on yhden erän.</li>
+      <li style="--c: var(--yellow)"><b>Kivitaskuperheen kokemus</b>Kauden avauksessa Nekapool kaatoi sisarjoukkue Pub Kivitasku Tohlopin erin 16–1.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="simH">
+    <h2 id="simH">Ottelusimulaattori</h2>
+    <p class="sub">Valitse molemmille neljä pelaajaa, arvo parit ja simuloi. Leikkiennuste perustuu kauden eräprosentteihin.</p>
+    <div class="widget" style="margin-top:14px">
+      <p class="wl">Nekapool 2 · valitse 4</p>
+      <div class="pick" id="pickK" style="--c: var(--orange)"></div>
+      <p class="wl" style="margin-top:12px">Pub Kivitasku 2 · valitse 4</p>
+      <div class="pick" id="pickV" style="--c: var(--cyan)"></div>
+      <ol class="pairs" id="pairs"></ol>
+      <div class="btnrow">
+        <button class="btn" id="drawBtn" type="button">Arvo parit</button>
+        <button class="btn" id="playBtn" type="button">Pelaa yksi ottelu</button>
+        <button class="btn hot" id="simBtn" type="button">Simuloi 5000 ottelua</button>
+      </div>
+      <p class="status" id="simText" aria-live="polite"></p>
+      <div class="verdict" id="verdict" hidden></div>
+      <div class="dist" id="dist" role="img" aria-label="Simuloitu tulosjakauma"></div>
+      <p class="disclaim">Malli: jokaisen pelaajan eräprosentti tasoitetaan pienen otoksen takia kohti 50 %:a, ja kummankin eräprosentista lasketaan todennäköisyys voittaa yksittäinen erä. Pelit pelataan 4 voittoon. Pelkkää viihdettä.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="gH">
+    <h2 id="gH">Oma veikkaus</h2>
+    <p class="sub">Valitse lopputulos peleissä ja kopioi veikkaus porukan ryhmään.</p>
+    <div class="guess" id="guess"></div>
+    <p class="status" id="guessText" aria-live="polite"></p>
+    <div class="btnrow">
+      <button class="btn" id="copyBtn" type="button" disabled>Kopioi veikkaus</button>
+    </div>
+    <textarea id="shareText" readonly hidden aria-label="Veikkausviesti" style="width:100%;min-height:110px;margin-top:10px;padding:10px;background:var(--panel);color:var(--fg);border:1px solid var(--line);font:inherit"></textarea>
+    <p class="note" id="copyNote" aria-live="polite"></p>
+    <a class="cta" href="https://samppafin.github.io/Nekapool-2/#vedot" target="_blank" rel="noopener">Lyö vetoa kumikolikoilla →</a>
+  </section>
+
+  <div class="bars bottom" id="barsBottom" aria-hidden="true"></div>
+  <footer class="foot">Ennakoi Infinite · Tiistai 20.10.2026 · Pirkanmaan poolliiga 2026–27</footer>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COLORS = ['var(--orange)', 'var(--cyan)', 'var(--yellow)', 'var(--pink)'];
+  function $(id) { return document.getElementById(id); }
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function buzz(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* ei värinää */ } }
+
+  /* rytmipalkit */
+  function bars(id, seed) {
+    var box = $(id), s = seed;
+    function rnd() { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; }
+    for (var i = 0; i < 19; i++) {
+      var b = document.createElement('i');
+      b.style.height = (24 + Math.round(rnd() * 46)) + 'px';
+      b.style.background = COLORS[i % 4];
+      b.style.animationDelay = '-' + (rnd() * 1.8).toFixed(2) + 's';
+      box.appendChild(b);
+    }
+  }
+  bars('barsTop', 23);
+  bars('barsBottom', 59);
+
+  /* kauden luvut, pirkanmaanpool.fi 14.10.2026 */
+  var K = [
+    { n: 'Mikko', full: 'Mikko Salmi', nick: 'The Terminator', rk: 2, v: 3, h: 0, ep: 12, em: 3 },
+    { n: 'Sami', full: 'Sami Räisänen', nick: 'Fast Sami', rk: 4, v: 3, h: 0, ep: 12, em: 4 },
+    { n: 'Toni', full: 'Toni Karppanen', rk: 7, v: 2, h: 0, ep: 8, em: 1 },
+    { n: 'Arto', full: 'Arto Eskola', nick: 'The Comeback Kid', rk: 56, v: 1, h: 1, ep: 7, em: 5 },
+    { n: 'Jussi', full: 'Jussi Mäkirinta', rk: 78, v: 0, h: 1, ep: 3, em: 4 },
+    { n: 'John', full: 'John Berglund', nick: 'Holmes', rk: 78, v: 0, h: 1, ep: 3, em: 4 }
+  ];
+  var V = [
+    { n: 'Janne', full: 'Janne Mäenpää', rk: 1, v: 3, h: 0, ep: 12, em: 2 },
+    { n: 'Jonne', full: 'Jonne Axén', rk: 5, v: 3, h: 0, ep: 12, em: 7 },
+    { n: 'Orlando', full: 'Orlando Paz', rk: 10, v: 2, h: 0, ep: 8, em: 3 },
+    { n: 'Rabiah', full: 'Rabiah Elmur', rk: 31, v: 1, h: 0, ep: 4, em: 0 },
+    { n: 'Rami', full: 'Rami Rajakallio', rk: 39, v: 1, h: 0, ep: 4, em: 1 },
+    { n: 'Valtteri', full: 'Valtteri Rajakallio', rk: 67, v: 1, h: 1, ep: 5, em: 7 }
+  ];
+
+  /* tale of the tape */
+  var TAPE = [
+    ['Pisteet', 7, 9, true],
+    ['Voitetut pelit', 9, 11, true],
+    ['Hävityt pelit', 3, 1, false],
+    ['Voitetut erät', 45, 45, true],
+    ['Hävityt erät', 21, 20, false],
+    ['Eräprosentti', 68, 69, true, '%']
+  ];
+  var tape = $('tape');
+  TAPE.forEach(function (r) {
+    var row = el('div', 'trow');
+    row.appendChild(el('div', 'lbl', r[0]));
+    var max = Math.max(r[1], r[2]) || 1;
+    var aLead = r[3] ? r[1] > r[2] : r[1] < r[2], bLead = r[3] ? r[2] > r[1] : r[2] < r[1];
+    var a = el('span', 'v' + (aLead ? ' lead' : ''), r[1] + (r[4] || ''));
+    var bl = el('div', 'bar l'); var bi = el('i'); bi.style.width = (100 * r[1] / max) + '%'; bl.appendChild(bi);
+    var br = el('div', 'bar r'); var ri = el('i'); ri.style.width = (100 * r[2] / max) + '%'; br.appendChild(ri);
+    var b = el('span', 'v r' + (bLead ? ' lead' : ''), r[2] + (r[4] || ''));
+    row.appendChild(a); row.appendChild(bl); row.appendChild(br); row.appendChild(b);
+    row.setAttribute('aria-label', r[0] + ': Nekapool 2 ' + r[1] + (r[4] || '') + ', Pub Kivitasku 2 ' + r[2] + (r[4] || ''));
+    tape.appendChild(row);
+  });
+
+  /* kokoonpanot */
+  function roster(id, list) {
+    var ol = $(id);
+    list.forEach(function (p) {
+      var li = el('li');
+      var who = el('span', null, p.full);
+      if (p.nick) who.appendChild(el('small', null, '"' + p.nick + '"'));
+      li.appendChild(who);
+      li.appendChild(el('span', 'rk', '#' + p.rk));
+      li.appendChild(el('span', 'st', p.v + '–' + p.h + ' · ' + p.ep + '–' + p.em));
+      ol.appendChild(li);
+    });
+  }
+  roster('rosterK', K);
+  roster('rosterV', V);
+
+  /* simulaattori */
+  function rating(p) { return (p.ep + 3) / (p.ep + p.em + 6); }       // tasoitus kohti 50 %:a
+  function frameP(a, b) { var pa = rating(a), pb = rating(b); return pa * (1 - pb) / (pa * (1 - pb) + pb * (1 - pa)); }
+  function gameP(q) {                                                   // todennäköisyys voittaa 4 voittoon
+    var s = 0;
+    for (var l = 0; l < 4; l++) s += binom(3 + l, l) * Math.pow(q, 4) * Math.pow(1 - q, l);
+    return s;
+  }
+  function binom(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+
+  var selK = [0, 1, 2, 3], selV = [0, 1, 2, 5], pairs = null;
+  function picker(id, list, sel) {
+    var box = $(id);
+    box.textContent = '';
+    list.forEach(function (p, i) {
+      var b = el('button', 'chip', p.n);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(sel.indexOf(i) >= 0));
+      b.addEventListener('click', function () {
+        var at = sel.indexOf(i);
+        if (at >= 0) sel.splice(at, 1); else if (sel.length < 4) sel.push(i); else return;
+        pairs = null;
+        picker(id, list, sel);
+        renderPairs();
+      });
+      box.appendChild(b);
+    });
+  }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function ready() { return selK.length === 4 && selV.length === 4; }
+  function draw() {
+    if (!ready()) return;
+    var k = shuffle(selK), v = shuffle(selV);
+    pairs = k.map(function (ki, i) { return { a: K[ki], b: V[v[i]], seq: null }; });
+    renderPairs();
+  }
+  function renderPairs() {
+    var ol = $('pairs');
+    ol.textContent = '';
+    ['drawBtn', 'playBtn', 'simBtn'].forEach(function (b) { $(b).disabled = !ready(); });
+    if (!ready()) { $('simText').textContent = 'Valitse kummallekin joukkueelle tasan neljä pelaajaa.'; return; }
+    if (!pairs) draw();
+    pairs.forEach(function (p) {
+      var li = el('li');
+      li.appendChild(el('span', null, p.a.n));
+      var g = gameP(frameP(p.a, p.b));
+      li.appendChild(el('span', 'pc', Math.round(100 * g) + '%'));
+      li.appendChild(el('span', 'r', p.b.n));
+      li.title = p.a.n + ' voittaa pelin ' + Math.round(100 * g) + ' %:n todennäköisyydellä';
+      if (p.seq) {
+        var seq = el('span', 'seq');
+        p.seq.split('').forEach(function (c) { seq.appendChild(el('i', c)); });
+        li.appendChild(seq);
+      }
+      ol.appendChild(li);
+    });
+  }
+  function playGame(p) {
+    var q = frameP(p.a, p.b), a = 0, b = 0, s = '';
+    while (a < 4 && b < 4) { if (Math.random() < q) { a++; s += 'k'; } else { b++; s += 'v'; } }
+    return { a: a, b: b, seq: s };
+  }
+  $('drawBtn').addEventListener('click', function () { draw(); buzz(15); $('simText').textContent = 'Parit arvottu. Prosentti kertoo Nekapoolin pelaajan voittotodennäköisyyden.'; });
+  $('playBtn').addEventListener('click', function () {
+    if (!pairs) return;
+    var w = 0, l = 0, fa = 0, fb = 0;
+    pairs.forEach(function (p) { var r = playGame(p); p.seq = r.seq; fa += r.a; fb += r.b; if (r.a > r.b) w++; else l++; });
+    renderPairs();
+    buzz([20, 40, 20]);
+    $('simText').textContent = 'Simuloitu ilta: Nekapool 2 – Pub Kivitasku 2 ' + w + '–' + l + ' (erät ' + fa + '–' + fb + '). ' +
+      (w > l ? 'Nekapool nousee kärkeen!' : w === l ? 'Tasapeli, ero pysyy kahdessa pisteessä.' : 'Kivitasku karkaa viiden pisteen päähän.');
+  });
+
+  var OUT = [
+    { k: 4, label: '4–0', c: 'var(--orange)' }, { k: 3, label: '3–1', c: 'var(--orange)' },
+    { k: 2, label: '2–2', c: 'var(--yellow)' },
+    { k: 1, label: '1–3', c: 'var(--cyan)' }, { k: 0, label: '0–4', c: 'var(--cyan)' }
+  ];
+  $('simBtn').addEventListener('click', function () {
+    if (!pairs) return;
+    var N = 5000, cnt = [0, 0, 0, 0, 0];
+    var gp = pairs.map(function (p) { return gameP(frameP(p.a, p.b)); });
+    for (var n = 0; n < N; n++) {
+      var w = 0;
+      for (var i = 0; i < 4; i++) if (Math.random() < gp[i]) w++;
+      cnt[w]++;
+    }
+    var pct = function (x) { return Math.round(1000 * x / N) / 10; };
+    var win = cnt[3] + cnt[4], draw_ = cnt[2], loss = cnt[0] + cnt[1];
+    var vd = $('verdict');
+    vd.textContent = '';
+    [[pct(win), 'Nekapool voittaa', 'var(--orange)'], [pct(draw_), 'tasapeli', 'var(--yellow)'], [pct(loss), 'Kivitasku voittaa', 'var(--cyan)']].forEach(function (x) {
+      var d = el('div'); d.style.setProperty('--c', x[2]);
+      d.appendChild(el('b', null, x[0] + '%')); d.appendChild(el('span', null, x[1])); vd.appendChild(d);
+    });
+    vd.hidden = false;
+    var dist = $('dist');
+    dist.textContent = '';
+    var max = Math.max.apply(null, cnt) || 1;
+    OUT.forEach(function (o) {
+      var row = el('div', 'drow');
+      row.tabIndex = 0;
+      row.title = o.label + ': ' + pct(cnt[o.k]) + ' % simulaatioista (' + cnt[o.k] + ' / ' + N + ')';
+      row.appendChild(el('span', 'dl', o.label));
+      var db = el('div', 'db'); var bi = el('i'); bi.style.setProperty('--c', o.c); db.appendChild(bi); row.appendChild(db);
+      row.appendChild(el('span', 'dp', pct(cnt[o.k]) + '%'));
+      dist.appendChild(row);
+      var w = (100 * cnt[o.k] / max) + '%';
+      if (reduce) bi.style.width = w; else requestAnimationFrame(function () { requestAnimationFrame(function () { bi.style.width = w; }); });
+    });
+    dist.setAttribute('aria-label', 'Simuloitu tulosjakauma Nekapoolin näkökulmasta: ' + OUT.map(function (o) { return o.label + ' ' + pct(cnt[o.k]) + ' %'; }).join(', '));
+    $('simText').textContent = N + ' simuloitua ottelua näillä pareilla. Tulos Nekapoolin näkökulmasta.';
+  });
+
+  picker('pickK', K, selK);
+  picker('pickV', V, selV);
+  renderPairs();
+  $('simText').textContent = 'Parit arvottu valmiiksi. Muuta kokoonpanoja tai arvo uudelleen.';
+
+  /* oma veikkaus */
+  var chosen = null, MSG = '';
+  OUT.forEach(function (o) {
+    var b = el('button', 'chip', o.label);
+    b.type = 'button';
+    b.style.setProperty('--c', o.c);
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () {
+      chosen = o;
+      Array.prototype.forEach.call($('guess').children, function (c) { c.setAttribute('aria-pressed', String(c === b)); });
+      var t = o.k > 2 ? 'Nekapool nousee sarjan kärkeen!' : o.k === 2 ? 'Tasapeli, kärkikaksikko pysyy kahden pisteen päässä.' : 'Kivitasku karkaa.';
+      $('guessText').textContent = 'Sun veikkaus: Nekapool 2 – Pub Kivitasku 2 ' + o.label + '. ' + t;
+      MSG = '🎱 Mun veikkaus ti 20.10.: Nekapool 2 – Pub Kivitasku 2 ' + o.label + '. ' + t + '\nLyö vastaan kumikolikoilla: https://samppafin.github.io/Nekapool-2/#vedot';
+      $('copyBtn').disabled = false;
+      buzz(15);
+    });
+    $('guess').appendChild(b);
+  });
+  function showFallback() { var ta = $('shareText'); ta.value = MSG; ta.hidden = false; ta.focus(); ta.select(); $('copyNote').textContent = 'Valitse teksti ja kopioi se itse.'; }
+  $('copyBtn').addEventListener('click', function () {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(MSG).then(function () { $('copyNote').textContent = 'Kopioitu.'; }, showFallback);
+      else showFallback();
+    } catch (e) { showFallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
