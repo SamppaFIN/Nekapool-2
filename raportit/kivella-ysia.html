@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta property="og:type" content="article"><meta property="og:site_name" content="Nekapool 2"><meta property="og:title" content="Kivellä ysiä"><meta property="og:description" content="Flikkaa kivellä ysi pussiin ja katso ilotulitteet. Nekapool 2:n stressilelu."><meta property="og:image" content="https://samppafin.github.io/Nekapool-2/img/nekapool2-og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Nekapool 2"><meta property="og:title" content="Kivellä ysiä"><meta property="og:description" content="Napauta tai flikkaa kivi ysiä päin: räjähdyksiä, sateenkaaria ja ilotulitteita. Nekapool 2:n stressilelu."><meta property="og:image" content="https://samppafin.github.io/Nekapool-2/img/nekapool2-og.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -39,6 +39,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-body); f
 .eyebrow { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); }
 h1 { margin: 2px 0 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(38px, 11vw, 56px); line-height: 0.9; text-transform: uppercase; }
 .btn { font: 600 13px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; min-height: 44px; padding: 8px 14px; color: var(--fg); background: var(--panel-2); border: 2px solid var(--yellow); cursor: pointer; flex: none; }
+.tbtns { display: flex; flex-direction: column; gap: 6px; flex: none; }
 .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .scores { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
 .scores div { background: var(--c); color: var(--on); padding: 8px 8px 6px; display: flex; flex-direction: column; min-width: 0; }
@@ -57,7 +58,10 @@ canvas:active { cursor: grabbing; }
       <p class="eyebrow">Nekapool 2 · stressilelu ennen Kivitaskua</p>
       <h1>Kivellä ysiä</h1>
     </div>
-    <button class="btn" id="soundBtn" type="button" aria-pressed="false">Äänet pois</button>
+    <div class="tbtns">
+      <button class="btn" id="fwBtn" type="button">🎆 Ilotulitus!</button>
+      <button class="btn" id="soundBtn" type="button" aria-pressed="false">Äänet pois</button>
+    </div>
   </div>
 
   <div class="scores" aria-live="polite">
@@ -70,15 +74,15 @@ canvas:active { cursor: grabbing; }
   <div class="stage">
     <canvas id="c" width="500" height="900" aria-label="Biljardipöytä. Flikkaa kiveä sormella kohti ysipalloa."></canvas>
   </div>
-  <p class="msg" id="msg" aria-live="polite">Tartu kiveen ja flikkaa kohti ysiä.</p>
-  <p class="hint">Mitä nopeampi heitto, sitä kovempi lyönti. Kivi taskuun nollaa putken.</p>
+  <p class="msg" id="msg" aria-live="polite">Napauta pöytää: kivi lähtee kohti sormea. Tai tartu kiveen ja flikkaa.</p>
+  <p class="hint">Mitä kauempaa napautat tai mitä nopeammin flikkaat, sitä kovempi lyönti. Jokainen osuma räjähtää, ysi pussiin = sateenkaari ja ilotulitus. Kivi taskuun nollaa putken.</p>
 </div>
 
 <script>
 (function () {
   'use strict';
   var cv = document.getElementById('c'), ctx = cv.getContext('2d');
-  var W = 500, H = 900, RAIL = 28, BR = 17, SR = 21, PR = 30;
+  var W = 500, H = 900, RAIL = 28, BR = 17, SR = 21, PR = 38;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var COLORS = ['#ff5a1f', '#19c3d1', '#ffd23f', '#e5338b', '#ffffff', '#8b5cff'];
   var POCKETS = [[RAIL, RAIL], [W - RAIL, RAIL], [RAIL - 4, H / 2], [W - RAIL + 4, H / 2], [RAIL, H - RAIL], [W - RAIL, H - RAIL]];
@@ -98,7 +102,7 @@ canvas:active { cursor: grabbing; }
 
   var stone = { x: W / 2, y: H * 0.8, vx: 0, vy: 0, r: SR, m: 1.5, rot: 0, inPocket: false };
   var nine = { x: W / 2, y: H * 0.3, vx: 0, vy: 0, r: BR, m: 1, rot: 0, inPocket: false, scale: 1 };
-  var particles = [], rockets = [], texts = [], flash = 0, shake = 0;
+  var particles = [], rockets = [], texts = [], rings = [], rainbows = [], flash = 0, shake = 0, hue = 0, aim = null;
   var pots = 0, hits = 0, streak = 0, best = lsGet('kivella-ysia-paras');
   var drag = null, samples = [], respawnAt = 0, stoneBackAt = 0;
   $('sBest').textContent = best;
@@ -130,41 +134,75 @@ canvas:active { cursor: grabbing; }
 
   /* osoitin: tartu kiveen, heilauta, päästä irti */
   function pos(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height, t: performance.now() }; }
+  /* Kaksi tapaa lyödä:
+     1) tartu kiveen ja flikkaa (tai vedä ja päästä),
+     2) napauta / vedä mihin tahansa muualle: kivi lähtee kohti sormea, sitä kovempaa mitä kauempana. */
   cv.addEventListener('pointerdown', function (e) {
+    e.preventDefault();
     if (stone.inPocket) return;
     var p = pos(e);
-    if (Math.hypot(p.x - stone.x, p.y - stone.y) > SR * 4) { say('Tartu kiveen, se on se harmaa möhkäle.'); return; }
-    drag = { dx: stone.x - p.x, dy: stone.y - p.y };
-    samples = [p];
-    stone.vx = stone.vy = 0;
-    try { cv.setPointerCapture(e.pointerId); } catch (err) { /* ok */ }
     ac();
+    try { cv.setPointerCapture(e.pointerId); } catch (err) { /* ok */ }
+    if (Math.hypot(p.x - stone.x, p.y - stone.y) <= SR * 3) {
+      drag = { dx: stone.x - p.x, dy: stone.y - p.y, sx: p.x, sy: p.y };
+      samples = [p];
+      stone.vx = stone.vy = 0;
+    } else {
+      aim = { x: p.x, y: p.y };
+    }
   });
   cv.addEventListener('pointermove', function (e) {
-    if (!drag) return;
     var p = pos(e);
+    if (aim) { aim.x = p.x; aim.y = p.y; return; }
+    if (!drag) return;
     samples.push(p);
     if (samples.length > 12) samples.shift();
     stone.x = clamp(p.x + drag.dx, RAIL + SR, W - RAIL - SR);
     stone.y = clamp(p.y + drag.dy, RAIL + SR, H - RAIL - SR);
     separate(stone, nine);
   });
-  function release() {
-    if (!drag) return;
-    drag = null;
-    var now = performance.now(), recent = samples.filter(function (s) { return now - s.t < 110; });
-    if (recent.length < 2) { say('Heilauta reippaammin ja päästä irti vauhdissa.'); return; }
-    var a = recent[0], b = recent[recent.length - 1], dt = Math.max(16, b.t - a.t);
-    var vx = (b.x - a.x) / dt * 16.7, vy = (b.y - a.y) / dt * 16.7;
+  function shoot(vx, vy) {
     var sp = Math.hypot(vx, vy), max = 44;
     if (sp > max) { vx *= max / sp; vy *= max / sp; sp = max; }
-    if (sp < 1.5) { say('Liian löysä heitto. Kivi ei liikahtanutkaan.'); return; }
     stone.vx = vx; stone.vy = vy;
     tone(160 + sp * 6, 0.12, 'triangle', 0.12);
     buzz(12);
+    for (var i = 0; i < 14; i++) rainbowDot(stone.x, stone.y, 3);
+  }
+  function release() {
+    if (aim) {
+      var dx = aim.x - stone.x, dy = aim.y - stone.y, d = Math.hypot(dx, dy) || 1;
+      var power = clamp(d / 14, 14, 40);
+      aim = null;
+      shoot(dx / d * power, dy / d * power);
+      return;
+    }
+    if (!drag) return;
+    var start = drag;
+    drag = null;
+    var now = performance.now(), recent = samples.filter(function (s) { return now - s.t < 140; });
+    var a = recent[0], b = recent[recent.length - 1];
+    if (recent.length >= 2) {
+      var dt = Math.max(16, b.t - a.t);
+      var vx = (b.x - a.x) / dt * 16.7, vy = (b.y - a.y) / dt * 16.7;
+      if (Math.hypot(vx, vy) > 3) { shoot(vx, vy); return; }
+    }
+    // hidas veto: suunta ja voima vedon pituudesta
+    var last = samples[samples.length - 1] || start;
+    var ddx = last.x - start.sx, ddy = last.y - start.sy, dl = Math.hypot(ddx, ddy);
+    if (dl > 12) { shoot(ddx / dl * clamp(dl / 6, 10, 36), ddy / dl * clamp(dl / 6, 10, 36)); return; }
+    // pelkkä napautus kiveen: tönäisy kohti ysiä
+    var nx = nine.x - stone.x, ny = nine.y - stone.y, nl = Math.hypot(nx, ny) || 1;
+    shoot(nx / nl * 18, ny / nl * 18);
   }
   cv.addEventListener('pointerup', release);
-  cv.addEventListener('pointercancel', function () { drag = null; });
+  cv.addEventListener('pointercancel', release);
+
+  $('fwBtn').addEventListener('click', function () {
+    ac();
+    celebrate([W / 2, H * 0.45], true);
+    say('Ilotulitus! Nekala juhlii.');
+  });
 
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function say(t) { $('msg').textContent = t; }
@@ -193,6 +231,7 @@ canvas:active { cursor: grabbing; }
     if (rel > 1.5) {
       hits++; $('sHits').textContent = hits;
       sparks(stone.x + nx * stone.r, stone.y + ny * stone.r, Math.min(40, 8 + rel * 2));
+      explode(stone.x + nx * stone.r, stone.y + ny * stone.r, rel);
       var words = ['KLONK!', 'KOPS!', 'BÄNG!', 'PLÄTS!', 'KIVI!'];
       texts.push({ x: nine.x, y: nine.y - 30, s: words[Math.floor(Math.random() * words.length)], life: 1, c: '#ffd23f', size: 30 });
       tone(420 + rel * 20, 0.09, 'square', 0.08);
@@ -202,13 +241,13 @@ canvas:active { cursor: grabbing; }
   }
 
   function cushions(b) {
-    var e = 0.74;
+    var e = 0.74, sp = Math.hypot(b.vx, b.vy);
+    var hitWall = b.x < RAIL + b.r || b.x > W - RAIL - b.r || b.y < RAIL + b.r || b.y > H - RAIL - b.r;
+    if (hitWall && sp > 3 && !nearPocket(b)) { for (var k = 0; k < Math.min(18, sp); k++) rainbowDot(b.x, b.y, 4); tone(220 + sp * 8, 0.05, 'triangle', 0.05); }
     // taskun suulla ei ole vallia: pallo saa valua taskuun
-    for (var i = 0; i < POCKETS.length; i++) {
-      if (Math.hypot(b.x - POCKETS[i][0], b.y - POCKETS[i][1]) < PR + b.r + 4) {
-        b.x = clamp(b.x, b.r * 0.5, W - b.r * 0.5); b.y = clamp(b.y, b.r * 0.5, H - b.r * 0.5);
-        return;
-      }
+    if (nearPocket(b)) {
+      b.x = clamp(b.x, b.r * 0.5, W - b.r * 0.5); b.y = clamp(b.y, b.r * 0.5, H - b.r * 0.5);
+      return;
     }
     if (b.x < RAIL + b.r) { b.x = RAIL + b.r; b.vx = Math.abs(b.vx) * e; }
     if (b.x > W - RAIL - b.r) { b.x = W - RAIL - b.r; b.vx = -Math.abs(b.vx) * e; }
@@ -220,6 +259,34 @@ canvas:active { cursor: grabbing; }
       if (Math.hypot(b.x - POCKETS[i][0], b.y - POCKETS[i][1]) < PR) return POCKETS[i];
     }
     return null;
+  }
+
+  function nearPocket(b) {
+    for (var i = 0; i < POCKETS.length; i++) if (Math.hypot(b.x - POCKETS[i][0], b.y - POCKETS[i][1]) < PR + b.r + 4) return true;
+    return false;
+  }
+
+  /* sateenkaaret ja räjähdykset */
+  function rainbowDot(x, y, sp) {
+    var a = Math.random() * Math.PI * 2, v = Math.random() * sp;
+    hue = (hue + 13) % 360;
+    particles.push({ x: x, y: y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, decay: 0.025 + Math.random() * 0.02, c: 'hsl(' + hue + ',100%,62%)', size: 2.5 + Math.random() * 2.5, g: 0.02, trail: true });
+  }
+  function explode(x, y, power) {
+    rings.push({ x: x, y: y, r: 6, life: 1, w: 10 });
+    rings.push({ x: x, y: y, r: 2, life: 0.8, w: 5 });
+    var n = reduce ? 20 : Math.round(40 + power * 4);
+    for (var i = 0; i < n; i++) {
+      var a = Math.random() * Math.PI * 2, v = 2 + Math.random() * (3 + power * 0.4);
+      particles.push({ x: x, y: y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, decay: 0.015 + Math.random() * 0.02,
+        c: 'hsl(' + Math.round(i / n * 360) + ',100%,60%)', size: 2 + Math.random() * 3, g: 0.03, trail: true });
+    }
+    for (var j = 0; j < 10; j++) {
+      var a2 = Math.random() * Math.PI * 2;
+      particles.push({ x: x, y: y, vx: Math.cos(a2) * 1.2, vy: Math.sin(a2) * 1.2, life: 1, decay: 0.02, c: 'rgba(255,170,60,0.9)', size: 9 + Math.random() * 8, g: -0.01 });
+    }
+    flash = Math.max(flash, 0.35);
+    boom();
   }
 
   /* ilotulitteet */
@@ -235,7 +302,7 @@ canvas:active { cursor: grabbing; }
     var c1 = COLORS[Math.floor(Math.random() * COLORS.length)], c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
     for (var i = 0; i < n; i++) {
       var a = Math.random() * Math.PI * 2, s = (big ? 4 : 3) + Math.random() * (big ? 6 : 4.5);
-      particles.push({ x: x, y: y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 1, decay: 0.008 + Math.random() * 0.012, c: i % 2 ? c1 : c2, size: 2 + Math.random() * 2.5, g: 0.06, trail: true });
+      particles.push({ x: x, y: y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 1, decay: 0.008 + Math.random() * 0.012, c: i % 3 ? 'hsl(' + Math.round(i / n * 360) + ',100%,62%)' : (i % 2 ? c1 : c2), size: 2 + Math.random() * 2.5, g: 0.06, trail: true });
     }
     if (!reduce) for (var k = 0; k < 24; k++) {
       var a2 = k / 24 * Math.PI * 2;
@@ -243,8 +310,10 @@ canvas:active { cursor: grabbing; }
     }
     boom();
   }
-  function celebrate(pocket) {
-    var count = Math.min(3 + streak, 9);
+  function celebrate(pocket, manual) {
+    var count = Math.min(4 + streak, 10);
+    rainbows.push({ life: 1 });
+    explode(pocket[0], pocket[1], 20);
     burst(pocket[0], pocket[1], true);
     for (var i = 0; i < count; i++) {
       (function (i) {
@@ -254,7 +323,7 @@ canvas:active { cursor: grabbing; }
     }
     flash = 1;
     shake = 14;
-    texts.push({ x: W / 2, y: H / 2, s: streak > 2 ? 'PUTKI ' + streak + '!' : 'YSI!', life: 1, c: '#ffffff', size: 110, big: true });
+    texts.push({ x: W / 2, y: H / 2, s: manual ? 'NEKALA!' : (streak > 2 ? 'PUTKI ' + streak + '!' : 'YSI!'), life: 1, c: '#ffffff', size: 110, big: true });
     buzz([60, 40, 60, 40, 200]);
     tone(523, 0.18, 'sine', 0.15); setTimeout(function () { tone(659, 0.18, 'sine', 0.15); }, 120); setTimeout(function () { tone(784, 0.35, 'sine', 0.18); }, 240);
   }
@@ -322,6 +391,14 @@ canvas:active { cursor: grabbing; }
     if (nine.inPocket && respawnAt && now > respawnAt) { respawnAt = 0; respawnNine(); }
     if (stone.inPocket && stoneBackAt && now > stoneBackAt) { stoneBackAt = 0; stoneBack(); }
     if (nine.scale < 1) nine.scale = Math.min(1, nine.scale + 0.06 * dt);
+
+    // sateenkaarivana kiven perässä
+    var ssp = Math.hypot(stone.vx, stone.vy);
+    if (!stone.inPocket && ssp > 1.5 && !reduce) for (var t = 0; t < Math.min(4, ssp / 3); t++) rainbowDot(stone.x - stone.vx * t * 0.3, stone.y - stone.vy * t * 0.3, 0.6);
+    rings.forEach(function (r) { r.r += 7 * dt; r.life -= 0.04 * dt; });
+    rings = rings.filter(function (r) { return r.life > 0; });
+    rainbows.forEach(function (r) { r.life -= 0.006 * dt; });
+    rainbows = rainbows.filter(function (r) { return r.life > 0; });
 
     // raketit ja kipinät
     rockets.forEach(function (r) {
@@ -403,8 +480,35 @@ canvas:active { cursor: grabbing; }
     ctx.beginPath(); ctx.arc(SR * 0.05, -SR * 0.4, 1.5, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
     if (drag) { ctx.beginPath(); ctx.arc(stone.x, stone.y, SR + 8, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(255,210,63,0.7)'; ctx.lineWidth = 3; ctx.stroke(); }
+    if (aim && !stone.inPocket) {
+      ctx.save(); ctx.setLineDash([8, 8]); ctx.lineWidth = 4;
+      var g = ctx.createLinearGradient(stone.x, stone.y, aim.x, aim.y);
+      g.addColorStop(0, '#ff3b30'); g.addColorStop(0.33, '#ffd23f'); g.addColorStop(0.66, '#19c3d1'); g.addColorStop(1, '#af52de');
+      ctx.strokeStyle = g; ctx.beginPath(); ctx.moveTo(stone.x, stone.y); ctx.lineTo(aim.x, aim.y); ctx.stroke();
+      ctx.restore();
+      ctx.beginPath(); ctx.arc(aim.x, aim.y, 10, 0, Math.PI * 2); ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2; ctx.stroke();
+    }
   }
   function drawFx() {
+    var RB = ['#ff3b30', '#ff9500', '#ffd23f', '#34c759', '#19c3d1', '#3a6cff', '#af52de'];
+    rainbows.forEach(function (r) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, r.life * 1.6) * 0.75;
+      var grow = Math.min(1, (1 - r.life) * 5);
+      for (var i = 0; i < RB.length; i++) {
+        ctx.beginPath();
+        ctx.arc(W / 2, H * 0.78, (W * 0.62 - i * 16) * (0.5 + grow * 0.5), Math.PI, Math.PI + Math.PI * grow);
+        ctx.strokeStyle = RB[i]; ctx.lineWidth = 15; ctx.stroke();
+      }
+      ctx.restore();
+    });
+    rings.forEach(function (r) {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, r.life);
+      ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'hsl(' + ((hue + r.r * 2) % 360) + ',100%,65%)'; ctx.lineWidth = r.w * r.life + 1; ctx.stroke();
+      ctx.restore();
+    });
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
     particles.forEach(function (p) {
