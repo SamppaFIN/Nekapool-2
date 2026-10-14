@@ -132,6 +132,85 @@
    "id": "mv42yrcw9vrtwn",
    "t": 1791738708224,
    "kuka": "sami"
+  },
+  {
+   "typ": "ratkaisu",
+   "veto": "muxea8xplp2nyy",
+   "voittaja": -1,
+   "id": "mv89xcn6nkdn66",
+   "t": 1791992264514,
+   "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Toni häviää erän",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "mv8alvwfsk7ws9",
+   "t": 1791993409216,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mv8alvwfsk7ws9",
+   "valinta": 0,
+   "maara": 10,
+   "id": "mv8am7dy2e4w5h",
+   "t": 1791993424102,
+   "kuka": "sami"
+  },
+  {
+   "typ": "profiili",
+   "lempinimi": "The Terminator",
+   "id": "mv8aom74jrmfh0",
+   "t": 1791993536608,
+   "kuka": "mikko"
+  },
+  {
+   "typ": "profiili",
+   "lempinimi": "The Terminator",
+   "id": "mv8aou9r7t0iwe",
+   "t": 1791993547071,
+   "kuka": "mikko"
+  },
+  {
+   "typ": "panos",
+   "veto": "mv8alvwfsk7ws9",
+   "valinta": 1,
+   "maara": 10,
+   "id": "mv8aqf5nsroslh",
+   "t": 1791993620795,
+   "kuka": "mikko"
+  },
+  {
+   "typ": "ratkaisu",
+   "veto": "mv8alvwfsk7ws9",
+   "voittaja": 0,
+   "id": "mv8b21y98sgdio",
+   "t": 1791994163553,
+   "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Tulokas voittaa pelinsä",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "mv8cbtmjba4u1d",
+   "t": 1791996298939,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mv8cbtmjba4u1d",
+   "valinta": 0,
+   "maara": 20,
+   "id": "mv8cc0dm5ulyay",
+   "t": 1791996307690,
+   "kuka": "sami"
   }
  ]
 }
