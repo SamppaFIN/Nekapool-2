@@ -1,6 +1,16 @@
 [
   {
     "pvm": "2026-10-14",
+    "tyyppi": "raportti",
+    "vari": "vihrea",
+    "otsikko": "Vierasvoitto! Jamo Racing kaatui 3–1",
+    "teksti": "Nekapool 2 haki keskiviikkona vieraista kauden toisen voittonsa: Jamo Racing kaatui peleillä 3–1. Kolmesta ottelusta on nyt kertynyt kaksi voittoa ja tasapeli eli 7 pistettä. Tappioton putki jatkuu. Tarkempi otteluraportti seuraa perästä.",
+    "linkki": "#sarjataulukko",
+    "linkkiteksti": "Katso sarjataulukko",
+    "julkaistu": "2026-10-14T17:58:48Z"
+  },
+  {
+    "pvm": "2026-10-14",
     "tyyppi": "uutinen",
     "vari": "oranssi",
     "otsikko": "Moi Samu Kokkonen! 👋",
