@@ -1,6 +1,16 @@
 [
   {
     "pvm": "2026-10-14",
+    "tyyppi": "uutinen",
+    "vari": "kulta",
+    "otsikko": "Ennakko: kärkikamppailu tiistaina",
+    "teksti": "Jamo-voiton jälkeen Nekapool 2 on sarjassa toinen. Tiistaina 20.10. kotiin saapuu sarjan ykkönen Pub Kivitasku 2, ja voitolla Nekapool nousee kärkeen. Kummallakin on 45 voitettua erää, ja rankingin ykkönen Janne Mäenpää kohtaa ehkä kakkosen, Mikon. Ennakossa vertailu, kokoonpanot ja ottelusimulaattori.",
+    "linkki": "https://claude.ai/artifact/16vbkPD756WE9vGNVCi5ZJ",
+    "linkkiteksti": "Lue ennakko",
+    "julkaistu": "2026-10-14T21:41:00Z"
+  },
+  {
+    "pvm": "2026-10-14",
     "tyyppi": "raportti",
     "vari": "vihrea",
     "otsikko": "Vierasvoitto käännöksellä: Jamo Racing kaatui 3–1",
