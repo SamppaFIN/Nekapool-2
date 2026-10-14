@@ -69,6 +69,8 @@ jobs:
         run: |
           mkdir -p _site
           cp -r index.html css js data img raportit _site/
+          # välimuistin ohitus: jokainen julkaisu saa omat tiedostoversiot
+          sed -i "s/__VERSIO__/${GITHUB_SHA::8}/g" _site/index.html
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
