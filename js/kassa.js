@@ -62,7 +62,8 @@
       if (e.typ === 'profiili') {
         s.lempinimi[e.kuka] = str(e.lempinimi, 24);
       } else if (e.typ === 'veto') {
-        if (s.vedot[e.id]) return;
+        // Kaksinpelin John vs Jussi -vedot (kp-) on mitätöity: veto jätetään pois, jolloin sen panokset eivät veloitu.
+        if (s.vedot[e.id] || /^kp-/.test(e.id)) return;
         var opts = (Array.isArray(e.vaihtoehdot) ? e.vaihtoehdot : []).map(function (o) { return str(o, 40); }).filter(Boolean).slice(0, 4);
         var q = str(e.kysymys, 120);
         if (!q || opts.length < 2) return;
