@@ -211,6 +211,34 @@
    "id": "mv8cc0dm5ulyay",
    "t": 1791996307690,
    "kuka": "sami"
+  },
+  {
+   "typ": "ratkaisu",
+   "veto": "mv8cbtmjba4u1d",
+   "voittaja": -1,
+   "id": "mv8djzjhiexkv0",
+   "t": 1791998359469,
+   "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Tulokas kaivaa vielä",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "mv8dryy00oz3e6",
+   "t": 1791998731944,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mv8dryy00oz3e6",
+   "valinta": 0,
+   "maara": 30,
+   "id": "mv8ds5sccio2je",
+   "t": 1791998740812,
+   "kuka": "sami"
   }
  ]
 }
