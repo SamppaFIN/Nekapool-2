@@ -763,9 +763,12 @@
   /* Tuore uutinen (julkaistu alle 2 h sitten) nostetaan heroon "Just now" -nostoksi,
      sen jälkeen se näkyy tavallisena uutisena. */
   var HERO_MS = 2 * 3600 * 1000;
+  /* Uutiselle voi antaa oman värin kentällä "vari" (esim. "oranssi"). */
+  var UUTISVARIT = { pinkki: 'var(--pink)', kulta: 'var(--gold)', violetti: 'var(--violet)', vihrea: 'var(--green)', oranssi: 'var(--orange)' };
   function renderHero(u) {
     var a = $('breaking');
     a.textContent = '';
+    if (UUTISVARIT[u.vari]) a.style.setProperty('--hero', UUTISVARIT[u.vari]); else a.style.removeProperty('--hero');
     a.href = u.linkki || '#uutiset';
     if (a.getAttribute('href').charAt(0) === '#') a.removeAttribute('target'); else a.target = '_blank';
     var tag = el('span', 'breaking-tag');
@@ -795,7 +798,7 @@
     }
     list.forEach(function (u, i) {
       var card = el('article', 'news-card');
-      card.style.setProperty('--c', COLORS[i % 4]);
+      card.style.setProperty('--c', UUTISVARIT[u.vari] || COLORS[i % 4]);
       var body = el('div', 'news-body');
       var tyyppi = { raportti: 'Otteluraportti', aanestys: 'Äänestys', uutinen: 'Uutinen' }[u.tyyppi] || 'Uutinen';
       body.appendChild(el('p', 'kick', tyyppi + ' · ' + fmtDate(u.pvm, true)));

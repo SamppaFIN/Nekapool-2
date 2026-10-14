@@ -11,6 +11,7 @@
   --muted: #b3a9be;
   --pink: #ff2d75;
   --pink-deep: #c0124f;
+  --orange: #ff7a1a;
   --gold: #ffd400;
   --gold-deep: #e8a800;
   --violet: #8b5cff;
@@ -106,13 +107,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .breaking {
   display: flex; flex-direction: column; gap: 6px; margin: 18px auto 0; max-width: 560px; text-align: left;
   padding: 14px 16px 16px; color: var(--fg); text-decoration: none; position: relative;
-  background: linear-gradient(135deg, rgba(255, 45, 117, 0.28), rgba(139, 92, 255, 0.22)), var(--panel);
-  border: 2px solid var(--pink); border-radius: 10px;
-  box-shadow: 5px 5px 0 var(--gold), 0 0 34px rgba(255, 45, 117, 0.45);
+  --hero: var(--pink);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--hero) 30%, transparent), rgba(139, 92, 255, 0.18)), var(--panel);
+  border: 2px solid var(--hero); border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--gold), 0 0 34px color-mix(in srgb, var(--hero) 45%, transparent);
   animation: breakin 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) both;
 }
 @keyframes breakin { from { transform: translateY(14px) rotate(-1.5deg); } }
-.breaking-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; background: var(--pink); color: var(--on);
+.breaking-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; background: var(--hero, var(--pink)); color: var(--on);
   font-family: var(--font-poster); font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 10px; transform: rotate(-2deg); }
 .breaking-title { font-family: var(--font-poster); font-size: 32px; line-height: 1.02; text-transform: uppercase; text-wrap: balance; }
 .breaking-text { color: var(--muted); font-size: 15px; }
