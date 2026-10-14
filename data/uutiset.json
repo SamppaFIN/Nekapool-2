@@ -1,6 +1,16 @@
 [
   {
     "pvm": "2026-10-14",
+    "tyyppi": "uutinen",
+    "vari": "pinkki",
+    "otsikko": "LIVE: John vs Jussi",
+    "teksti": "Kaksinpeli 4 voittoon käynnissä nyt. Seuraa tilannetta erä erältä väliaikaisesta live-pöytäkirjasta.",
+    "linkki": "kaksinpeli.html",
+    "linkkiteksti": "Avaa live",
+    "julkaistu": "2026-10-14T19:49:20Z"
+  },
+  {
+    "pvm": "2026-10-14",
     "tyyppi": "raportti",
     "vari": "vihrea",
     "otsikko": "Vierasvoitto käännöksellä: Jamo Racing kaatui 3–1",

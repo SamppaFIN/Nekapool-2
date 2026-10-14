@@ -14,14 +14,14 @@
   'use strict';
 
   var PALVELIN = 'https://ntfy.sh';
-  var AIHE = 'nekapool2-poytakirja-3d8b64e2a2e5';
-  var LS_KEY = 'nekapool2:live';
+  var OLETUSAIHE = 'nekapool2-poytakirja-3d8b64e2a2e5';
+  var LS_OLETUS = 'nekapool2:live';
 
-  function lsGet() {
-    try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { return null; }
+  function lsGet(key) {
+    try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; }
   }
-  function lsSet(v) {
-    try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch (e) { /* yksityinen ikkuna tms. */ }
+  function lsSet(key, v) {
+    try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) { /* yksityinen ikkuna tms. */ }
   }
 
   function parse(text) {
@@ -33,6 +33,8 @@
 
   /* Live.connect({ onState(state), onStatus(ok, text) }) */
   function connect(opts) {
+    var AIHE = opts.aihe || OLETUSAIHE; // väliaikaiset livet (esim. kaksinpeli.html) käyttävät omaa aihettaan
+    var LS_KEY = opts.aihe ? 'nekapool2:live:' + opts.aihe : LS_OLETUS;
     var latest = 0;
     var es = null;
     var retry = 2000;
@@ -40,7 +42,7 @@
     function accept(state) {
       if (!state || !(state.ts > latest)) return;
       latest = state.ts;
-      lsSet(state);
+      lsSet(LS_KEY, state);
       opts.onState(state);
     }
 
@@ -80,7 +82,7 @@
       };
     }
 
-    var cached = lsGet();
+    var cached = lsGet(LS_KEY);
     if (cached) accept(cached);
 
     poll()
@@ -96,7 +98,7 @@
       save: function (state) {
         state.ts = Math.max(Date.now(), latest + 1);
         latest = state.ts;
-        lsSet(state);
+        lsSet(LS_KEY, state);
         return fetch(PALVELIN + '/' + AIHE, {
           method: 'POST',
           body: JSON.stringify(state) // pelkkä tekstirunko = ei CORS-esikyselyä

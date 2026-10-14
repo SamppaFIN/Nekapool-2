@@ -770,7 +770,7 @@
     a.textContent = '';
     if (UUTISVARIT[u.vari]) a.style.setProperty('--hero', UUTISVARIT[u.vari]); else a.style.removeProperty('--hero');
     a.href = u.linkki || '#uutiset';
-    if (a.getAttribute('href').charAt(0) === '#') a.removeAttribute('target'); else a.target = '_blank';
+    if (!/^https?:/.test(a.getAttribute('href'))) a.removeAttribute('target'); else a.target = '_blank';
     var tag = el('span', 'breaking-tag');
     tag.appendChild(el('span', 'live-dot ok'));
     var mins = Math.max(1, Math.round((Date.now() - Date.parse(u.julkaistu)) / 60000));
@@ -809,7 +809,7 @@
       if (u.linkki) {
         var a = el('a', 'btn link-btn', u.linkkiteksti || 'Lue lisää');
         a.href = u.linkki;
-        if (u.linkki.charAt(0) !== '#') { a.target = '_blank'; a.rel = 'noopener'; }
+        if (/^https?:/.test(u.linkki)) { a.target = '_blank'; a.rel = 'noopener'; }
         body.appendChild(a);
       }
       card.appendChild(body);
