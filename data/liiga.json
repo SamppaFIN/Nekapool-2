@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-10-14T17:58:33+00:00",
+ "paivitetty": "2026-10-14T19:56:29+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 13.10.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 14.10.2026",
   "rivit": [
    {
     "sija": 1,
@@ -20,6 +20,19 @@
    },
    {
     "sija": 2,
+    "joukkue": "Nekapool 2",
+    "o": 3,
+    "v": 2,
+    "t": 1,
+    "h": 0,
+    "pp": 9,
+    "pm": 3,
+    "ep": 45,
+    "em": 21,
+    "p": 7
+   },
+   {
+    "sija": 3,
     "joukkue": "Team Walter's 2",
     "o": 3,
     "v": 2,
@@ -32,7 +45,7 @@
     "p": 7
    },
    {
-    "sija": 3,
+    "sija": 4,
     "joukkue": "Players Inn 1",
     "o": 2,
     "v": 2,
@@ -45,7 +58,7 @@
     "p": 6
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Pispalan Köö",
     "o": 2,
     "v": 2,
@@ -58,7 +71,7 @@
     "p": 6
    },
    {
-    "sija": 5,
+    "sija": 6,
     "joukkue": "Pub Kivitasku 3",
     "o": 3,
     "v": 2,
@@ -71,7 +84,7 @@
     "p": 6
    },
    {
-    "sija": 6,
+    "sija": 7,
     "joukkue": "Pool Room Poolers",
     "o": 3,
     "v": 2,
@@ -84,7 +97,7 @@
     "p": 6
    },
    {
-    "sija": 7,
+    "sija": 8,
     "joukkue": "ByP Backyard Pool",
     "o": 3,
     "v": 1,
@@ -95,19 +108,6 @@
     "ep": 38,
     "em": 29,
     "p": 5
-   },
-   {
-    "sija": 8,
-    "joukkue": "Nekapool 2",
-    "o": 2,
-    "v": 1,
-    "t": 1,
-    "h": 0,
-    "pp": 6,
-    "pm": 2,
-    "ep": 30,
-    "em": 13,
-    "p": 4
    },
    {
     "sija": 9,
@@ -242,14 +242,14 @@
    {
     "sija": 19,
     "joukkue": "Jamo Racing",
-    "o": 2,
+    "o": 3,
     "v": 0,
     "t": 1,
-    "h": 1,
-    "pp": 3,
-    "pm": 5,
-    "ep": 17,
-    "em": 24,
+    "h": 2,
+    "pp": 4,
+    "pm": 8,
+    "ep": 25,
+    "em": 39,
     "p": 1
    },
    {
@@ -295,34 +295,34 @@
  },
  "pelaajat": [
   {
-   "ranking": 5,
+   "ranking": 2,
    "nimi": "Salmi Mikko",
+   "o": 3,
+   "v": 3,
+   "h": 0,
+   "ep": 12,
+   "em": 3,
+   "p": 9
+  },
+  {
+   "ranking": 4,
+   "nimi": "Räisänen Sami",
+   "o": 3,
+   "v": 3,
+   "h": 0,
+   "ep": 12,
+   "em": 4,
+   "p": 9
+  },
+  {
+   "ranking": 7,
+   "nimi": "Karppanen Toni",
    "o": 2,
    "v": 2,
    "h": 0,
    "ep": 8,
    "em": 1,
    "p": 6
-  },
-  {
-   "ranking": 9,
-   "nimi": "Räisänen Sami",
-   "o": 2,
-   "v": 2,
-   "h": 0,
-   "ep": 8,
-   "em": 3,
-   "p": 6
-  },
-  {
-   "ranking": 30,
-   "nimi": "Karppanen Toni",
-   "o": 1,
-   "v": 1,
-   "h": 0,
-   "ep": 4,
-   "em": 0,
-   "p": 3
   },
   {
    "ranking": 56,
@@ -335,7 +335,17 @@
    "p": 3
   },
   {
-   "ranking": 77,
+   "ranking": 78,
+   "nimi": "Mäkirinta Jussi",
+   "o": 1,
+   "v": 0,
+   "h": 1,
+   "ep": 3,
+   "em": 4,
+   "p": 0
+  },
+  {
+   "ranking": 78,
    "nimi": "Berglund John",
    "o": 1,
    "v": 0,
@@ -446,9 +456,49 @@
    "pvm": "2026-10-14",
    "koti": "Jamo Racing",
    "vieras": "Nekapool 2",
-   "pelit": null,
-   "erat": null,
-   "linkki": null
+   "pelit": [
+    1,
+    3
+   ],
+   "erat": [
+    8,
+    15
+   ],
+   "linkki": "https://www.pirkanmaanpool.fi/cgi-bin/sarjapeli.cgi?sarja=3divari2026&lohko=&koti=Jamo+Racing&vieras=Nekapool+2",
+   "pelit_erittely": [
+    {
+     "koti": "Leppänen Rauno",
+     "vieras": "Salmi Mikko",
+     "tulos": [
+      2,
+      4
+     ]
+    },
+    {
+     "koti": "Kovanen Laura",
+     "vieras": "Karppanen Toni",
+     "tulos": [
+      1,
+      4
+     ]
+    },
+    {
+     "koti": "Niemi Juuso",
+     "vieras": "Räisänen Sami",
+     "tulos": [
+      1,
+      4
+     ]
+    },
+    {
+     "koti": "Anttila Pertti",
+     "vieras": "Mäkirinta Jussi",
+     "tulos": [
+      4,
+      3
+     ]
+    }
+   ]
   },
   {
    "pvm": "2026-10-20",
