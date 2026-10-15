@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-10-14T21:41:00+00:00",
+ "paivitetty": "2026-10-15T21:25:48+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 14.10.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 15.10.2026",
   "rivit": [
    {
     "sija": 1,
@@ -20,6 +20,19 @@
    },
    {
     "sija": 2,
+    "joukkue": "Pispalan Köö",
+    "o": 3,
+    "v": 3,
+    "t": 0,
+    "h": 0,
+    "pp": 9,
+    "pm": 3,
+    "ep": 42,
+    "em": 30,
+    "p": 9
+   },
+   {
+    "sija": 3,
     "joukkue": "Nekapool 2",
     "o": 3,
     "v": 2,
@@ -32,7 +45,7 @@
     "p": 7
    },
    {
-    "sija": 3,
+    "sija": 4,
     "joukkue": "Team Walter's 2",
     "o": 3,
     "v": 2,
@@ -45,7 +58,7 @@
     "p": 7
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Players Inn 1",
     "o": 2,
     "v": 2,
@@ -55,19 +68,6 @@
     "pm": 1,
     "ep": 31,
     "em": 15,
-    "p": 6
-   },
-   {
-    "sija": 5,
-    "joukkue": "Pispalan Köö",
-    "o": 2,
-    "v": 2,
-    "t": 0,
-    "h": 0,
-    "pp": 6,
-    "pm": 2,
-    "ep": 27,
-    "em": 20,
     "p": 6
    },
    {
@@ -125,15 +125,15 @@
    {
     "sija": 10,
     "joukkue": "PP Pahat",
-    "o": 2,
+    "o": 3,
     "v": 1,
-    "t": 0,
+    "t": 1,
     "h": 1,
-    "pp": 5,
-    "pm": 3,
-    "ep": 25,
-    "em": 15,
-    "p": 3
+    "pp": 7,
+    "pm": 5,
+    "ep": 37,
+    "em": 28,
+    "p": 4
    },
    {
     "sija": 11,
@@ -151,15 +151,15 @@
    {
     "sija": 12,
     "joukkue": "Pikku Pete Pool",
-    "o": 2,
+    "o": 3,
     "v": 0,
-    "t": 2,
+    "t": 3,
     "h": 0,
-    "pp": 4,
-    "pm": 4,
-    "ep": 24,
-    "em": 26,
-    "p": 2
+    "pp": 6,
+    "pm": 6,
+    "ep": 37,
+    "em": 38,
+    "p": 3
    },
    {
     "sija": 13,
@@ -229,14 +229,14 @@
    {
     "sija": 18,
     "joukkue": "Mestarin Pool",
-    "o": 2,
+    "o": 3,
     "v": 0,
     "t": 1,
-    "h": 1,
-    "pp": 3,
-    "pm": 5,
-    "ep": 18,
-    "em": 25,
+    "h": 2,
+    "pp": 4,
+    "pm": 8,
+    "ep": 28,
+    "em": 40,
     "p": 1
    },
    {
@@ -315,7 +315,7 @@
    "p": 9
   },
   {
-   "ranking": 7,
+   "ranking": 9,
    "nimi": "Karppanen Toni",
    "o": 2,
    "v": 2,
@@ -325,7 +325,7 @@
    "p": 6
   },
   {
-   "ranking": 56,
+   "ranking": 57,
    "nimi": "Eskola Arto",
    "o": 2,
    "v": 1,
@@ -335,7 +335,7 @@
    "p": 3
   },
   {
-   "ranking": 78,
+   "ranking": 82,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
@@ -345,7 +345,7 @@
    "p": 0
   },
   {
-   "ranking": 78,
+   "ranking": 82,
    "nimi": "Berglund John",
    "o": 1,
    "v": 0,
