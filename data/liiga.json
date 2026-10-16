@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-10-15T21:25:48+00:00",
+ "paivitetty": "2026-10-16T11:28:33+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -20,6 +20,19 @@
    },
    {
     "sija": 2,
+    "joukkue": "Players Inn 1",
+    "o": 3,
+    "v": 3,
+    "t": 0,
+    "h": 0,
+    "pp": 10,
+    "pm": 2,
+    "ep": 44,
+    "em": 23,
+    "p": 9
+   },
+   {
+    "sija": 3,
     "joukkue": "Pispalan Köö",
     "o": 3,
     "v": 3,
@@ -32,7 +45,7 @@
     "p": 9
    },
    {
-    "sija": 3,
+    "sija": 4,
     "joukkue": "Nekapool 2",
     "o": 3,
     "v": 2,
@@ -45,7 +58,7 @@
     "p": 7
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Team Walter's 2",
     "o": 3,
     "v": 2,
@@ -56,19 +69,6 @@
     "ep": 38,
     "em": 32,
     "p": 7
-   },
-   {
-    "sija": 5,
-    "joukkue": "Players Inn 1",
-    "o": 2,
-    "v": 2,
-    "t": 0,
-    "h": 0,
-    "pp": 7,
-    "pm": 1,
-    "ep": 31,
-    "em": 15,
-    "p": 6
    },
    {
     "sija": 6,
@@ -98,6 +98,19 @@
    },
    {
     "sija": 8,
+    "joukkue": "Nekala Pool",
+    "o": 3,
+    "v": 1,
+    "t": 2,
+    "h": 0,
+    "pp": 8,
+    "pm": 4,
+    "ep": 38,
+    "em": 28,
+    "p": 5
+   },
+   {
+    "sija": 9,
     "joukkue": "ByP Backyard Pool",
     "o": 3,
     "v": 1,
@@ -108,19 +121,6 @@
     "ep": 38,
     "em": 29,
     "p": 5
-   },
-   {
-    "sija": 9,
-    "joukkue": "Nekala Pool",
-    "o": 2,
-    "v": 1,
-    "t": 1,
-    "h": 0,
-    "pp": 6,
-    "pm": 2,
-    "ep": 26,
-    "em": 19,
-    "p": 4
    },
    {
     "sija": 10,
@@ -137,6 +137,19 @@
    },
    {
     "sija": 11,
+    "joukkue": "Akateeminen Breikki",
+    "o": 3,
+    "v": 1,
+    "t": 1,
+    "h": 1,
+    "pp": 6,
+    "pm": 6,
+    "ep": 36,
+    "em": 33,
+    "p": 4
+   },
+   {
+    "sija": 12,
     "joukkue": "Renny Breakers *",
     "o": 3,
     "v": 1,
@@ -149,7 +162,7 @@
     "p": 3
    },
    {
-    "sija": 12,
+    "sija": 13,
     "joukkue": "Pikku Pete Pool",
     "o": 3,
     "v": 0,
@@ -162,7 +175,7 @@
     "p": 3
    },
    {
-    "sija": 13,
+    "sija": 14,
     "joukkue": "Pub Don Pepe",
     "o": 3,
     "v": 0,
@@ -175,7 +188,20 @@
     "p": 2
    },
    {
-    "sija": 14,
+    "sija": 15,
+    "joukkue": "Pub Kivitasku 1",
+    "o": 3,
+    "v": 0,
+    "t": 2,
+    "h": 1,
+    "pp": 5,
+    "pm": 7,
+    "ep": 31,
+    "em": 35,
+    "p": 2
+   },
+   {
+    "sija": 16,
     "joukkue": "Vastavirta Pool",
     "o": 3,
     "v": 0,
@@ -188,7 +214,7 @@
     "p": 2
    },
    {
-    "sija": 15,
+    "sija": 17,
     "joukkue": "Tampereen A-Kilta",
     "o": 3,
     "v": 0,
@@ -199,32 +225,6 @@
     "ep": 28,
     "em": 37,
     "p": 2
-   },
-   {
-    "sija": 16,
-    "joukkue": "Akateeminen Breikki",
-    "o": 2,
-    "v": 0,
-    "t": 1,
-    "h": 1,
-    "pp": 3,
-    "pm": 5,
-    "ep": 22,
-    "em": 22,
-    "p": 1
-   },
-   {
-    "sija": 17,
-    "joukkue": "Pub Kivitasku 1",
-    "o": 2,
-    "v": 0,
-    "t": 1,
-    "h": 1,
-    "pp": 3,
-    "pm": 5,
-    "ep": 22,
-    "em": 23,
-    "p": 1
    },
    {
     "sija": 18,
@@ -268,27 +268,27 @@
    {
     "sija": 21,
     "joukkue": "Pete Pool",
-    "o": 2,
+    "o": 3,
     "v": 0,
     "t": 0,
-    "h": 2,
-    "pp": 2,
-    "pm": 6,
-    "ep": 16,
-    "em": 26,
+    "h": 3,
+    "pp": 3,
+    "pm": 9,
+    "ep": 27,
+    "em": 40,
     "p": 0
    },
    {
     "sija": 22,
     "joukkue": "Pub Kivitasku Tohloppi *",
-    "o": 2,
+    "o": 3,
     "v": 0,
     "t": 0,
-    "h": 2,
-    "pp": 0,
-    "pm": 8,
-    "ep": 1,
-    "em": 32,
+    "h": 3,
+    "pp": 1,
+    "pm": 11,
+    "ep": 9,
+    "em": 45,
     "p": 0
    }
   ]
@@ -305,7 +305,7 @@
    "p": 9
   },
   {
-   "ranking": 4,
+   "ranking": 5,
    "nimi": "Räisänen Sami",
    "o": 3,
    "v": 3,
@@ -315,7 +315,7 @@
    "p": 9
   },
   {
-   "ranking": 9,
+   "ranking": 11,
    "nimi": "Karppanen Toni",
    "o": 2,
    "v": 2,
@@ -325,7 +325,7 @@
    "p": 6
   },
   {
-   "ranking": 57,
+   "ranking": 60,
    "nimi": "Eskola Arto",
    "o": 2,
    "v": 1,
@@ -335,7 +335,7 @@
    "p": 3
   },
   {
-   "ranking": 82,
+   "ranking": 89,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
@@ -345,7 +345,7 @@
    "p": 0
   },
   {
-   "ranking": 82,
+   "ranking": 89,
    "nimi": "Berglund John",
    "o": 1,
    "v": 0,
