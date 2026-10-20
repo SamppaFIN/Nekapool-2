@@ -247,6 +247,43 @@
    "id": "mv8f73555la3kl",
    "t": 1792001116841,
    "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Toni voittaa",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "mvguxq1i5icb2b",
+   "t": 1792511283223,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mvguxq1i5icb2b",
+   "valinta": 0,
+   "maara": 10,
+   "id": "mvguxud0pf6z2j",
+   "t": 1792511288820,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mvguxq1i5icb2b",
+   "valinta": 0,
+   "maara": 10,
+   "id": "mvgvuhstzyimbq",
+   "t": 1792512812189,
+   "kuka": "sami"
+  },
+  {
+   "typ": "ratkaisu",
+   "veto": "mvguxq1i5icb2b",
+   "voittaja": 0,
+   "id": "mvgvul9o0fzh5f",
+   "t": 1792512816684,
+   "kuka": "sami"
   }
  ]
 }
