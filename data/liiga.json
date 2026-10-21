@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-10-20T19:18:40+00:00",
+ "paivitetty": "2026-10-21T11:53:55+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -72,19 +72,32 @@
    },
    {
     "sija": 6,
-    "joukkue": "Pub Kivitasku 3",
-    "o": 3,
+    "joukkue": "Akateeminen Breikki",
+    "o": 4,
     "v": 2,
-    "t": 0,
+    "t": 1,
     "h": 1,
-    "pp": 8,
-    "pm": 4,
-    "ep": 40,
-    "em": 22,
-    "p": 6
+    "pp": 9,
+    "pm": 7,
+    "ep": 50,
+    "em": 41,
+    "p": 7
    },
    {
     "sija": 7,
+    "joukkue": "Pub Kivitasku 3",
+    "o": 4,
+    "v": 2,
+    "t": 0,
+    "h": 2,
+    "pp": 9,
+    "pm": 7,
+    "ep": 48,
+    "em": 36,
+    "p": 6
+   },
+   {
+    "sija": 8,
     "joukkue": "Pool Room Poolers",
     "o": 4,
     "v": 2,
@@ -97,7 +110,7 @@
     "p": 6
    },
    {
-    "sija": 8,
+    "sija": 9,
     "joukkue": "Nekala Pool",
     "o": 4,
     "v": 1,
@@ -110,7 +123,7 @@
     "p": 6
    },
    {
-    "sija": 9,
+    "sija": 10,
     "joukkue": "ByP Backyard Pool",
     "o": 3,
     "v": 1,
@@ -123,7 +136,7 @@
     "p": 5
    },
    {
-    "sija": 10,
+    "sija": 11,
     "joukkue": "PP Pahat",
     "o": 3,
     "v": 1,
@@ -133,19 +146,6 @@
     "pm": 5,
     "ep": 37,
     "em": 28,
-    "p": 4
-   },
-   {
-    "sija": 11,
-    "joukkue": "Akateeminen Breikki",
-    "o": 3,
-    "v": 1,
-    "t": 1,
-    "h": 1,
-    "pp": 6,
-    "pm": 6,
-    "ep": 36,
-    "em": 33,
     "p": 4
    },
    {
@@ -189,6 +189,32 @@
    },
    {
     "sija": 15,
+    "joukkue": "Pub Don Pepe",
+    "o": 4,
+    "v": 0,
+    "t": 3,
+    "h": 1,
+    "pp": 7,
+    "pm": 9,
+    "ep": 45,
+    "em": 49,
+    "p": 3
+   },
+   {
+    "sija": 16,
+    "joukkue": "Tampereen A-Kilta",
+    "o": 4,
+    "v": 0,
+    "t": 3,
+    "h": 1,
+    "pp": 6,
+    "pm": 10,
+    "ep": 41,
+    "em": 49,
+    "p": 3
+   },
+   {
+    "sija": 17,
     "joukkue": "Vastavirta Pool",
     "o": 4,
     "v": 0,
@@ -201,20 +227,7 @@
     "p": 3
    },
    {
-    "sija": 16,
-    "joukkue": "Pub Don Pepe",
-    "o": 3,
-    "v": 0,
-    "t": 2,
-    "h": 1,
-    "pp": 5,
-    "pm": 7,
-    "ep": 33,
-    "em": 36,
-    "p": 2
-   },
-   {
-    "sija": 17,
+    "sija": 18,
     "joukkue": "Pub Kivitasku 1",
     "o": 3,
     "v": 0,
@@ -224,19 +237,6 @@
     "pm": 7,
     "ep": 31,
     "em": 35,
-    "p": 2
-   },
-   {
-    "sija": 18,
-    "joukkue": "Tampereen A-Kilta",
-    "o": 3,
-    "v": 0,
-    "t": 2,
-    "h": 1,
-    "pp": 4,
-    "pm": 8,
-    "ep": 28,
-    "em": 37,
     "p": 2
    },
    {
@@ -325,7 +325,7 @@
    "p": 9
   },
   {
-   "ranking": 25,
+   "ranking": 27,
    "nimi": "Eskola Arto",
    "o": 3,
    "v": 2,
@@ -335,7 +335,7 @@
    "p": 6
   },
   {
-   "ranking": 74,
+   "ranking": 75,
    "nimi": "Berglund John",
    "o": 2,
    "v": 1,
@@ -345,7 +345,7 @@
    "p": 3
   },
   {
-   "ranking": 94,
+   "ranking": 97,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
