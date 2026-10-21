@@ -284,6 +284,27 @@
    "id": "mvgvul9o0fzh5f",
    "t": 1792512816684,
    "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Tää ei vaan voi loppua näin hyvin",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei",
+    "Siis mitä?"
+   ],
+   "id": "mvikqgr22ofgv7",
+   "t": 1792615080782,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mvikqgr22ofgv7",
+   "valinta": 2,
+   "maara": 10,
+   "id": "mvikqrd84bp0tc",
+   "t": 1792615094540,
+   "kuka": "sami"
   }
  ]
 }

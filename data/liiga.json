@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-10-21T11:53:55+00:00",
+ "paivitetty": "2026-10-21T21:45:13+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 20.10.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 21.10.2026",
   "rivit": [
    {
     "sija": 1,
@@ -125,15 +125,15 @@
    {
     "sija": 10,
     "joukkue": "ByP Backyard Pool",
-    "o": 3,
+    "o": 4,
     "v": 1,
-    "t": 2,
+    "t": 3,
     "h": 0,
-    "pp": 7,
-    "pm": 5,
-    "ep": 38,
-    "em": 29,
-    "p": 5
+    "pp": 9,
+    "pm": 7,
+    "ep": 48,
+    "em": 41,
+    "p": 6
    },
    {
     "sija": 11,
@@ -202,6 +202,19 @@
    },
    {
     "sija": 16,
+    "joukkue": "Pub Kivitasku 1",
+    "o": 4,
+    "v": 0,
+    "t": 3,
+    "h": 1,
+    "pp": 7,
+    "pm": 9,
+    "ep": 43,
+    "em": 45,
+    "p": 3
+   },
+   {
+    "sija": 17,
     "joukkue": "Tampereen A-Kilta",
     "o": 4,
     "v": 0,
@@ -214,7 +227,7 @@
     "p": 3
    },
    {
-    "sija": 17,
+    "sija": 18,
     "joukkue": "Vastavirta Pool",
     "o": 4,
     "v": 0,
@@ -225,19 +238,6 @@
     "ep": 40,
     "em": 51,
     "p": 3
-   },
-   {
-    "sija": 18,
-    "joukkue": "Pub Kivitasku 1",
-    "o": 3,
-    "v": 0,
-    "t": 2,
-    "h": 1,
-    "pp": 5,
-    "pm": 7,
-    "ep": 31,
-    "em": 35,
-    "p": 2
    },
    {
     "sija": 19,
@@ -315,7 +315,7 @@
    "p": 9
   },
   {
-   "ranking": 4,
+   "ranking": 5,
    "nimi": "Salmi Mikko",
    "o": 3,
    "v": 3,
@@ -325,7 +325,7 @@
    "p": 9
   },
   {
-   "ranking": 27,
+   "ranking": 28,
    "nimi": "Eskola Arto",
    "o": 3,
    "v": 2,
@@ -345,7 +345,7 @@
    "p": 3
   },
   {
-   "ranking": 97,
+   "ranking": 99,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
