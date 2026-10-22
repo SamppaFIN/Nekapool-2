@@ -1,12 +1,38 @@
 {
- "paivitetty": "2026-10-21T21:45:13+00:00",
+ "paivitetty": "2026-10-22T21:38:53+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 21.10.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 22.10.2026",
   "rivit": [
    {
     "sija": 1,
+    "joukkue": "Players Inn 1",
+    "o": 4,
+    "v": 4,
+    "t": 0,
+    "h": 0,
+    "pp": 13,
+    "pm": 3,
+    "ep": 56,
+    "em": 31,
+    "p": 12
+   },
+   {
+    "sija": 2,
+    "joukkue": "Pispalan Köö",
+    "o": 4,
+    "v": 4,
+    "t": 0,
+    "h": 0,
+    "pp": 12,
+    "pm": 4,
+    "ep": 56,
+    "em": 39,
+    "p": 12
+   },
+   {
+    "sija": 3,
     "joukkue": "Nekapool 2",
     "o": 4,
     "v": 3,
@@ -19,7 +45,7 @@
     "p": 10
    },
    {
-    "sija": 2,
+    "sija": 4,
     "joukkue": "Team Walter's 2",
     "o": 4,
     "v": 3,
@@ -30,32 +56,6 @@
     "ep": 52,
     "em": 42,
     "p": 10
-   },
-   {
-    "sija": 3,
-    "joukkue": "Players Inn 1",
-    "o": 3,
-    "v": 3,
-    "t": 0,
-    "h": 0,
-    "pp": 10,
-    "pm": 2,
-    "ep": 44,
-    "em": 23,
-    "p": 9
-   },
-   {
-    "sija": 4,
-    "joukkue": "Pispalan Köö",
-    "o": 3,
-    "v": 3,
-    "t": 0,
-    "h": 0,
-    "pp": 9,
-    "pm": 3,
-    "ep": 42,
-    "em": 30,
-    "p": 9
    },
    {
     "sija": 5,
@@ -150,6 +150,19 @@
    },
    {
     "sija": 12,
+    "joukkue": "Pete Pool",
+    "o": 4,
+    "v": 1,
+    "t": 0,
+    "h": 3,
+    "pp": 6,
+    "pm": 10,
+    "ep": 39,
+    "em": 50,
+    "p": 3
+   },
+   {
+    "sija": 13,
     "joukkue": "Renny Breakers *",
     "o": 4,
     "v": 1,
@@ -162,7 +175,7 @@
     "p": 3
    },
    {
-    "sija": 13,
+    "sija": 14,
     "joukkue": "Pub Kivitasku Tohloppi *",
     "o": 4,
     "v": 1,
@@ -172,19 +185,6 @@
     "pm": 12,
     "ep": 24,
     "em": 55,
-    "p": 3
-   },
-   {
-    "sija": 14,
-    "joukkue": "Pikku Pete Pool",
-    "o": 3,
-    "v": 0,
-    "t": 3,
-    "h": 0,
-    "pp": 6,
-    "pm": 6,
-    "ep": 37,
-    "em": 38,
     "p": 3
    },
    {
@@ -202,6 +202,19 @@
    },
    {
     "sija": 16,
+    "joukkue": "Pikku Pete Pool",
+    "o": 4,
+    "v": 0,
+    "t": 3,
+    "h": 1,
+    "pp": 7,
+    "pm": 9,
+    "ep": 45,
+    "em": 50,
+    "p": 3
+   },
+   {
+    "sija": 17,
     "joukkue": "Pub Kivitasku 1",
     "o": 4,
     "v": 0,
@@ -214,7 +227,7 @@
     "p": 3
    },
    {
-    "sija": 17,
+    "sija": 18,
     "joukkue": "Tampereen A-Kilta",
     "o": 4,
     "v": 0,
@@ -227,7 +240,7 @@
     "p": 3
    },
    {
-    "sija": 18,
+    "sija": 19,
     "joukkue": "Vastavirta Pool",
     "o": 4,
     "v": 0,
@@ -238,19 +251,6 @@
     "ep": 40,
     "em": 51,
     "p": 3
-   },
-   {
-    "sija": 19,
-    "joukkue": "Mestarin Pool",
-    "o": 3,
-    "v": 0,
-    "t": 1,
-    "h": 2,
-    "pp": 4,
-    "pm": 8,
-    "ep": 28,
-    "em": 40,
-    "p": 1
    },
    {
     "sija": 20,
@@ -267,29 +267,29 @@
    },
    {
     "sija": 21,
-    "joukkue": "Mestarin Ysi",
-    "o": 3,
+    "joukkue": "Mestarin Pool",
+    "o": 4,
     "v": 0,
     "t": 1,
-    "h": 2,
-    "pp": 3,
-    "pm": 9,
-    "ep": 27,
-    "em": 45,
+    "h": 3,
+    "pp": 5,
+    "pm": 11,
+    "ep": 38,
+    "em": 52,
     "p": 1
    },
    {
     "sija": 22,
-    "joukkue": "Pete Pool",
-    "o": 3,
+    "joukkue": "Mestarin Ysi",
+    "o": 4,
     "v": 0,
-    "t": 0,
+    "t": 1,
     "h": 3,
-    "pp": 3,
-    "pm": 9,
-    "ep": 27,
-    "em": 40,
-    "p": 0
+    "pp": 4,
+    "pm": 12,
+    "ep": 36,
+    "em": 59,
+    "p": 1
    }
   ]
  },
@@ -305,7 +305,7 @@
    "p": 12
   },
   {
-   "ranking": 3,
+   "ranking": 5,
    "nimi": "Karppanen Toni",
    "o": 3,
    "v": 3,
@@ -315,7 +315,7 @@
    "p": 9
   },
   {
-   "ranking": 5,
+   "ranking": 7,
    "nimi": "Salmi Mikko",
    "o": 3,
    "v": 3,
@@ -325,7 +325,7 @@
    "p": 9
   },
   {
-   "ranking": 28,
+   "ranking": 31,
    "nimi": "Eskola Arto",
    "o": 3,
    "v": 2,
@@ -345,7 +345,7 @@
    "p": 3
   },
   {
-   "ranking": 99,
+   "ranking": 102,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
