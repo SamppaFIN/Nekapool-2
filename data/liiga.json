@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-10-22T21:38:53+00:00",
+ "paivitetty": "2026-10-23T11:43:23+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -72,6 +72,19 @@
    },
    {
     "sija": 6,
+    "joukkue": "PP Pahat",
+    "o": 4,
+    "v": 2,
+    "t": 1,
+    "h": 1,
+    "pp": 10,
+    "pm": 6,
+    "ep": 50,
+    "em": 37,
+    "p": 7
+   },
+   {
+    "sija": 7,
     "joukkue": "Akateeminen Breikki",
     "o": 4,
     "v": 2,
@@ -84,7 +97,7 @@
     "p": 7
    },
    {
-    "sija": 7,
+    "sija": 8,
     "joukkue": "Pub Kivitasku 3",
     "o": 4,
     "v": 2,
@@ -97,7 +110,7 @@
     "p": 6
    },
    {
-    "sija": 8,
+    "sija": 9,
     "joukkue": "Pool Room Poolers",
     "o": 4,
     "v": 2,
@@ -110,7 +123,7 @@
     "p": 6
    },
    {
-    "sija": 9,
+    "sija": 10,
     "joukkue": "Nekala Pool",
     "o": 4,
     "v": 1,
@@ -123,7 +136,7 @@
     "p": 6
    },
    {
-    "sija": 10,
+    "sija": 11,
     "joukkue": "ByP Backyard Pool",
     "o": 4,
     "v": 1,
@@ -134,19 +147,6 @@
     "ep": 48,
     "em": 41,
     "p": 6
-   },
-   {
-    "sija": 11,
-    "joukkue": "PP Pahat",
-    "o": 3,
-    "v": 1,
-    "t": 1,
-    "h": 1,
-    "pp": 7,
-    "pm": 5,
-    "ep": 37,
-    "em": 28,
-    "p": 4
    },
    {
     "sija": 12,
@@ -254,19 +254,6 @@
    },
    {
     "sija": 20,
-    "joukkue": "Jamo Racing",
-    "o": 3,
-    "v": 0,
-    "t": 1,
-    "h": 2,
-    "pp": 4,
-    "pm": 8,
-    "ep": 25,
-    "em": 39,
-    "p": 1
-   },
-   {
-    "sija": 21,
     "joukkue": "Mestarin Pool",
     "o": 4,
     "v": 0,
@@ -275,6 +262,19 @@
     "pp": 5,
     "pm": 11,
     "ep": 38,
+    "em": 52,
+    "p": 1
+   },
+   {
+    "sija": 21,
+    "joukkue": "Jamo Racing",
+    "o": 4,
+    "v": 0,
+    "t": 1,
+    "h": 3,
+    "pp": 5,
+    "pm": 11,
+    "ep": 34,
     "em": 52,
     "p": 1
    },
@@ -325,7 +325,7 @@
    "p": 9
   },
   {
-   "ranking": 31,
+   "ranking": 34,
    "nimi": "Eskola Arto",
    "o": 3,
    "v": 2,
@@ -345,7 +345,7 @@
    "p": 3
   },
   {
-   "ranking": 102,
+   "ranking": 103,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
