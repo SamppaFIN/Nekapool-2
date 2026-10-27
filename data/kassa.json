@@ -313,6 +313,60 @@
    "id": "mvjh648173mdwx",
    "t": 1792669558753,
    "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Kuinka monta tiukkaa john kerkee juomaan pelin aikana?",
+   "vaihtoehdot": [
+    "0",
+    "1-3",
+    "Yli 3"
+   ],
+   "id": "mvqwfcix6zsr7x",
+   "t": 1793118446889,
+   "kuka": "arto"
+  },
+  {
+   "typ": "panos",
+   "veto": "mvqwfcix6zsr7x",
+   "valinta": 2,
+   "maara": 10,
+   "id": "mvqwflsnj4yhg6",
+   "t": 1793118458903,
+   "kuka": "arto"
+  },
+  {
+   "typ": "profiili",
+   "lempinimi": "Cool Hand Toni",
+   "id": "mvqwi4c2ewglr1",
+   "t": 1793118576242,
+   "kuka": "toni"
+  },
+  {
+   "typ": "panos",
+   "veto": "mvqwfcix6zsr7x",
+   "valinta": 1,
+   "maara": 10,
+   "id": "mvqwigjjbd4ysa",
+   "t": 1793118592063,
+   "kuka": "toni"
+  },
+  {
+   "typ": "panos",
+   "veto": "mvqwfcix6zsr7x",
+   "valinta": 0,
+   "maara": 15,
+   "id": "mvqwihsxsd7r9u",
+   "t": 1793118593697,
+   "kuka": "mikko"
+  },
+  {
+   "typ": "ratkaisu",
+   "veto": "mvqwfcix6zsr7x",
+   "voittaja": 1,
+   "id": "mvqxrqjy11jcle",
+   "t": 1793120704558,
+   "kuka": "arto"
   }
  ]
 }
