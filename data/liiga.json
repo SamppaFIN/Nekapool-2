@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-10-27T22:17:09+00:00",
+ "paivitetty": "2026-10-29T18:29:55+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -72,6 +72,19 @@
    },
    {
     "sija": 6,
+    "joukkue": "Pub Kivitasku 3",
+    "o": 5,
+    "v": 3,
+    "t": 0,
+    "h": 2,
+    "pp": 12,
+    "pm": 8,
+    "ep": 60,
+    "em": 43,
+    "p": 9
+   },
+   {
+    "sija": 7,
     "joukkue": "Pool Room Poolers",
     "o": 5,
     "v": 3,
@@ -84,7 +97,7 @@
     "p": 9
    },
    {
-    "sija": 7,
+    "sija": 8,
     "joukkue": "PP Pahat",
     "o": 4,
     "v": 2,
@@ -97,7 +110,7 @@
     "p": 7
    },
    {
-    "sija": 8,
+    "sija": 9,
     "joukkue": "Akateeminen Breikki",
     "o": 4,
     "v": 2,
@@ -110,7 +123,7 @@
     "p": 7
    },
    {
-    "sija": 9,
+    "sija": 10,
     "joukkue": "ByP Backyard Pool",
     "o": 5,
     "v": 1,
@@ -121,19 +134,6 @@
     "ep": 58,
     "em": 51,
     "p": 7
-   },
-   {
-    "sija": 10,
-    "joukkue": "Pub Kivitasku 3",
-    "o": 4,
-    "v": 2,
-    "t": 0,
-    "h": 2,
-    "pp": 9,
-    "pm": 7,
-    "ep": 48,
-    "em": 36,
-    "p": 6
    },
    {
     "sija": 11,
@@ -203,14 +203,14 @@
    {
     "sija": 16,
     "joukkue": "Pub Kivitasku Tohloppi *",
-    "o": 4,
+    "o": 5,
     "v": 1,
     "t": 0,
-    "h": 3,
-    "pp": 4,
-    "pm": 12,
-    "ep": 24,
-    "em": 55,
+    "h": 4,
+    "pp": 5,
+    "pm": 15,
+    "ep": 31,
+    "em": 67,
     "p": 3
    },
    {
@@ -315,7 +315,7 @@
    "p": 12
   },
   {
-   "ranking": 5,
+   "ranking": 6,
    "nimi": "Salmi Mikko",
    "o": 4,
    "v": 4,
@@ -335,7 +335,7 @@
    "p": 6
   },
   {
-   "ranking": 96,
+   "ranking": 98,
    "nimi": "Berglund John",
    "o": 3,
    "v": 1,
@@ -345,7 +345,7 @@
    "p": 3
   },
   {
-   "ranking": 108,
+   "ranking": 110,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
