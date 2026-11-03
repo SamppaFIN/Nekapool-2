@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Nekapool 2"><meta property="og:title" content="Kiireellä, kyydillä ja konsteilla"><meta property="og:description" content="Nekapool 2 – Team Walter&#x27;s 2 4–0 (erät 16–5). Illan kulku -kaavio ja pelaajien interaktiiviset lelut."><meta property="og:image" content="https://samppafin.github.io/Nekapool-2/img/nekapool2-og.jpg"><meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<a href="../" style="position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;background:#0b0d11;color:#ffd23f;border:2px solid #ffd23f;padding:8px 12px;font:600 13px/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-radius:6px">← Nekapool 2</a>
+<title>Kiireellä, kyydillä ja konsteilla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap">
+<style>
+/* Layout: kapea ottelujuliste kuten kauden avauksen raportissa. Rytmipalkit avaavat ja päättävät,
+   tulostaulu ylhäällä, sitten erät kuplamuovina, pelaajakortit stressileluineen ja lopuksi sarjatilanne.
+   Yksi tietoisesti tumma ilme kummassakin teemassa. */
+:root {
+  --bg: #12161d;
+  --panel: #1b212b;
+  --panel-2: #232a36;
+  --line: #2f3745;
+  --fg: #f2f4f8;
+  --muted: #a8b3c3;
+  --orange: #ff5a1f;
+  --cyan: #19c3d1;
+  --yellow: #ffd23f;
+  --pink: #e5338b;
+  --felt: #0f6b4f;
+  --felt-dark: #0a4a37;
+  --rail: #5a3418;
+  --on: #0b0d11;
+  --white: #f7f7f2;
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --font-body: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-inline: 16px;
+  padding-block: 20px 32px;
+}
+.wrap { max-width: 560px; margin-inline: auto; display: flex; flex-direction: column; gap: 32px; }
+section, header, footer { min-width: 0; }
+button { font-family: var(--font-body); -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+/* rytmipalkit */
+.bars { display: flex; gap: 4px; height: 76px; }
+.bars.top { align-items: flex-start; }
+.bars.bottom { align-items: flex-end; }
+.bars i { flex: 1; min-width: 0; display: block; animation: beat 1.8s ease-in-out infinite alternate; }
+.bars.top i { transform-origin: top; }
+.bars.bottom i { transform-origin: bottom; }
+@keyframes beat { from { transform: scaleY(1); } to { transform: scaleY(0.62); } }
+
+/* otsikko */
+.hero { display: flex; flex-direction: column; gap: 12px; }
+.eyebrow { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow); }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(44px, 13vw, 70px); line-height: 0.92; letter-spacing: 0.01em; text-transform: uppercase; text-wrap: balance; }
+.date { margin: 0; color: var(--muted); font-size: 15px; }
+.lede { margin: 0; max-width: 60ch; }
+
+/* tulostaulu */
+.score { position: relative; display: grid; grid-template-columns: 1fr 1fr; }
+.team { min-width: 0; min-height: 156px; padding: 14px 14px 10px; color: var(--on); display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.t-neka { background: var(--orange); }
+.t-pete { background: var(--cyan); text-align: right; }
+.tname { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; overflow-wrap: anywhere; }
+.tnum { font-family: var(--font-display); font-weight: 900; font-size: 104px; line-height: 0.85; font-variant-numeric: tabular-nums; }
+.vs { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%; background: var(--bg); border: 2px solid var(--yellow); color: var(--yellow); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.score-sub { display: flex; justify-content: space-between; gap: 12px; margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+.score-sub b { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+h2 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: 32px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; text-wrap: balance; }
+.sub { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.btn { font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; min-height: 44px; padding: 10px 16px; color: var(--fg); background: var(--panel-2); border: 2px solid var(--yellow); cursor: pointer; }
+.btn:hover { background: var(--line); }
+
+/* kuplamuovi */
+.wrapfoil { margin-top: 14px; padding: 14px; background: var(--panel); display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 8px; touch-action: manipulation; }
+.bub { aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 0; padding: 0; cursor: pointer; position: relative;
+  background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.75) 0 12%, transparent 30%), var(--c);
+  box-shadow: inset -4px -6px 10px rgba(0, 0, 0, 0.3), 0 3px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.12s; }
+.bub:active { transform: scale(0.9); }
+.bub.popped { background: var(--panel-2); box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5); cursor: default; }
+.bub.popped::after { content: ''; position: absolute; inset: 30%; border: 2px solid var(--c); border-radius: 50%; opacity: 0.45; clip-path: polygon(0 0, 60% 0, 40% 50%, 70% 100%, 0 100%); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend b { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.status { margin: 10px 0 0; font-size: 15px; min-height: 1.5em; }
+
+/* pelaajakortit */
+.cards { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.card { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; background: var(--panel); padding: 16px; }
+.tile { width: 56px; height: 56px; background: var(--c); color: var(--on); font-family: var(--font-display); font-weight: 900; font-size: 40px; line-height: 56px; text-align: center; }
+.kick { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+h3 { margin: 2px 0 4px; font-family: var(--font-display); font-weight: 900; font-size: 34px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
+.vsline { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+.vsline b { color: var(--c); font-family: var(--font-display); font-size: 22px; font-weight: 900; margin-right: 6px; }
+.story { margin: 0; max-width: 62ch; }
+
+.card > .widget { grid-column: 1 / -1; }
+.widget { margin-top: 0; padding: 12px; background: var(--bg); border: 1px solid var(--line); }
+.wl { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.widget .btn { margin-top: 10px; }
+
+/* Johnin tiikerihäkki */
+.cage { position: relative; height: 150px; margin-top: 10px; display: grid; place-items: center; overflow: hidden; background: var(--panel-2); }
+.tiger { font-size: 64px; line-height: 1; transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); transform: scale(var(--s, 0.55)); }
+.cage.free .tiger { animation: roar 0.6s ease-in-out 2; }
+@keyframes roar { 50% { transform: scale(1.7) rotate(-6deg); } }
+.cbars { position: absolute; inset: 0; display: flex; justify-content: space-evenly; pointer-events: none; }
+.cbar { pointer-events: auto; width: 34px; border: 0; background: transparent; cursor: pointer; display: grid; justify-items: center; padding: 0; }
+.cbar::before { content: ''; width: 7px; height: 100%; background: linear-gradient(90deg, #6b7380, #c9d0da 45%, #59606b); border-radius: 4px; transition: transform 0.4s, opacity 0.4s; }
+.cbar span { position: absolute; bottom: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; transform: rotate(180deg); pointer-events: none; }
+.cbar.broken { pointer-events: none; }
+.cbar.broken::before { transform: translateY(120%) rotate(30deg); opacity: 0; }
+.cbar.broken span { opacity: 0; }
+
+/* Samin hermopallo */
+.squeeze { display: grid; place-items: center; height: 150px; margin-top: 10px; background: var(--panel-2); touch-action: none; -webkit-user-select: none; user-select: none; }
+.ball8 { width: 96px; height: 96px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 30%, #5a5f69 0 10%, #111317 46%); box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5);
+  transition: transform 0.18s cubic-bezier(0.3, 1.8, 0.5, 1), border-radius 0.18s; touch-action: none; }
+.ball8 span { width: 40px; height: 40px; border-radius: 50%; background: var(--white); color: var(--on); font-family: var(--font-display); font-weight: 900; font-size: 26px; line-height: 40px; }
+.ball8.squeezed { transform: scale(1.22, 0.74); border-radius: 46% 46% 40% 40%; transition-duration: 0.08s; }
+.meter { height: 14px; margin: 10px 0 6px; background: var(--panel-2); overflow: hidden; }
+.fill { height: 100%; width: 92%; background: var(--pink); transition: width 0.5s cubic-bezier(0.3, 0.7, 0.2, 1), background-color 0.5s; }
+
+/* Mikon liidutus */
+.chalkpad { position: relative; height: 150px; margin-top: 10px; background: var(--panel-2); touch-action: none; overflow: hidden; display: grid; place-items: center; cursor: grab; }
+.cue { width: 78%; height: 22px; display: flex; align-items: center; pointer-events: none; }
+.cue .shaft { flex: 1; height: 14px; background: linear-gradient(180deg, #f1dcb4, #c99c5c); border-radius: 7px 0 0 7px; }
+.cue .ferrule { width: 14px; height: 14px; background: var(--white); }
+.cue .tip { width: 14px; height: 14px; border-radius: 0 7px 7px 0; background: color-mix(in srgb, #3b6fd1 calc(var(--chalk, 0) * 1%), #8a5a34); }
+.chalkpad .hint { position: absolute; bottom: 8px; font-size: 13px; color: var(--muted); pointer-events: none; }
+.dust { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #5c8ce6; pointer-events: none; animation: dust 0.8s ease-out forwards; }
+@keyframes dust { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+
+/* Arton ysi */
+.frames { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 2px; align-items: center; }
+.fr { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 900; font-size: 15px; color: var(--on); }
+.fr.w { background: var(--orange); }
+.fr.l { background: var(--cyan); }
+.fr-cap { width: 100%; font-size: 13px; color: var(--muted); }
+.tablewrap { margin-top: 10px; background: var(--rail); padding: 8px; touch-action: none; border-radius: 4px; }
+canvas { display: block; width: 100%; max-width: 100%; height: auto; background: var(--felt); cursor: crosshair; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 10px; }
+.row .btn { margin-top: 0; }
+
+/* sarjatilanne */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.stat { background: var(--c); color: var(--on); padding: 12px 10px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.stat b { font-family: var(--font-display); font-weight: 900; font-size: 50px; line-height: 0.85; font-variant-numeric: tabular-nums; }
+.stat b.sm { font-size: clamp(30px, 9vw, 50px); white-space: nowrap; }
+.stat span { font-size: 13px; font-weight: 600; line-height: 1.2; }
+.ptable-wrap { overflow-x: auto; margin-top: 14px; background: var(--panel); }
+.ptable { width: 100%; border-collapse: collapse; font-size: 15px; }
+.ptable th, .ptable td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ptable th { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.ptable th:first-child, .ptable td:first-child { text-align: left; }
+.ptable tr:last-child td { border-bottom: 0; }
+.note { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+
+/* jako */
+.share { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.share textarea { width: 100%; min-height: 120px; padding: 10px; background: var(--panel); color: var(--fg); border: 1px solid var(--line); font: inherit; font-size: 15px; resize: vertical; }
+.foot { text-align: center; color: var(--muted); font-size: 13px; letter-spacing: 0.04em; }
+
+@media (max-width: 380px) {
+  .tnum { font-size: 88px; }
+  .tname { font-size: 19px; }
+  .card { grid-template-columns: 44px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .tile { width: 44px; height: 44px; font-size: 32px; line-height: 44px; }
+  .stat b { font-size: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bars i, .cage.free .tiger, .dust { animation: none; }
+  .fill, .tiger, .ball8, .bub, .cbar::before { transition: none; }
+}
+
+/* illan kulku -kaavio */
+.chart-wrap { position: relative; margin-top: 14px; background: var(--panel); padding: 12px 8px 8px; }
+.chart { display: block; width: 100%; height: auto; touch-action: pan-y; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .axis { fill: var(--muted); font: 600 11px var(--font-body); font-variant-numeric: tabular-nums; }
+.chart .band { fill: var(--panel-2); }
+.chart .band-l { fill: var(--muted); font: 700 11px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; }
+.chart .ln { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.chart .ln.k { stroke: var(--orange); }
+.chart .ln.v { stroke: var(--cyan); }
+.chart .dot.k { fill: var(--orange); stroke: var(--panel); stroke-width: 2; }
+.chart .dot.v { fill: var(--cyan); stroke: var(--panel); stroke-width: 2; }
+.chart .end { font: 800 14px var(--font-display); letter-spacing: 0.02em; }
+.chart .end.k { fill: var(--orange); }
+.chart .end.v { fill: var(--cyan); }
+.chart .cross { stroke: var(--fg); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; }
+.tip { position: absolute; pointer-events: none; background: var(--bg); color: var(--fg); border: 1px solid var(--line); padding: 8px 10px; font-size: 13px; line-height: 1.35; min-width: 150px; max-width: 220px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5); }
+.tip b { font-family: var(--font-display); font-weight: 800; font-size: 16px; }
+.tip .sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.chart-ctl { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 10px; }
+.chart-ctl .btn { margin-top: 0; }
+.live-score { font-family: var(--font-display); font-weight: 900; font-size: 30px; font-variant-numeric: tabular-nums; }
+.live-score .k { color: var(--orange); } .live-score .v { color: var(--cyan); }
+.legend.small { margin-top: 8px; }
+
+/* köydenveto */
+.tug { display: block; width: 100%; height: auto; margin-top: 10px; }
+.tug .zero { stroke: var(--muted); stroke-width: 1; }
+.tug .ln { fill: none; stroke: var(--yellow); stroke-width: 2.5; stroke-linejoin: round; }
+.tug .pt { fill: var(--yellow); stroke: var(--bg); stroke-width: 2; cursor: pointer; }
+.tug .pt.on { fill: var(--fg); }
+.tug .side { font: 700 11px var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Orlando-generaattori */
+.gen { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.15; min-height: 2.4em; margin: 10px 0 0; text-transform: uppercase; color: var(--yellow); }
+.table-mini { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 15px; }
+.table-mini td, .table-mini th { padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: left; font-variant-numeric: tabular-nums; }
+.table-mini th { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.table-mini .r { text-align: right; }
+
+/* Mikon naulaus */
+.nailbox { position: relative; height: 170px; margin-top: 10px; background: var(--panel-2); overflow: hidden; touch-action: manipulation; }
+.board { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; background: repeating-linear-gradient(90deg, #8a5a34 0 40px, #7a4e2c 40px 42px); }
+.nail { position: absolute; left: 50%; bottom: 46px; width: 10px; margin-left: -5px; height: var(--h, 70px); background: linear-gradient(90deg, #9aa1ab, #e4e7ec 45%, #7c828c); border-radius: 0 0 3px 3px; transition: height 0.15s ease-out, transform 0.2s; transform-origin: bottom center; }
+.nail::before { content: ''; position: absolute; top: -6px; left: -9px; width: 28px; height: 8px; border-radius: 3px; background: linear-gradient(180deg, #e4e7ec, #8a9099); }
+.nail.bent { transform: rotate(14deg); }
+.hammer { position: absolute; left: calc(50% + 4px); bottom: calc(46px + var(--h, 70px) + 2px); width: 120px; height: 26px; transform-origin: 108px 13px; transform: rotate(-35deg); transition: transform 0.08s; pointer-events: none; }
+.hammer i { position: absolute; right: 0; top: -8px; width: 26px; height: 42px; background: #3b3f46; border-radius: 4px; }
+.hammer b { position: absolute; left: 0; top: 8px; width: 100px; height: 10px; background: #c99c5c; border-radius: 5px; }
+.hammer.hit { transform: rotate(0deg); }
+.nailbox .hits { position: absolute; left: 10px; top: 8px; display: flex; gap: 6px; }
+.nailbox .hits span { width: 22px; height: 22px; border-radius: 50%; background: var(--line); display: grid; place-items: center; font: 800 12px var(--font-display); color: var(--on); }
+.nailbox .hits span.k { background: var(--orange); }
+.nailbox .hits span.v { background: var(--cyan); }
+
+/* Tonin vauhtimittari */
+.gauge { display: block; width: 100%; max-width: 280px; height: auto; margin: 10px auto 0; touch-action: manipulation; cursor: pointer; }
+.gauge .arc-bg { fill: none; stroke: var(--panel-2); stroke-width: 18; }
+.gauge .arc { fill: none; stroke: var(--yellow); stroke-width: 18; stroke-linecap: round; transition: stroke-dashoffset 0.25s ease-out; }
+.gauge .needle { stroke: var(--fg); stroke-width: 4; stroke-linecap: round; transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1); transform-origin: 140px 140px; }
+.gauge .hub { fill: var(--fg); }
+.gauge .num { fill: var(--fg); font: 900 34px var(--font-display); font-variant-numeric: tabular-nums; }
+.gauge .lbl { fill: var(--muted); font: 600 11px var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; }
+.gauge .tick { stroke: var(--muted); stroke-width: 2; }
+
+/* Johnin raukkiskonstit */
+.deck { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.tcard { min-height: 92px; padding: 10px; border: 2px solid var(--line); background: var(--panel-2); color: var(--fg); font: 600 14px/1.3 var(--font-body); text-align: left; cursor: pointer; border-radius: 8px; transition: transform 0.35s, background-color 0.2s; }
+.tcard[aria-pressed="true"] { background: var(--cyan); color: var(--on); border-color: var(--cyan); transform: rotate(-2deg); }
+.tcard small { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px; }
+
+/* Samin tolppa ja ysikyyti */
+.pocketbox { display: block; width: 100%; height: auto; margin-top: 10px; background: var(--felt, #0f6b4f); border-radius: 6px; }
+.shakey { animation: jolt 0.35s; }
+@keyframes jolt { 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+
+/* rankingpalli */
+.podium { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; gap: 8px; margin-top: 14px; }
+.pod { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; min-width: 0; }
+.pod b { font-family: var(--font-display); font-weight: 900; font-size: 22px; line-height: 1; text-transform: uppercase; overflow-wrap: anywhere; }
+.pod small { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.pod .step { width: 100%; background: var(--c); color: var(--on); font-family: var(--font-display); font-weight: 900; font-size: 44px; line-height: 1; display: grid; place-items: center; }
+@media (prefers-reduced-motion: reduce) { .nail, .hammer, .gauge .arc, .gauge .needle, .tcard { transition: none; } .shakey { animation: none; } }
+</style>
+
+<div class="wrap">
+  <div class="bars top" id="barsTop" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Pirkanmaan poolliiga · 3. divisioona · 6. kierros</p>
+    <h1>Kiireellä, kyydillä ja konsteilla</h1>
+    <p class="date">Tiistai 3.11.2026 · Nekapool 2 – Team Walter's 2 · kotiottelu</p>
+    <p class="lede">Team Walter's 2 kaatui peleillä 4–0 ja erillä 16–5, ja Nekapool 2 jatkaa kautta ainoana tappiottomana joukkueena. Mikko tuli kiireellä ja naulasi, Toni antoi vauhtia, John pelasi ovelasti, ja Sami ratkaisi ysikyydillä. Liigarankingin kaksi kärkisijaa ovat nyt Nekapoolin.</p>
+  </header>
+
+  <section aria-label="Lopputulos">
+    <div class="score">
+      <div class="team t-neka">
+        <span class="tname">Nekapool 2</span>
+        <span class="tnum">4</span>
+      </div>
+      <div class="vs" aria-hidden="true">VS</div>
+      <div class="team t-pete">
+        <span class="tname">Team Walter's 2</span>
+        <span class="tnum">0</span>
+      </div>
+    </div>
+    <p class="score-sub"><span>Pelit <b>4–0</b></span><span>Erät <b>16–5</b></span></p>
+  </section>
+
+  <section aria-labelledby="flowH">
+    <h2 id="flowH">Illan kulku</h2>
+    <p class="sub">Voitetut erät kellonajan mukaan Samin live-pöytäkirjasta. Kosketa kaaviota nähdäksesi jokaisen erän.</p>
+    <div class="chart-wrap" id="chartWrap">
+      <svg class="chart" id="chart" viewBox="0 0 520 300" role="img" aria-label="Kaavio: Nekapool 2 voitti illan erät 16–5. Nekapoolin käyrä nousee koko illan, Walter'sin käyrä jää viiteen."></svg>
+      <div class="tip" id="tip" hidden></div>
+    </div>
+    <ul class="legend small">
+      <li><b style="background:var(--orange)"></b>Nekapool 2 · 16 erää</li>
+      <li><b style="background:var(--cyan)"></b>Team Walter's 2 · 5 erää</li>
+    </ul>
+    <div class="chart-ctl">
+      <button class="btn" id="replayBtn" type="button">▶ Toista ilta</button>
+      <span class="live-score" id="liveScore" aria-live="polite"><span class="k">16</span>–<span class="v">5</span></span>
+    </div>
+    <table class="table-mini" aria-label="Erät taulukkona">
+      <thead><tr><th>Peli</th><th>Erät järjestyksessä</th><th class="r">Tulos</th><th class="r">Kello</th></tr></thead>
+      <tbody id="frameTable"></tbody>
+    </table>
+  </section>
+
+  <section aria-labelledby="plH">
+    <h2 id="plH">Pelaajat</h2>
+    <p class="sub">Pelit pelijärjestyksessä. Jokaiselle oma lelu.</p>
+    <div class="cards">
+      <article class="card" style="--c: var(--orange)">
+        <div class="tile" aria-hidden="true">M</div>
+        <div>
+          <p class="kick">Peli 1 · Kiireellä paikalle</p>
+          <h3>Mikko</h3>
+          <p class="vsline"><b>4–1</b>vs Juuso Koivisto</p>
+          <p class="story">Mikko tuli kiireellä ja meni suoraan pöytään. Avasi kahdella erällä, antoi yhden ja naulasi hienon 4–1-voiton jo 18.19. Kauden saldo on 5–0.</p>
+        </div>
+        <div class="widget">
+          <p class="wl">Naulaa voitto · napauta vasaraa</p>
+          <div class="nailbox" id="nailbox" role="button" tabindex="0" aria-label="Lyö vasaralla">
+            <div class="hits" id="nailHits"></div>
+            <div class="nail" id="nail"></div>
+            <div class="hammer" id="hammer"><i></i><b></b></div>
+            <div class="board"></div>
+          </div>
+          <p class="status" id="nailText" aria-live="polite">Napauta laatikkoa, niin Mikko lyö.</p>
+        </div>
+      </article>
+
+      <article class="card" style="--c: var(--yellow)">
+        <div class="tile" aria-hidden="true">T</div>
+        <div>
+          <p class="kick">Peli 2 · Vauhtia kaverille</p>
+          <h3>Toni</h3>
+          <p class="vsline"><b>4–0</b>vs Aki Rautiainen</p>
+          <p class="story">Toni antoi toisena vauhtia kavereille: neljä erää putkeen ja peli oli ohi 18.49. Viiden ottelun jälkeen Toni on liigarankingin ykkönen, ja eriä hän on hävinnyt koko kaudella neljä.</p>
+        </div>
+        <div class="widget">
+          <p class="wl">Vauhtimittari · napauta kierroksia</p>
+          <svg class="gauge" id="gauge" viewBox="0 0 280 170" role="button" tabindex="0" aria-label="Kiihdytä vauhtimittaria"></svg>
+          <p class="status" id="gaugeText" aria-live="polite">Napauta mittaria nopeasti.</p>
+        </div>
+      </article>
+
+      <article class="card" style="--c: var(--cyan)">
+        <div class="tile" aria-hidden="true">J</div>
+        <div>
+          <p class="kick">Peli 3 · Hieman raukkis</p>
+          <h3>John</h3>
+          <p class="vsline"><b>4–1</b>vs Teemu Savolainen</p>
+          <p class="story">Teemu vei avauserän, mutta sen jälkeen John otti käyttöön hieman raukkiksia konsteja. Neljä erää putkeen ja 4–1. Kauden pelisaldo nousi 2–2:een.</p>
+        </div>
+        <div class="widget">
+          <p class="wl">Raukkiskonstit · valitse illan konstit</p>
+          <div class="deck" id="deck"></div>
+          <p class="status" id="deckText" aria-live="polite">Valitse neljä konstia, yksi per erävoitto.</p>
+        </div>
+      </article>
+
+      <article class="card" style="--c: var(--pink)">
+        <div class="tile" aria-hidden="true">S</div>
+        <div>
+          <p class="kick">Peli 4 · Tolppa ja ysikyyti</p>
+          <h3>Sami</h3>
+          <p class="vsline"><b>4–3</b>vs Samu Vähämäki</p>
+          <p class="story">Sami yritti voittaa nopealla tahdilla ja johti jo 3–1, mutta kaverikin osui muutamaan. Tilanteessa 3–2 poikkis-ysi olisi tuonut voiton 4–2, mutta pallo meni tolppaan ja Samu tasoitti. Ratkaisuerässä tuli nopea ysikyyti ja voitto 16–5.</p>
+        </div>
+        <div class="widget">
+          <p class="wl">Toista ratkaisu · tolppa vai kyyti</p>
+          <svg class="pocketbox" id="pbox" viewBox="0 0 320 170" role="img" aria-label="Pöydän kulma, ysipallo ja kasipallo"></svg>
+          <div class="btnrow" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn" id="cutBtn" type="button">Lyö poikkis-ysi (3–2)</button>
+            <button class="btn" id="comboBtn" type="button" disabled>Ratkaisu: ysikyyti (3–3)</button>
+          </div>
+          <p class="status" id="pboxText" aria-live="polite">Tilanne 3–2 Samille. Poikkis-ysi voittoon?</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="rkH">
+    <h2 id="rkH">Rankingin kärki</h2>
+    <p class="sub">Liigan henkilökohtainen ranking 3.11.2026. Kärkisijat ovat Nekapoolin.</p>
+    <div class="podium">
+      <div class="pod" style="--c: var(--cyan)"><b>Mikko</b><small>5–0 · 20–7</small><div class="step" style="height:96px">2.</div></div>
+      <div class="pod" style="--c: var(--yellow)"><b>Toni</b><small>5–0 · 20–4</small><div class="step" style="height:130px">1.</div></div>
+      <div class="pod" style="--c: var(--pink)"><b>Sami</b><small>5–0 · 20–7</small><div class="step" style="height:96px">2.</div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="stH">
+    <h2 id="stH">Tilanne sarjassa</h2>
+    <p class="sub">3. divisioonan sarjataulukko 3.11.2026.</p>
+    <div class="stats">
+      <div class="stat" style="--c: var(--orange)"><b>4.</b><span>sija, 14 pistettä</span></div>
+      <div class="stat" style="--c: var(--cyan)"><b class="sm">88–43</b><span>erät, sarjan paras ero</span></div>
+      <div class="stat" style="--c: var(--yellow)"><b>0</b><span>hävittyä ottelua, ainoana sarjassa</span></div>
+    </div>
+    <p class="note">Kärjessä Pispalan Köö, Players Inn 1 ja Pub Kivitasku 2, kullakin 15 pistettä. Seuraavaksi vieraissa Nekala Pool, torstai 12.11.</p>
+  </section>
+
+  <section class="share" aria-labelledby="shH">
+    <h2 id="shH">Jaa tulos</h2>
+    <button class="btn" id="copyBtn" type="button">Kopioi tulos viestiin</button>
+    <textarea id="shareText" readonly hidden aria-label="Tulosviesti"></textarea>
+    <p class="note" id="copyNote" aria-live="polite"></p>
+  </section>
+
+  <div class="bars bottom" id="barsBottom" aria-hidden="true"></div>
+  <footer class="foot">Raportoi Infinite · Pöytäkirjan piti Sami · Pirkanmaan poolliiga 2026–27</footer>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COLORS = ['var(--orange)', 'var(--cyan)', 'var(--yellow)', 'var(--pink)'];
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id) { return document.getElementById(id); }
+  function s(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function buzz(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* ei värinää */ } }
+
+  function bars(id, seed) {
+    var el = $(id), x = seed;
+    function rnd() { x = (x * 1664525 + 1013904223) % 4294967296; return x / 4294967296; }
+    for (var i = 0; i < 19; i++) {
+      var b = document.createElement('i');
+      b.style.height = (24 + Math.round(rnd() * 46)) + 'px';
+      b.style.background = COLORS[i % 4];
+      b.style.animationDelay = '-' + (rnd() * 1.8).toFixed(2) + 's';
+      el.appendChild(b);
+    }
+  }
+  bars('barsTop', 43);
+  bars('barsBottom', 89);
+
+  /* Live-pöytäkirjan erät 3.11.2026 pelijärjestyksessä (k = Nekapool, v = Walter's) */
+  var GAMES = [
+    { n: 1, k: 'Mikko', v: 'Juuso Koivisto', h: 'kkvkk', t: ['17.57', '17.59', '18.05', '18.13', '18.19'] },
+    { n: 2, k: 'Toni', v: 'Aki Rautiainen', h: 'kkkk', t: ['18.24', '18.36', '18.44', '18.49'] },
+    { n: 3, k: 'John', v: 'Teemu Savolainen', h: 'vkkkk', t: ['19.00', '19.06', '19.18', '19.31', '19.40'] },
+    { n: 4, k: 'Sami', v: 'Samu Vähämäki', h: 'vkkkvvk', t: ['19.46', '19.51', '19.57', '20.01', '20.07', '20.14', '20.15'] }
+  ];
+  function mins(t) { var p = t.split('.'); return +p[0] * 60 + +p[1]; }
+  var EV = [], ck = 0, cv = 0;
+  GAMES.forEach(function (g) {
+    var a = 0, b = 0;
+    g.h.split('').forEach(function (c, i) {
+      if (c === 'k') { a++; ck++; } else { b++; cv++; }
+      EV.push({ m: mins(g.t[i]), t: g.t[i], g: g, who: c, ga: a, gb: b, ck: ck, cv: cv });
+    });
+  });
+
+  /* illan kulku */
+  var svg = $('chart'), W = 520, H = 300, L = 34, R = 96, T = 26, B = 30;
+  var x0 = mins('17.50'), x1 = mins('20.20');
+  function X(m) { return L + (m - x0) / (x1 - x0) * (W - L - R); }
+  function Y(v) { return H - B - v / 16 * (H - T - B); }
+  GAMES.forEach(function (g, i) {
+    var a = i === 0 ? x0 : mins(GAMES[i - 1].t[GAMES[i - 1].t.length - 1]) + 2;
+    var b = mins(g.t[g.t.length - 1]) + 1;
+    if (i % 2 === 0) s('rect', { x: X(a), y: T - 14, width: X(b) - X(a), height: H - T - B + 14, class: 'band' }, svg);
+    var lbl = s('text', { x: (X(a) + X(b)) / 2, y: T - 2, 'text-anchor': 'middle', class: 'band-l' }, svg);
+    lbl.textContent = g.n + '. ' + g.k;
+  });
+  [0, 4, 8, 12, 16].forEach(function (v) {
+    s('line', { x1: L, x2: W - R, y1: Y(v), y2: Y(v), class: 'grid' }, svg);
+    var t = s('text', { x: L - 6, y: Y(v) + 4, 'text-anchor': 'end', class: 'axis' }, svg); t.textContent = v;
+  });
+  ['18.00', '18.30', '19.00', '19.30', '20.00'].forEach(function (h) {
+    var t = s('text', { x: X(mins(h)), y: H - B + 18, 'text-anchor': 'middle', class: 'axis' }, svg); t.textContent = h;
+  });
+  function stepPath(key) {
+    var d = 'M' + X(x0) + ',' + Y(0), v = 0;
+    EV.forEach(function (e) { var nv = key === 'k' ? e.ck : e.cv; if (nv !== v) { d += ' H' + X(e.m) + ' V' + Y(nv); v = nv; } });
+    return d + ' H' + X(x1);
+  }
+  var clip = s('clipPath', { id: 'reveal' }, s('defs', {}, svg));
+  var clipRect = s('rect', { x: 0, y: 0, width: W, height: H }, clip);
+  var g = s('g', { 'clip-path': 'url(#reveal)' }, svg);
+  s('path', { d: stepPath('v'), class: 'ln v' }, g);
+  s('path', { d: stepPath('k'), class: 'ln k' }, g);
+  var dots = EV.map(function (e) { return s('circle', { cx: X(e.m), cy: Y(e.who === 'k' ? e.ck : e.cv), r: 4, class: 'dot ' + e.who }, g); });
+  var ek = s('text', { x: W - R + 6, y: Y(16) + 5, class: 'end k' }, g); ek.textContent = 'Nekapool 16';
+  var evv = s('text', { x: W - R + 6, y: Y(5) + 5, class: 'end v' }, g); evv.textContent = "Walter's 5";
+  var cross = s('line', { x1: 0, x2: 0, y1: T - 14, y2: H - B, class: 'cross', visibility: 'hidden' }, svg);
+  var tip = $('tip'), wrap = $('chartWrap');
+  function nearest(cx) {
+    var r = svg.getBoundingClientRect(), mx = (cx - r.left) / r.width * W, best = 0, bd = 1e9;
+    EV.forEach(function (e, i) { var d = Math.abs(X(e.m) - mx); if (d < bd) { bd = d; best = i; } });
+    return best;
+  }
+  function show(i) {
+    var e = EV[i], r = svg.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+    cross.setAttribute('x1', X(e.m)); cross.setAttribute('x2', X(e.m)); cross.setAttribute('visibility', 'visible');
+    dots.forEach(function (d, j) { d.setAttribute('r', j === i ? 7 : 4); });
+    var winner = e.who === 'k' ? e.g.k : e.g.v;
+    tip.innerHTML = '<b>' + e.t + ' · Peli ' + e.g.n + '</b><br><span class="sw" style="background:' + (e.who === 'k' ? 'var(--orange)' : 'var(--cyan)') + '"></span>' +
+      winner + ' voitti erän<br>' + e.g.k + ' ' + e.ga + '–' + e.gb + ' ' + e.g.v.split(' ')[0] + '<br>Ilta ' + e.ck + '–' + e.cv;
+    tip.hidden = false;
+    var px = X(e.m) / W * r.width + (r.left - wr.left);
+    var left = px + 12 + 220 > wr.width ? px - 12 - tip.offsetWidth : px + 12;
+    tip.style.left = Math.max(4, left) + 'px'; tip.style.top = '16px';
+  }
+  function hide() { tip.hidden = true; cross.setAttribute('visibility', 'hidden'); dots.forEach(function (d) { d.setAttribute('r', 4); }); }
+  svg.addEventListener('pointermove', function (e) { show(nearest(e.clientX)); });
+  svg.addEventListener('pointerdown', function (e) { show(nearest(e.clientX)); });
+  svg.addEventListener('pointerleave', hide);
+  svg.setAttribute('tabindex', '0');
+  var kbd = -1;
+  svg.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') kbd = Math.min(EV.length - 1, kbd + 1); else if (e.key === 'ArrowLeft') kbd = Math.max(0, kbd - 1); else return;
+    e.preventDefault(); show(kbd);
+  });
+  var live = $('liveScore'), replaying = false;
+  function setScore(a, b) { live.innerHTML = '<span class="k">' + a + '</span>–<span class="v">' + b + '</span>'; }
+  $('replayBtn').addEventListener('click', function () {
+    if (replaying) return;
+    if (reduce) { clipRect.setAttribute('width', W); setScore(16, 5); return; }
+    replaying = true; this.disabled = true; hide();
+    var start = performance.now(), dur = 7000, lastI = -1, btn = this;
+    (function frame(now) {
+      var p = Math.min(1, (now - start) / dur), m = x0 + p * (x1 - x0);
+      clipRect.setAttribute('width', X(m) + 8);
+      var i = -1; EV.forEach(function (e, j) { if (e.m <= m) i = j; });
+      if (i !== lastI) { lastI = i; if (i >= 0) { setScore(EV[i].ck, EV[i].cv); buzz(EV[i].who === 'k' ? 15 : 40); if (EV[i].ga === 4) show(i); } else setScore(0, 0); }
+      if (p < 1) requestAnimationFrame(frame); else { replaying = false; btn.disabled = false; clipRect.setAttribute('width', W); setScore(16, 5); }
+    })(start);
+  });
+  var tb = $('frameTable');
+  GAMES.forEach(function (g) {
+    var a = g.h.split('').filter(function (c) { return c === 'k'; }).length, b = g.h.length - a;
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + g.n + '. ' + g.k + ' – ' + g.v + '</td><td>' + g.h.split('').map(function (c) { return c === 'k' ? '●' : '○'; }).join(' ') +
+      '</td><td class="r">' + a + '–' + b + '</td><td class="r">' + g.t[0] + '–' + g.t[g.t.length - 1] + '</td>';
+    tb.appendChild(tr);
+  });
+
+  /* Mikko: naulaa voitto (järjestys kuten illalla: k k v k k) */
+  var nail = $('nail'), hammer = $('hammer'), nailHits = $('nailHits'), nailText = $('nailText'), nb = $('nailbox');
+  var SEQ = 'kkvkk', step = 0, height = 70;
+  function resetNail() { step = 0; height = 70; nail.style.setProperty('--h', height + 'px'); hammer.style.setProperty('--h', height + 'px'); nail.classList.remove('bent'); nailHits.textContent = ''; nailText.textContent = 'Napauta laatikkoa, niin Mikko lyö.'; }
+  function hit() {
+    if (step >= SEQ.length) { resetNail(); return; }
+    var c = SEQ[step++];
+    hammer.classList.add('hit');
+    setTimeout(function () { hammer.classList.remove('hit'); }, 110);
+    var dot = document.createElement('span'); dot.className = c; dot.textContent = step; nailHits.appendChild(dot);
+    if (c === 'k') { height -= 15; nail.classList.remove('bent'); buzz(25); }
+    else { nail.classList.add('bent'); buzz([60, 30, 60]); }
+    nail.style.setProperty('--h', height + 'px'); hammer.style.setProperty('--h', height + 'px');
+    var a = SEQ.slice(0, step).split('').filter(function (x) { return x === 'k'; }).length, b = step - a;
+    nailText.textContent = c === 'v' ? 'Naula vääntyi, Juuso otti erän. ' + a + '–' + b + '.' :
+      (step === SEQ.length ? 'Naulattu! 4–1, ja kello vasta 18.19. Napauta uudelleen aloittaaksesi alusta.' : 'Kops! ' + a + '–' + b + '.');
+    if (c === 'k' && step < SEQ.length) setTimeout(function () { nail.classList.remove('bent'); }, 200);
+  }
+  nb.addEventListener('click', hit);
+  nb.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hit(); } });
+  resetNail();
+
+  /* Toni: vauhtimittari, neljä kierrosrajaa = neljä erää */
+  var gauge = $('gauge'), gaugeText = $('gaugeText'), rev = 0, decay = null, frames = 0, doneAt = 0;
+  var CX = 140, CY = 140, RR = 110, LEN = Math.PI * RR;
+  s('path', { d: 'M' + (CX - RR) + ',' + CY + ' A' + RR + ',' + RR + ' 0 0 1 ' + (CX + RR) + ',' + CY, class: 'arc-bg' }, gauge);
+  var arc = s('path', { d: 'M' + (CX - RR) + ',' + CY + ' A' + RR + ',' + RR + ' 0 0 1 ' + (CX + RR) + ',' + CY, class: 'arc', 'stroke-dasharray': LEN, 'stroke-dashoffset': LEN }, gauge);
+  [0.25, 0.5, 0.75, 1].forEach(function (f) {
+    var a = Math.PI * (1 - f), x1 = CX + Math.cos(a) * (RR - 22), y1 = CY - Math.sin(a) * (RR - 22), x2 = CX + Math.cos(a) * (RR - 34), y2 = CY - Math.sin(a) * (RR - 34);
+    s('line', { x1: x1, y1: y1, x2: x2, y2: y2, class: 'tick' }, gauge);
+  });
+  var needle = s('line', { x1: CX, y1: CY, x2: CX - RR + 30, y2: CY, class: 'needle' }, gauge);
+  s('circle', { cx: CX, cy: CY, r: 8, class: 'hub' }, gauge);
+  var num = s('text', { x: CX, y: CY - 30, 'text-anchor': 'middle', class: 'num' }, gauge); num.textContent = '0–0';
+  var lbl = s('text', { x: CX, y: CY + 22, 'text-anchor': 'middle', class: 'lbl' }, gauge); lbl.textContent = 'Tonin vauhti';
+  function drawGauge() {
+    arc.setAttribute('stroke-dashoffset', LEN * (1 - rev));
+    needle.style.transform = 'rotate(' + (rev * 180) + 'deg)';
+    var f = Math.min(4, Math.floor(rev * 4 + 0.0001));
+    if (f > frames) { frames = f; buzz(30); if (frames === 4) doneAt = performance.now(); }
+    num.textContent = frames + '–0';
+    if (frames === 4) { gaugeText.textContent = 'Täysi vauhti! 4–0 ja kaverit vauhdissa. Napauta aloittaaksesi alusta.'; lbl.textContent = '18.49 · valmis'; }
+    else gaugeText.textContent = 'Kierroksia ' + Math.round(rev * 100) + ' %. Napauta nopeammin!';
+  }
+  function tap() {
+    if (frames === 4) { if (performance.now() - doneAt < 1500) return; rev = 0; frames = 0; lbl.textContent = 'Tonin vauhti'; drawGauge(); return; }
+    rev = Math.min(1, rev + 0.07);
+    drawGauge();
+    clearInterval(decay);
+    decay = setInterval(function () {
+      if (frames === 4) { clearInterval(decay); return; }
+      rev = Math.max(frames / 4, rev - 0.02); drawGauge();
+      if (rev <= frames / 4) clearInterval(decay);
+    }, 120);
+  }
+  gauge.addEventListener('click', tap);
+  gauge.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tap(); } });
+  drawGauge();
+
+  /* John: raukkiskonstit */
+  var KONSTIT = [
+    ['Turvalyönti', 'Valkoinen vallin viereen ja kaveri ihmettelemään.'],
+    ['Piilo', 'Valkoinen ysin taakse, ei suoraa näkymää.'],
+    ['Hidastus', 'Kolme harjoitusvetoa ja liidutus ennen jokaista lyöntiä.'],
+    ['Pallo pussin suulle', 'Ei uppoa, mutta kukaan muukaan ei pääse.'],
+    ['Pehmeä kosketus', 'Juuri ja juuri osuma, ja pallot jäävät nippuun.'],
+    ['Taktinen virhe', 'Pallo kädessä vastustajalle, mutta mihin sen laittaisi?'],
+    ['Pitkä mietintä', 'Pöydän ympäri kahdesti ennen lyöntiä.'],
+    ['Kova murto', 'Palloja joka puolella, eikä yhtään helppoa.']
+  ];
+  var deck = $('deck'), deckText = $('deckText'), chosen = [];
+  KONSTIT.forEach(function (k, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tcard'; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<small>Konsti ' + (i + 1) + '</small>' + k[0];
+    b.addEventListener('click', function () {
+      var at = chosen.indexOf(i);
+      if (at >= 0) chosen.splice(at, 1); else if (chosen.length < 4) chosen.push(i); else { deckText.textContent = 'Neljä konstia riittää neljään erään.'; return; }
+      Array.prototype.forEach.call(deck.children, function (c, j) { c.setAttribute('aria-pressed', String(chosen.indexOf(j) >= 0)); });
+      buzz(12);
+      if (chosen.length === 4) deckText.textContent = 'Valmis: ' + chosen.map(function (j) { return KONSTIT[j][0].toLowerCase(); }).join(', ') + '. Teemu ei tiennyt mitä tapahtui. 4–1.';
+      else if (chosen.length) deckText.textContent = 'Erä ' + chosen.length + ': ' + KONSTIT[i][1] + ' Tilanne ' + chosen.length + '–1.';
+      else deckText.textContent = 'Valitse neljä konstia, yksi per erävoitto.';
+    });
+    deck.appendChild(b);
+  });
+
+  /* Sami: tolppa ja ysikyyti */
+  var pb = $('pbox'), pbText = $('pboxText'), cutBtn = $('cutBtn'), comboBtn = $('comboBtn');
+  s('rect', { x: 0, y: 0, width: 320, height: 170, fill: '#0f6b4f' }, pb);
+  s('rect', { x: 0, y: 0, width: 320, height: 14, fill: '#5a3418' }, pb);
+  s('rect', { x: 306, y: 0, width: 14, height: 170, fill: '#5a3418' }, pb);
+  s('circle', { cx: 300, cy: 18, r: 20, fill: '#050607' }, pb);
+  var jaw = s('circle', { cx: 300, cy: 18, r: 20, fill: 'none', stroke: '#2a1a0c', 'stroke-width': 4 }, pb);
+  function ball(x, y, color, label) {
+    var gg = s('g', { transform: 'translate(' + x + ',' + y + ')' }, pb);
+    s('circle', { r: 11, fill: '#f7f7f2' }, gg);
+    if (color) { s('rect', { x: -11, y: -6, width: 22, height: 12, fill: color }, gg); s('circle', { r: 5.5, fill: '#f7f7f2' }, gg); var t = s('text', { 'text-anchor': 'middle', y: 4, style: 'font:700 8px Barlow,sans-serif', fill: '#0b0d11' }, gg); t.textContent = label; }
+    return gg;
+  }
+  var nine, eight, cue;
+  function setup() {
+    while (pb.childNodes.length > 6) pb.removeChild(pb.lastChild);
+    nine = ball(250, 64, '#ffd23f', '9'); eight = null; cue = ball(90, 140, null);
+    pbText.textContent = 'Tilanne 3–2 Samille. Poikkis-ysi voittoon?';
+    cutBtn.disabled = false; comboBtn.disabled = true;
+  }
+  function anim(el, from, to, ms, done) {
+    if (reduce) { el.setAttribute('transform', 'translate(' + to[0] + ',' + to[1] + ')'); if (done) done(); return; }
+    var st = performance.now();
+    (function f(now) {
+      var p = Math.min(1, (now - st) / ms), e = 1 - Math.pow(1 - p, 3);
+      el.setAttribute('transform', 'translate(' + (from[0] + (to[0] - from[0]) * e) + ',' + (from[1] + (to[1] - from[1]) * e) + ')');
+      if (p < 1) requestAnimationFrame(f); else if (done) done();
+    })(st);
+  }
+  cutBtn.addEventListener('click', function () {
+    cutBtn.disabled = true;
+    anim(cue, [90, 140], [236, 76], 500, function () {
+      anim(nine, [250, 64], [286, 30], 450, function () {
+        pb.classList.remove('shakey'); void pb.getBoundingClientRect(); pb.classList.add('shakey');
+        jaw.setAttribute('stroke', '#ffd23f'); setTimeout(function () { jaw.setAttribute('stroke', '#2a1a0c'); }, 400);
+        buzz([80, 40, 80]);
+        anim(nine, [286, 30], [262, 52], 350, function () {
+          pbText.textContent = 'TOLPPA! Ysi pomppasi pussin suulta. Samu tasoitti 3–3. Ratkaisuerä alkaa.';
+          comboBtn.disabled = false;
+        });
+      });
+    });
+  });
+  comboBtn.addEventListener('click', function () {
+    comboBtn.disabled = true;
+    while (pb.childNodes.length > 6) pb.removeChild(pb.lastChild);
+    nine = ball(270, 40, '#ffd23f', '9'); eight = ball(232, 78, '#15171c', '8'); cue = ball(120, 150, null);
+    pbText.textContent = 'Ratkaisuerä 3–3. Kasi ja ysi rivissä kohti kulmaa...';
+    setTimeout(function () {
+      anim(cue, [120, 150], [222, 88], 420, function () {
+        anim(eight, [232, 78], [256, 54], 260, function () {
+          anim(nine, [270, 40], [300, 18], 380, function () {
+            nine.setAttribute('opacity', '0');
+            buzz([40, 60, 40, 60, 160]);
+            for (var i = 0; i < 26; i++) {
+              var a = Math.random() * Math.PI * 2, r = 10 + Math.random() * 60;
+              var c = s('circle', { cx: 300, cy: 18, r: 3 + Math.random() * 3, fill: 'hsl(' + Math.round(Math.random() * 360) + ',100%,60%)' }, pb);
+              (function (c, a, r) { anim({ setAttribute: function (k, v) { var m = /translate\(([-\d.]+),([-\d.]+)\)/.exec(v); c.setAttribute('cx', m[1]); c.setAttribute('cy', m[2]); } }, [300, 18], [300 + Math.cos(a) * r, 18 + Math.abs(Math.sin(a)) * r], 700, function () { c.setAttribute('opacity', '0.25'); }); })(c, a, r);
+            }
+            pbText.textContent = 'YSIKYYTI! Kasi vei ysin kulmaan. Sami 4–3 ja ilta 16–5. Napauta "Lyö poikkis" kokeillaksesi uudelleen.';
+            cutBtn.disabled = false;
+            cutBtn.onclick = function () { setup(); cutBtn.onclick = null; };
+          });
+        });
+      });
+    }, reduce ? 0 : 400);
+  });
+  setup();
+
+  /* jako */
+  var MSG = "Pirkanmaan poolliiga, tiistai 3.11.2026\nNekapool 2 – Team Walter's 2 4–0 (erät 16–5)\nMikko 4–1, Toni 4–0, John 4–1, Sami 4–3\nKauden kuudes tappioton ottelu. Rankingissa Toni #1, Mikko ja Sami #2.";
+  var copyBtn = $('copyBtn'), copyNote = $('copyNote'), shareText = $('shareText');
+  function showFallback() { shareText.value = MSG; shareText.hidden = false; shareText.focus(); shareText.select(); copyNote.textContent = 'Valitse teksti ja kopioi se itse.'; }
+  copyBtn.addEventListener('click', function () {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(MSG).then(function () { copyNote.textContent = 'Kopioitu.'; }, showFallback);
+      else showFallback();
+    } catch (e) { showFallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
