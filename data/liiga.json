@@ -1,12 +1,25 @@
 {
- "paivitetty": "2026-11-12T18:05:39+00:00",
+ "paivitetty": "2026-11-12T18:37:59+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 10.11.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 12.11.2026",
   "rivit": [
    {
     "sija": 1,
+    "joukkue": "Nekapool 2",
+    "o": 7,
+    "v": 5,
+    "t": 2,
+    "h": 0,
+    "pp": 23,
+    "pm": 5,
+    "ep": 104,
+    "em": 46,
+    "p": 17
+   },
+   {
+    "sija": 2,
     "joukkue": "Team Walter's 2",
     "o": 7,
     "v": 5,
@@ -19,7 +32,7 @@
     "p": 16
    },
    {
-    "sija": 2,
+    "sija": 3,
     "joukkue": "Pispalan Köö",
     "o": 7,
     "v": 5,
@@ -32,7 +45,7 @@
     "p": 16
    },
    {
-    "sija": 3,
+    "sija": 4,
     "joukkue": "Players Inn 1",
     "o": 6,
     "v": 5,
@@ -45,7 +58,7 @@
     "p": 15
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Pub Kivitasku 2",
     "o": 6,
     "v": 5,
@@ -58,7 +71,7 @@
     "p": 15
    },
    {
-    "sija": 5,
+    "sija": 6,
     "joukkue": "Pool Room Poolers",
     "o": 7,
     "v": 5,
@@ -71,20 +84,20 @@
     "p": 15
    },
    {
-    "sija": 6,
-    "joukkue": "Nekapool 2",
-    "o": 6,
-    "v": 4,
-    "t": 2,
-    "h": 0,
-    "pp": 19,
-    "pm": 5,
-    "ep": 88,
-    "em": 43,
-    "p": 14
+    "sija": 7,
+    "joukkue": "Pub Kivitasku 3",
+    "o": 7,
+    "v": 5,
+    "t": 0,
+    "h": 2,
+    "pp": 18,
+    "pm": 10,
+    "ep": 87,
+    "em": 59,
+    "p": 15
    },
    {
-    "sija": 7,
+    "sija": 8,
     "joukkue": "Akateeminen Breikki",
     "o": 7,
     "v": 4,
@@ -95,19 +108,6 @@
     "ep": 93,
     "em": 68,
     "p": 14
-   },
-   {
-    "sija": 8,
-    "joukkue": "Pub Kivitasku 3",
-    "o": 6,
-    "v": 4,
-    "t": 0,
-    "h": 2,
-    "pp": 15,
-    "pm": 9,
-    "ep": 74,
-    "em": 50,
-    "p": 12
    },
    {
     "sija": 9,
@@ -125,14 +125,14 @@
    {
     "sija": 10,
     "joukkue": "Nekala Pool",
-    "o": 6,
+    "o": 7,
     "v": 2,
     "t": 3,
-    "h": 1,
+    "h": 2,
     "pp": 14,
-    "pm": 10,
-    "ep": 72,
-    "em": 61,
+    "pm": 14,
+    "ep": 75,
+    "em": 77,
     "p": 9
    },
    {
@@ -177,14 +177,14 @@
    {
     "sija": 14,
     "joukkue": "Pikku Pete Pool",
-    "o": 6,
+    "o": 7,
     "v": 1,
     "t": 3,
-    "h": 2,
-    "pp": 10,
-    "pm": 14,
-    "ep": 64,
-    "em": 76,
+    "h": 3,
+    "pp": 11,
+    "pm": 17,
+    "ep": 73,
+    "em": 89,
     "p": 6
    },
    {
@@ -295,14 +295,24 @@
  },
  "pelaajat": [
   {
-   "ranking": 3,
+   "ranking": 1,
    "nimi": "Karppanen Toni",
-   "o": 5,
-   "v": 5,
+   "o": 6,
+   "v": 6,
    "h": 0,
-   "ep": 20,
-   "em": 4,
-   "p": 15
+   "ep": 24,
+   "em": 5,
+   "p": 18
+  },
+  {
+   "ranking": 2,
+   "nimi": "Räisänen Sami",
+   "o": 6,
+   "v": 6,
+   "h": 0,
+   "ep": 24,
+   "em": 8,
+   "p": 18
   },
   {
    "ranking": 5,
@@ -315,37 +325,27 @@
    "p": 15
   },
   {
-   "ranking": 5,
-   "nimi": "Räisänen Sami",
-   "o": 5,
-   "v": 5,
-   "h": 0,
-   "ep": 20,
-   "em": 7,
-   "p": 15
-  },
-  {
-   "ranking": 59,
+   "ranking": 39,
    "nimi": "Eskola Arto",
-   "o": 4,
-   "v": 2,
+   "o": 5,
+   "v": 3,
    "h": 2,
-   "ep": 13,
+   "ep": 17,
    "em": 9,
-   "p": 6
+   "p": 9
   },
   {
-   "ranking": 62,
+   "ranking": 42,
    "nimi": "Berglund John",
-   "o": 4,
-   "v": 2,
+   "o": 5,
+   "v": 3,
    "h": 2,
-   "ep": 12,
-   "em": 12,
-   "p": 6
+   "ep": 16,
+   "em": 13,
+   "p": 9
   },
   {
-   "ranking": 130,
+   "ranking": 132,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
@@ -648,9 +648,49 @@
    "pvm": "2026-11-12",
    "koti": "Nekala Pool",
    "vieras": "Nekapool 2",
-   "pelit": null,
-   "erat": null,
-   "linkki": null
+   "pelit": [
+    0,
+    4
+   ],
+   "erat": [
+    3,
+    16
+   ],
+   "linkki": "https://www.pirkanmaanpool.fi/cgi-bin/sarjapeli.cgi?sarja=3divari2026&lohko=&koti=Nekala+Pool&vieras=Nekapool+2",
+   "pelit_erittely": [
+    {
+     "koti": "Ahoniemi Tero",
+     "vieras": "Karppanen Toni",
+     "tulos": [
+      1,
+      4
+     ]
+    },
+    {
+     "koti": "Maunuaho Sami",
+     "vieras": "Räisänen Sami",
+     "tulos": [
+      1,
+      4
+     ]
+    },
+    {
+     "koti": "Paju Tommi",
+     "vieras": "Berglund John",
+     "tulos": [
+      1,
+      4
+     ]
+    },
+    {
+     "koti": "Tuura Manu",
+     "vieras": "Eskola Arto",
+     "tulos": [
+      0,
+      4
+     ]
+    }
+   ]
   },
   {
    "pvm": "2026-11-17",

@@ -1,10 +1,20 @@
 [
   {
     "pvm": "2026-11-12",
+    "tyyppi": "uutinen",
+    "vari": "kulta",
+    "otsikko": "Nekapool 2 on sarjan kärjessä!",
+    "teksti": "Liiton uusi sarjataulukko on julki: Nekapool 2 johtaa 3. divisioonaa 17 pisteellä, ja Team Walter's 2 ja Pispalan Köö ovat pisteen perässä. Seitsemästä ottelusta on tullut viisi voittoa ja kaksi tasapeliä. Joukkue on sarjan ainoa tappioton, ja peleissä 23–5 ja erissä 104–46 sillä on sarjan parhaat luvut. Liigarankingissa Toni on ykkönen (6–0, erät 24–5) ja Sami kakkonen (6–0, 24–8). Seuraavaksi kotona ByP Backyard Pool tiistaina 17.11.",
+    "linkki": "#sarjataulukko",
+    "linkkiteksti": "Katso sarjataulukko",
+    "julkaistu": "2026-11-12T18:38:30Z"
+  },
+  {
+    "pvm": "2026-11-12",
     "tyyppi": "raportti",
     "vari": "oranssi",
     "otsikko": "Neljä dominointia: Nekala Pool kaatui 3–16",
-    "teksti": "Naapuriderby päättyi vieraiden 16–3-voittoon. Toni dominoi 4–1, Arto dominoi 4–0, Sami dominoi 4–1 ja John dominoi 4–1. Koko ilta kesti alle kaksi tuntia. Seitsemän ottelua, 17 pistettä eikä yhtään tappiota. Raportissa illan kulku -kaavio ja neljä dominointilelua.",
+    "teksti": "Naapuriderby päättyi vieraiden 16–3-voittoon. Toni dominoi Tero Ahoniemeä 4–1, Arto Manu Tuuraa 4–0, Sami kaimaansa Sami Maunuahoa 4–1 ja John Tommi Pajua 4–1. Koko ilta kesti alle kaksi tuntia. Raportissa illan kulku -kaavio ja neljä dominointilelua.",
     "linkki": "raportit/2026-11-12-nekala-pool.html",
     "linkkiteksti": "Lue otteluraportti",
     "julkaistu": "2026-11-12T18:05:39Z"
