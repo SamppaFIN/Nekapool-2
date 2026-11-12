@@ -271,7 +271,7 @@ canvas { display: block; width: 100%; max-width: 100%; height: auto; background:
     <p class="eyebrow">Pirkanmaan poolliiga · 3. divisioona · 7. kierros</p>
     <h1>Neljä dominointia Nekalassa</h1>
     <p class="date">Torstai 12.11.2026 · Nekala Pool – Nekapool 2 · vierasottelu</p>
-    <p class="lede">Naapuriderby päättyi vieraiden 16–3-voittoon. Toni dominoi, Arto dominoi, Sami dominoi ja John dominoi. Neljä peliä, neljä voittoa ja koko ilta alle kahdessa tunnissa. Nekapool 2 on kauden seitsemännenkin ottelun jälkeen tappioton ja nousi sarjan kärkeen.</p>
+    <p class="lede">Naapuriderby päättyi vieraiden 16–3-voittoon. Toni dominoi, Arto dominoi, Sami dominoi ja John dominoi. Neljä peliä, neljä voittoa ja koko ilta alle kahdessa tunnissa. Nekapool 2 on kauden seitsemännenkin ottelun jälkeen tappioton.</p>
   </header>
 
   <section aria-label="Lopputulos">
@@ -383,13 +383,13 @@ canvas { display: block; width: 100%; max-width: 100%; height: auto; background:
 
   <section aria-labelledby="stH">
     <h2 id="stH">Tilanne sarjassa</h2>
-    <p class="sub">3. divisioonan sarjataulukko 12.11.2026: Nekapool 2 on sarjan kärjessä.</p>
+    <p class="sub">3. divisioonan sarjataulukko 12.11.2026: Nekapool 2 on pisteen päässä kärjestä.</p>
     <div class="stats">
-      <div class="stat" style="--c: var(--orange)"><b>1.</b><span>sija, 17 pistettä</span></div>
+      <div class="stat" style="--c: var(--orange)"><b>2.</b><span>sija, 17 pistettä</span></div>
       <div class="stat" style="--c: var(--cyan)"><b class="sm">104–46</b><span>erät seitsemästä ottelusta</span></div>
       <div class="stat" style="--c: var(--yellow)"><b>0</b><span>hävittyä ottelua</span></div>
     </div>
-    <p class="note">Takana Team Walter's 2 ja Pispalan Köö 16 pisteellä. Liigarankingissa Toni on ykkönen ja Sami kakkonen, kumpikin 6–0. Seuraavaksi kotona ByP Backyard Pool, tiistai 17.11.</p>
+    <p class="note">Kärjessä Pub Kivitasku 2 18 pisteellä. Nekapool on sarjan ainoa tappioton joukkue. Liigarankingissa Toni on ykkönen ja Sami kakkonen, kumpikin 6–0. Seuraavaksi kotona ByP Backyard Pool, tiistai 17.11.</p>
   </section>
 
   <section class="share" aria-labelledby="shH">
@@ -634,7 +634,7 @@ canvas { display: block; width: 100%; max-width: 100%; height: auto; background:
   drawRope();
 
   /* jako */
-  var MSG = 'Pirkanmaan poolliiga, torstai 12.11.2026\nNekala Pool – Nekapool 2 0–4 (erät 3–16)\nToni 4–1, Arto 4–0, Sami 4–1, John 4–1\nNeljä dominointia ja sarjan kärkipaikka. Seitsemän ottelua, 17 pistettä, ei yhtään tappiota.';
+  var MSG = 'Pirkanmaan poolliiga, torstai 12.11.2026\nNekala Pool – Nekapool 2 0–4 (erät 3–16)\nToni 4–1, Arto 4–0, Sami 4–1, John 4–1\nNeljä dominointia. Seitsemän ottelua, 17 pistettä, ei yhtään tappiota.';
   var copyBtn = $('copyBtn'), copyNote = $('copyNote'), shareText = $('shareText');
   function showFallback() { shareText.value = MSG; shareText.hidden = false; shareText.focus(); shareText.select(); copyNote.textContent = 'Valitse teksti ja kopioi se itse.'; }
   copyBtn.addEventListener('click', function () {
