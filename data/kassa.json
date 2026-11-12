@@ -367,6 +367,34 @@
    "id": "mvqxrqjy11jcle",
    "t": 1793120704558,
    "kuka": "arto"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "John juo matsin aikana veden",
+   "vaihtoehdot": [
+    "Kyllä",
+    "Ei"
+   ],
+   "id": "mwdsbqtfmmyq7x",
+   "t": 1794502282371,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mwdsbqtfmmyq7x",
+   "valinta": 0,
+   "maara": 20,
+   "id": "mwdsbxyb2nnsa8",
+   "t": 1794502291619,
+   "kuka": "sami"
+  },
+  {
+   "typ": "ratkaisu",
+   "veto": "mwdsbqtfmmyq7x",
+   "voittaja": -1,
+   "id": "mwdswlg997ruhg",
+   "t": 1794503255193,
+   "kuka": "sami"
   }
  ]
 }
