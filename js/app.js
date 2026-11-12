@@ -803,6 +803,7 @@
   }
 
   function renderUutiset(list) {
+    var kaikki = list.slice(); // arkistoon myös heron nostona oleva tuore uutinen
     var box = $('news');
     box.textContent = '';
     list.sort(function (a, b) { return (b.julkaistu || b.pvm) < (a.julkaistu || a.pvm) ? -1 : 1; });
@@ -840,7 +841,7 @@
       }
     });
     if (!list.length) box.appendChild(el('p', 'note', 'Ei uutisia vielä.'));
-    renderArkisto(list);
+    renderArkisto(kaikki);
   }
 
   /* ---------- käynnistys ---------- */
