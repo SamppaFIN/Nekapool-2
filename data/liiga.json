@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-11-12T21:25:43+00:00",
+ "paivitetty": "2026-11-17T19:02:07+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 12.11.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 17.11.2026",
   "rivit": [
    {
     "sija": 1,
@@ -21,18 +21,31 @@
    {
     "sija": 2,
     "joukkue": "Nekapool 2",
-    "o": 7,
+    "o": 8,
     "v": 5,
-    "t": 2,
+    "t": 3,
     "h": 0,
-    "pp": 23,
-    "pm": 5,
-    "ep": 104,
-    "em": 46,
-    "p": 17
+    "pp": 25,
+    "pm": 7,
+    "ep": 116,
+    "em": 56,
+    "p": 18
    },
    {
     "sija": 3,
+    "joukkue": "Akateeminen Breikki",
+    "o": 8,
+    "v": 5,
+    "t": 2,
+    "h": 1,
+    "pp": 21,
+    "pm": 11,
+    "ep": 108,
+    "em": 75,
+    "p": 17
+   },
+   {
+    "sija": 4,
     "joukkue": "Players Inn 1",
     "o": 7,
     "v": 5,
@@ -45,7 +58,7 @@
     "p": 16
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Team Walter's 2",
     "o": 7,
     "v": 5,
@@ -58,7 +71,7 @@
     "p": 16
    },
    {
-    "sija": 5,
+    "sija": 6,
     "joukkue": "Pispalan Köö",
     "o": 7,
     "v": 5,
@@ -69,19 +82,6 @@
     "ep": 90,
     "em": 73,
     "p": 16
-   },
-   {
-    "sija": 6,
-    "joukkue": "Pool Room Poolers",
-    "o": 7,
-    "v": 5,
-    "t": 0,
-    "h": 2,
-    "pp": 18,
-    "pm": 10,
-    "ep": 92,
-    "em": 72,
-    "p": 15
    },
    {
     "sija": 7,
@@ -98,32 +98,58 @@
    },
    {
     "sija": 8,
-    "joukkue": "Akateeminen Breikki",
-    "o": 7,
-    "v": 4,
-    "t": 2,
-    "h": 1,
+    "joukkue": "Pool Room Poolers",
+    "o": 8,
+    "v": 5,
+    "t": 0,
+    "h": 3,
     "pp": 18,
-    "pm": 10,
-    "ep": 93,
-    "em": 68,
-    "p": 14
+    "pm": 14,
+    "ep": 100,
+    "em": 88,
+    "p": 15
    },
    {
     "sija": 9,
     "joukkue": "ByP Backyard Pool",
-    "o": 7,
+    "o": 8,
     "v": 2,
-    "t": 4,
+    "t": 5,
     "h": 1,
-    "pp": 14,
-    "pm": 14,
-    "ep": 81,
-    "em": 77,
-    "p": 10
+    "pp": 16,
+    "pm": 16,
+    "ep": 91,
+    "em": 89,
+    "p": 11
    },
    {
     "sija": 10,
+    "joukkue": "Pete Pool",
+    "o": 8,
+    "v": 3,
+    "t": 1,
+    "h": 4,
+    "pp": 16,
+    "pm": 16,
+    "ep": 89,
+    "em": 93,
+    "p": 10
+   },
+   {
+    "sija": 11,
+    "joukkue": "Nekala Pool",
+    "o": 8,
+    "v": 2,
+    "t": 4,
+    "h": 2,
+    "pp": 16,
+    "pm": 16,
+    "ep": 86,
+    "em": 87,
+    "p": 10
+   },
+   {
+    "sija": 12,
     "joukkue": "Pub Kivitasku Tohloppi *",
     "o": 7,
     "v": 3,
@@ -136,20 +162,20 @@
     "p": 9
    },
    {
-    "sija": 11,
-    "joukkue": "Nekala Pool",
-    "o": 7,
+    "sija": 13,
+    "joukkue": "PP Pahat",
+    "o": 8,
     "v": 2,
-    "t": 3,
-    "h": 2,
+    "t": 2,
+    "h": 4,
     "pp": 14,
-    "pm": 14,
-    "ep": 75,
-    "em": 77,
-    "p": 9
+    "pm": 18,
+    "ep": 84,
+    "em": 91,
+    "p": 8
    },
    {
-    "sija": 12,
+    "sija": 14,
     "joukkue": "Pub Don Pepe",
     "o": 7,
     "v": 1,
@@ -160,32 +186,6 @@
     "ep": 82,
     "em": 80,
     "p": 8
-   },
-   {
-    "sija": 13,
-    "joukkue": "PP Pahat",
-    "o": 7,
-    "v": 2,
-    "t": 1,
-    "h": 4,
-    "pp": 12,
-    "pm": 16,
-    "ep": 74,
-    "em": 80,
-    "p": 7
-   },
-   {
-    "sija": 14,
-    "joukkue": "Pete Pool",
-    "o": 7,
-    "v": 2,
-    "t": 1,
-    "h": 4,
-    "pp": 12,
-    "pm": 16,
-    "ep": 73,
-    "em": 85,
-    "p": 7
    },
    {
     "sija": 15,
@@ -229,14 +229,14 @@
    {
     "sija": 18,
     "joukkue": "Vastavirta Pool",
-    "o": 7,
+    "o": 8,
     "v": 0,
     "t": 5,
-    "h": 2,
-    "pp": 11,
-    "pm": 17,
-    "ep": 70,
-    "em": 85,
+    "h": 3,
+    "pp": 12,
+    "pm": 20,
+    "ep": 77,
+    "em": 100,
     "p": 5
    },
    {
@@ -297,22 +297,22 @@
   {
    "ranking": 1,
    "nimi": "Karppanen Toni",
-   "o": 6,
-   "v": 6,
+   "o": 7,
+   "v": 7,
    "h": 0,
-   "ep": 24,
+   "ep": 28,
    "em": 5,
-   "p": 18
+   "p": 21
   },
   {
    "ranking": 2,
    "nimi": "Räisänen Sami",
-   "o": 6,
-   "v": 6,
+   "o": 7,
+   "v": 7,
    "h": 0,
-   "ep": 24,
-   "em": 8,
-   "p": 18
+   "ep": 28,
+   "em": 10,
+   "p": 21
   },
   {
    "ranking": 6,
@@ -325,27 +325,27 @@
    "p": 15
   },
   {
-   "ranking": 43,
+   "ranking": 48,
    "nimi": "Eskola Arto",
-   "o": 5,
+   "o": 6,
    "v": 3,
-   "h": 2,
-   "ep": 17,
-   "em": 9,
-   "p": 9
-  },
-  {
-   "ranking": 45,
-   "nimi": "Berglund John",
-   "o": 5,
-   "v": 3,
-   "h": 2,
-   "ep": 16,
+   "h": 3,
+   "ep": 20,
    "em": 13,
    "p": 9
   },
   {
-   "ranking": 132,
+   "ranking": 49,
+   "nimi": "Berglund John",
+   "o": 6,
+   "v": 3,
+   "h": 3,
+   "ep": 17,
+   "em": 17,
+   "p": 9
+  },
+  {
+   "ranking": 137,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
@@ -696,9 +696,49 @@
    "pvm": "2026-11-17",
    "koti": "Nekapool 2",
    "vieras": "ByP Backyard Pool",
-   "pelit": null,
-   "erat": null,
-   "linkki": null
+   "pelit": [
+    2,
+    2
+   ],
+   "erat": [
+    12,
+    10
+   ],
+   "linkki": "https://www.pirkanmaanpool.fi/cgi-bin/sarjapeli.cgi?sarja=3divari2026&lohko=&koti=Nekapool+2&vieras=ByP+Backyard+Pool",
+   "pelit_erittely": [
+    {
+     "koti": "Räisänen Sami",
+     "vieras": "Lehtimäki Jesse",
+     "tulos": [
+      4,
+      2
+     ]
+    },
+    {
+     "koti": "Karppanen Toni",
+     "vieras": "Högman Jimi",
+     "tulos": [
+      4,
+      0
+     ]
+    },
+    {
+     "koti": "Berglund John",
+     "vieras": "Sundell Heikki",
+     "tulos": [
+      1,
+      4
+     ]
+    },
+    {
+     "koti": "Eskola Arto",
+     "vieras": "Valjakka Aleksi",
+     "tulos": [
+      3,
+      4
+     ]
+    }
+   ]
   },
   {
    "pvm": "2026-11-24",
