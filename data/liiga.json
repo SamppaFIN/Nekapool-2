@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-11-17T22:52:41+00:00",
+ "paivitetty": "2026-11-18T11:47:10+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -7,6 +7,19 @@
   "rivit": [
    {
     "sija": 1,
+    "joukkue": "Pispalan Köö",
+    "o": 8,
+    "v": 6,
+    "t": 1,
+    "h": 1,
+    "pp": 22,
+    "pm": 10,
+    "ep": 106,
+    "em": 83,
+    "p": 19
+   },
+   {
+    "sija": 2,
     "joukkue": "Pub Kivitasku 2",
     "o": 7,
     "v": 6,
@@ -19,7 +32,7 @@
     "p": 18
    },
    {
-    "sija": 2,
+    "sija": 3,
     "joukkue": "Nekapool 2",
     "o": 8,
     "v": 5,
@@ -32,7 +45,7 @@
     "p": 18
    },
    {
-    "sija": 3,
+    "sija": 4,
     "joukkue": "Akateeminen Breikki",
     "o": 8,
     "v": 5,
@@ -45,7 +58,7 @@
     "p": 17
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Players Inn 1",
     "o": 7,
     "v": 5,
@@ -58,7 +71,7 @@
     "p": 16
    },
    {
-    "sija": 5,
+    "sija": 6,
     "joukkue": "Team Walter's 2",
     "o": 7,
     "v": 5,
@@ -68,19 +81,6 @@
     "pm": 9,
     "ep": 89,
     "em": 71,
-    "p": 16
-   },
-   {
-    "sija": 6,
-    "joukkue": "Pispalan Köö",
-    "o": 7,
-    "v": 5,
-    "t": 1,
-    "h": 1,
-    "pp": 18,
-    "pm": 10,
-    "ep": 90,
-    "em": 73,
     "p": 16
    },
    {
@@ -255,14 +255,14 @@
    {
     "sija": 20,
     "joukkue": "Tampereen A-Kilta",
-    "o": 7,
+    "o": 8,
     "v": 0,
     "t": 3,
-    "h": 4,
+    "h": 5,
     "pp": 8,
-    "pm": 20,
-    "ep": 64,
-    "em": 92,
+    "pm": 24,
+    "ep": 74,
+    "em": 108,
     "p": 3
    },
    {
@@ -315,7 +315,7 @@
    "p": 21
   },
   {
-   "ranking": 8,
+   "ranking": 10,
    "nimi": "Salmi Mikko",
    "o": 5,
    "v": 5,
