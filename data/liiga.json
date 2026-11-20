@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-11-19T11:44:33+00:00",
+ "paivitetty": "2026-11-20T02:21:22+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 18.11.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 19.11.2026",
   "rivit": [
    {
     "sija": 1,
@@ -33,6 +33,19 @@
    },
    {
     "sija": 3,
+    "joukkue": "Pub Kivitasku 3",
+    "o": 8,
+    "v": 6,
+    "t": 0,
+    "h": 2,
+    "pp": 22,
+    "pm": 10,
+    "ep": 103,
+    "em": 62,
+    "p": 18
+   },
+   {
+    "sija": 4,
     "joukkue": "Nekapool 2",
     "o": 8,
     "v": 5,
@@ -45,7 +58,7 @@
     "p": 18
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Akateeminen Breikki",
     "o": 8,
     "v": 5,
@@ -58,7 +71,7 @@
     "p": 17
    },
    {
-    "sija": 5,
+    "sija": 6,
     "joukkue": "Players Inn 1",
     "o": 7,
     "v": 5,
@@ -71,7 +84,7 @@
     "p": 16
    },
    {
-    "sija": 6,
+    "sija": 7,
     "joukkue": "Team Walter's 2",
     "o": 7,
     "v": 5,
@@ -82,19 +95,6 @@
     "ep": 89,
     "em": 71,
     "p": 16
-   },
-   {
-    "sija": 7,
-    "joukkue": "Pub Kivitasku 3",
-    "o": 7,
-    "v": 5,
-    "t": 0,
-    "h": 2,
-    "pp": 18,
-    "pm": 10,
-    "ep": 87,
-    "em": 59,
-    "p": 15
    },
    {
     "sija": 8,
@@ -176,6 +176,19 @@
    },
    {
     "sija": 14,
+    "joukkue": "Pikku Pete Pool",
+    "o": 8,
+    "v": 2,
+    "t": 3,
+    "h": 3,
+    "pp": 15,
+    "pm": 17,
+    "ep": 89,
+    "em": 92,
+    "p": 9
+   },
+   {
+    "sija": 15,
     "joukkue": "PP Pahat",
     "o": 8,
     "v": 2,
@@ -188,7 +201,7 @@
     "p": 8
    },
    {
-    "sija": 15,
+    "sija": 16,
     "joukkue": "Pub Kivitasku 1",
     "o": 8,
     "v": 1,
@@ -199,19 +212,6 @@
     "ep": 83,
     "em": 96,
     "p": 7
-   },
-   {
-    "sija": 16,
-    "joukkue": "Pikku Pete Pool",
-    "o": 7,
-    "v": 1,
-    "t": 3,
-    "h": 3,
-    "pp": 11,
-    "pm": 17,
-    "ep": 73,
-    "em": 89,
-    "p": 6
    },
    {
     "sija": 17,
@@ -268,27 +268,27 @@
    {
     "sija": 21,
     "joukkue": "Jamo Racing",
-    "o": 7,
+    "o": 8,
     "v": 0,
     "t": 2,
-    "h": 5,
+    "h": 6,
     "pp": 9,
-    "pm": 19,
-    "ep": 63,
-    "em": 91,
+    "pm": 23,
+    "ep": 66,
+    "em": 107,
     "p": 2
    },
    {
     "sija": 22,
     "joukkue": "Mestarin Ysi",
-    "o": 7,
+    "o": 8,
     "v": 0,
     "t": 2,
-    "h": 5,
+    "h": 6,
     "pp": 8,
-    "pm": 20,
-    "ep": 69,
-    "em": 98,
+    "pm": 24,
+    "ep": 72,
+    "em": 114,
     "p": 2
    }
   ]
@@ -315,7 +315,7 @@
    "p": 21
   },
   {
-   "ranking": 10,
+   "ranking": 13,
    "nimi": "Salmi Mikko",
    "o": 5,
    "v": 5,
@@ -325,7 +325,7 @@
    "p": 15
   },
   {
-   "ranking": 48,
+   "ranking": 49,
    "nimi": "Eskola Arto",
    "o": 6,
    "v": 3,
@@ -335,7 +335,7 @@
    "p": 9
   },
   {
-   "ranking": 49,
+   "ranking": 50,
    "nimi": "Berglund John",
    "o": 6,
    "v": 3,
@@ -345,7 +345,7 @@
    "p": 9
   },
   {
-   "ranking": 139,
+   "ranking": 140,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
