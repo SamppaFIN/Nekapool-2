@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-11-20T02:21:22+00:00",
+ "paivitetty": "2026-11-20T20:25:01+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -73,28 +73,28 @@
    {
     "sija": 6,
     "joukkue": "Players Inn 1",
-    "o": 7,
+    "o": 8,
     "v": 5,
-    "t": 1,
+    "t": 2,
     "h": 1,
-    "pp": 19,
-    "pm": 9,
-    "ep": 92,
-    "em": 65,
-    "p": 16
+    "pp": 21,
+    "pm": 11,
+    "ep": 105,
+    "em": 77,
+    "p": 17
    },
    {
     "sija": 7,
     "joukkue": "Team Walter's 2",
-    "o": 7,
+    "o": 8,
     "v": 5,
-    "t": 1,
+    "t": 2,
     "h": 1,
-    "pp": 19,
-    "pm": 9,
-    "ep": 89,
-    "em": 71,
-    "p": 16
+    "pp": 21,
+    "pm": 11,
+    "ep": 101,
+    "em": 84,
+    "p": 17
    },
    {
     "sija": 8,
