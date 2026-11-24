@@ -1,6 +1,16 @@
 [
   {
     "pvm": "2026-11-24",
+    "tyyppi": "uutinen",
+    "vari": "kulta",
+    "otsikko": "Erikoisjulkaisu: kolmannes takana",
+    "teksti": "Kausi on kohta kolmanneksessa, ja Nekapool on sarjan ainoa tappioton joukkue: 21 pistettä, pelit 29–7 ja erät +72. Kärjessä on PK2 samoilla pisteillä yhtä ottelua vähemmällä. Erikoisjulkaisu kertoo, kuka on onnekas, keneltä odotetaan enemmän, ja ennustekoneella voi laskea loppukauden. Mukana Bahia-jukeboksi, jonka kaveri laittaa aina pois.",
+    "linkki": "raportit/2026-11-24-erikoisjulkaisu.html",
+    "linkkiteksti": "Lue erikoisjulkaisu",
+    "julkaistu": "2026-11-24T21:30:04Z"
+  },
+  {
+    "pvm": "2026-11-24",
     "tyyppi": "raportti",
     "vari": "oranssi",
     "otsikko": "Pispalasta täysi potti: Köö kaatui 4–0",
