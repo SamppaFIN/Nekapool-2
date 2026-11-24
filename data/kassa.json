@@ -395,6 +395,28 @@
    "id": "mwdswlg997ruhg",
    "t": 1794503255193,
    "kuka": "sami"
+  },
+  {
+   "typ": "veto",
+   "kysymys": "Montako kertaa John mainitsee valtavan kyrpänsä matsin aikana?",
+   "vaihtoehdot": [
+    "0",
+    "1-5",
+    "5+",
+    "Heitetään pihalle tästä syystä"
+   ],
+   "id": "mwumjed3lrqqpz",
+   "t": 1795520486776,
+   "kuka": "sami"
+  },
+  {
+   "typ": "panos",
+   "veto": "mwumjed3lrqqpz",
+   "valinta": 1,
+   "maara": 15,
+   "id": "mwumjvc8xmkqu2",
+   "t": 1795520508776,
+   "kuka": "sami"
   }
  ]
 }
