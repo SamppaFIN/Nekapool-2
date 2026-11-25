@@ -1,5 +1,5 @@
 {
- "paivitetty": "2026-11-24T21:30:23+00:00",
+ "paivitetty": "2026-11-25T08:40:26+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
@@ -111,16 +111,16 @@
    },
    {
     "sija": 9,
-    "joukkue": "Pub Don Pepe",
-    "o": 8,
-    "v": 2,
-    "t": 5,
-    "h": 1,
-    "pp": 17,
-    "pm": 15,
-    "ep": 97,
-    "em": 89,
-    "p": 11
+    "joukkue": "Pub Kivitasku Tohloppi *",
+    "o": 9,
+    "v": 4,
+    "t": 0,
+    "h": 5,
+    "pp": 15,
+    "pm": 21,
+    "ep": 78,
+    "em": 107,
+    "p": 12
    },
    {
     "sija": 10,
@@ -137,6 +137,19 @@
    },
    {
     "sija": 11,
+    "joukkue": "Pub Don Pepe",
+    "o": 9,
+    "v": 2,
+    "t": 5,
+    "h": 2,
+    "pp": 18,
+    "pm": 18,
+    "ep": 108,
+    "em": 103,
+    "p": 11
+   },
+   {
+    "sija": 12,
     "joukkue": "Nekala Pool",
     "o": 9,
     "v": 2,
@@ -149,7 +162,7 @@
     "p": 11
    },
    {
-    "sija": 12,
+    "sija": 13,
     "joukkue": "Pete Pool",
     "o": 8,
     "v": 3,
@@ -160,19 +173,6 @@
     "ep": 89,
     "em": 93,
     "p": 10
-   },
-   {
-    "sija": 13,
-    "joukkue": "Pub Kivitasku Tohloppi *",
-    "o": 8,
-    "v": 3,
-    "t": 0,
-    "h": 5,
-    "pp": 12,
-    "pm": 20,
-    "ep": 64,
-    "em": 96,
-    "p": 9
    },
    {
     "sija": 14,
@@ -325,7 +325,7 @@
    "p": 15
   },
   {
-   "ranking": 34,
+   "ranking": 35,
    "nimi": "Eskola Arto",
    "o": 7,
    "v": 4,
@@ -335,7 +335,7 @@
    "p": 12
   },
   {
-   "ranking": 37,
+   "ranking": 38,
    "nimi": "Berglund John",
    "o": 7,
    "v": 4,
@@ -345,7 +345,7 @@
    "p": 12
   },
   {
-   "ranking": 140,
+   "ranking": 141,
    "nimi": "Mäkirinta Jussi",
    "o": 1,
    "v": 0,
