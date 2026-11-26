@@ -1,9 +1,9 @@
 {
- "paivitetty": "2026-11-25T19:19:18+00:00",
+ "paivitetty": "2026-11-26T03:36:09+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 24.11.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 25.11.2026",
   "rivit": [
    {
     "sija": 1,
@@ -111,6 +111,19 @@
    },
    {
     "sija": 9,
+    "joukkue": "ByP Backyard Pool",
+    "o": 9,
+    "v": 3,
+    "t": 5,
+    "h": 1,
+    "pp": 19,
+    "pm": 17,
+    "ep": 105,
+    "em": 99,
+    "p": 14
+   },
+   {
+    "sija": 10,
     "joukkue": "Pub Kivitasku Tohloppi *",
     "o": 9,
     "v": 4,
@@ -121,19 +134,6 @@
     "ep": 78,
     "em": 107,
     "p": 12
-   },
-   {
-    "sija": 10,
-    "joukkue": "ByP Backyard Pool",
-    "o": 8,
-    "v": 2,
-    "t": 5,
-    "h": 1,
-    "pp": 16,
-    "pm": 16,
-    "ep": 91,
-    "em": 89,
-    "p": 11
    },
    {
     "sija": 11,
@@ -190,14 +190,14 @@
    {
     "sija": 15,
     "joukkue": "PP Pahat",
-    "o": 8,
+    "o": 9,
     "v": 2,
     "t": 2,
-    "h": 4,
-    "pp": 14,
-    "pm": 18,
-    "ep": 84,
-    "em": 91,
+    "h": 5,
+    "pp": 15,
+    "pm": 21,
+    "ep": 94,
+    "em": 105,
     "p": 8
    },
    {
