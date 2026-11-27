@@ -1,22 +1,22 @@
 {
- "paivitetty": "2026-11-26T03:36:09+00:00",
+ "paivitetty": "2026-11-27T01:45:07+00:00",
  "joukkue": "Nekapool 2",
  "sarja": "3divari2026",
  "sarjataulukko": {
-  "otsikko": "3. divisioonan  sarjataulukko 25.11.2026",
+  "otsikko": "3. divisioonan  sarjataulukko 26.11.2026",
   "rivit": [
    {
     "sija": 1,
     "joukkue": "Pub Kivitasku 2",
-    "o": 8,
+    "o": 9,
     "v": 7,
-    "t": 0,
+    "t": 1,
     "h": 1,
-    "pp": 24,
-    "pm": 8,
-    "ep": 107,
-    "em": 65,
-    "p": 21
+    "pp": 26,
+    "pm": 10,
+    "ep": 118,
+    "em": 76,
+    "p": 22
    },
    {
     "sija": 2,
@@ -33,6 +33,19 @@
    },
    {
     "sija": 3,
+    "joukkue": "Team Walter's 2",
+    "o": 9,
+    "v": 6,
+    "t": 2,
+    "h": 1,
+    "pp": 25,
+    "pm": 11,
+    "ep": 117,
+    "em": 90,
+    "p": 20
+   },
+   {
+    "sija": 4,
     "joukkue": "Pispalan Köö",
     "o": 9,
     "v": 6,
@@ -45,7 +58,7 @@
     "p": 19
    },
    {
-    "sija": 4,
+    "sija": 5,
     "joukkue": "Pub Kivitasku 3",
     "o": 8,
     "v": 6,
@@ -58,7 +71,7 @@
     "p": 18
    },
    {
-    "sija": 5,
+    "sija": 6,
     "joukkue": "Akateeminen Breikki",
     "o": 9,
     "v": 5,
@@ -71,7 +84,7 @@
     "p": 18
    },
    {
-    "sija": 6,
+    "sija": 7,
     "joukkue": "Players Inn 1",
     "o": 9,
     "v": 5,
@@ -82,19 +95,6 @@
     "ep": 115,
     "em": 90,
     "p": 18
-   },
-   {
-    "sija": 7,
-    "joukkue": "Team Walter's 2",
-    "o": 8,
-    "v": 5,
-    "t": 2,
-    "h": 1,
-    "pp": 21,
-    "pm": 11,
-    "ep": 101,
-    "em": 84,
-    "p": 17
    },
    {
     "sija": 8,
@@ -137,6 +137,19 @@
    },
    {
     "sija": 11,
+    "joukkue": "Pete Pool",
+    "o": 9,
+    "v": 3,
+    "t": 2,
+    "h": 4,
+    "pp": 18,
+    "pm": 18,
+    "ep": 101,
+    "em": 105,
+    "p": 11
+   },
+   {
+    "sija": 12,
     "joukkue": "Pub Don Pepe",
     "o": 9,
     "v": 2,
@@ -149,7 +162,7 @@
     "p": 11
    },
    {
-    "sija": 12,
+    "sija": 13,
     "joukkue": "Nekala Pool",
     "o": 9,
     "v": 2,
@@ -162,30 +175,17 @@
     "p": 11
    },
    {
-    "sija": 13,
-    "joukkue": "Pete Pool",
-    "o": 8,
-    "v": 3,
-    "t": 1,
-    "h": 4,
-    "pp": 16,
-    "pm": 16,
-    "ep": 89,
-    "em": 93,
-    "p": 10
-   },
-   {
     "sija": 14,
     "joukkue": "Pikku Pete Pool",
-    "o": 8,
+    "o": 9,
     "v": 2,
-    "t": 3,
+    "t": 4,
     "h": 3,
-    "pp": 15,
-    "pm": 17,
-    "ep": 89,
-    "em": 92,
-    "p": 9
+    "pp": 17,
+    "pm": 19,
+    "ep": 100,
+    "em": 103,
+    "p": 10
    },
    {
     "sija": 15,
@@ -216,54 +216,54 @@
    {
     "sija": 17,
     "joukkue": "Mestarin Pool",
-    "o": 8,
+    "o": 9,
     "v": 1,
-    "t": 3,
+    "t": 4,
     "h": 4,
-    "pp": 13,
-    "pm": 19,
-    "ep": 78,
-    "em": 99,
-    "p": 6
+    "pp": 15,
+    "pm": 21,
+    "ep": 90,
+    "em": 111,
+    "p": 7
    },
    {
     "sija": 18,
     "joukkue": "Vastavirta Pool",
-    "o": 8,
+    "o": 9,
     "v": 0,
-    "t": 5,
+    "t": 6,
     "h": 3,
-    "pp": 12,
-    "pm": 20,
-    "ep": 77,
-    "em": 100,
-    "p": 5
+    "pp": 14,
+    "pm": 22,
+    "ep": 89,
+    "em": 112,
+    "p": 6
    },
    {
     "sija": 19,
     "joukkue": "Renny Breakers *",
-    "o": 8,
+    "o": 9,
     "v": 1,
     "t": 1,
-    "h": 6,
+    "h": 7,
     "pp": 9,
-    "pm": 23,
-    "ep": 66,
-    "em": 111,
+    "pm": 27,
+    "ep": 72,
+    "em": 127,
     "p": 4
    },
    {
     "sija": 20,
     "joukkue": "Tampereen A-Kilta",
-    "o": 8,
+    "o": 9,
     "v": 0,
-    "t": 3,
+    "t": 4,
     "h": 5,
-    "pp": 8,
-    "pm": 24,
-    "ep": 74,
-    "em": 108,
-    "p": 3
+    "pp": 10,
+    "pm": 26,
+    "ep": 86,
+    "em": 120,
+    "p": 4
    },
    {
     "sija": 21,
@@ -325,7 +325,7 @@
    "p": 15
   },
   {
-   "ranking": 35,
+   "ranking": 39,
    "nimi": "Eskola Arto",
    "o": 7,
    "v": 4,
@@ -335,7 +335,7 @@
    "p": 12
   },
   {
-   "ranking": 38,
+   "ranking": 41,
    "nimi": "Berglund John",
    "o": 7,
    "v": 4,
